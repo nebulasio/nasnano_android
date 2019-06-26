@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+        <data>
+
+                <import type="android.view.View"/>
+
+                <variable
+                        name="item"
+                        type="io.nebulas.wallet.android.module.wallet.manage.model.ManageWalletHomeModel"/>
+        </data>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:visibility='@{null != item.cateName ? View.VISIBLE : View.GONE}'>
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text='@{item.cateName}'
+                                android:textSize="20sp"
+                                android:textColor="@color/color_323232"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="15dp"/>
+
+                </LinearLayout>
+                
+                <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:visibility='@{null != item.wallet ? View.VISIBLE : View.GONE}'>
+
+                        <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text='@{item.wallet.walletName}'
+                                android:textSize="16sp"
+                                android:textColor="@color/color_323232"
+                                android:lines="1"
+                                android:ellipsize="end"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="@+id/arrow_iv"
+                                android:layout_margin="15dp"/>
+
+                        <ImageView
+                                android:id="@+id/arrow_iv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/arrow"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                android:layout_marginRight="15dp"
+                                android:layout_marginEnd="15dp"/>
+
+                        <View
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/divider_height"
+                                android:background="@color/divider_line"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginStart="15dp"/>
+
+                </android.support.constraint.ConstraintLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="164dp"
+                        android:gravity="center"
+                        android:visibility='@{item.hasFooter ? View.VISIBLE : View.GONE}'>
+
+                        <Button
+                                android:id="@+id/addWalletBtn"
+                                android:layout_width="249dp"
+                                android:layout_height="44dp"
+                                android:text="@string/wallet_manage_add_wallet_btn"
+                                android:textSize="16sp"
+                                android:textColor="@color/white"
+                                android:background="@drawable/custom_button_bg"/>
+
+                </LinearLayout>
+
+
+        </LinearLayout>
+
+
+</layout>

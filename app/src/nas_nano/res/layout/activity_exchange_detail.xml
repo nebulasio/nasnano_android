@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_EEF1F4">
+
+        <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/color_038AFB"
+                android:fitsSystemWindows="true"
+                app:contentInsetStart="0dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:navigationIcon="@drawable/icons_back">
+
+                <TextView
+                        android:id="@+id/titleTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/toolbar_height"
+                        android:layout_gravity="center|top"
+                        android:layout_marginEnd="18dp"
+                        android:layout_marginStart="18dp"
+                        android:ellipsize="marquee"
+                        android:gravity="center"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/toolebar_title_size"
+                        android:textStyle="bold" />
+
+        </android.support.v7.widget.Toolbar>
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+                <android.support.constraint.ConstraintLayout
+                        android:id="@+id/detailLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.constraint.ConstraintLayout
+                                android:id="@+id/layout"
+                                android:layout_width="0dp"
+                                android:layout_height="503dp"
+                                android:layout_marginLeft="18dp"
+                                android:layout_marginRight="18dp"
+                                android:layout_marginTop="55dp"
+                                android:background="@drawable/white_rect_corner"
+                                android:paddingBottom="18dp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <TextView
+                                        android:id="@+id/resultTV"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="55dp"
+                                        android:gravity="center_horizontal"
+                                        android:text="@string/swap_state_waiting"
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                        android:id="@+id/resultDes"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:paddingTop="2dp"
+                                        android:text="@string/swap_state_waiting_des"
+                                        android:textColor="@color/color_8F8F8F"
+                                        android:textSize="13sp"
+                                        android:visibility="gone"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@+id/resultTV" />
+
+                                <TextView
+                                        android:id="@+id/walletDes"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="18dp"
+                                        android:layout_marginTop="138dp"
+                                        android:text="@string/swap_addess_des"
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="13sp"
+                                        android:textStyle="bold"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                        android:id="@+id/walletNameTV"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="18dp"
+                                        android:layout_marginStart="12dp"
+                                        android:ellipsize="end"
+                                        android:gravity="end"
+                                        android:singleLine="true"
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="13sp"
+                                        android:textStyle="bold"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@+id/walletDes"
+                                        app:layout_constraintTop_toTopOf="@id/walletDes"
+                                        tools:text="钱包1" />
+
+                                <TextView
+                                        android:id="@+id/addressTV"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:paddingBottom="12dp"
+                                        android:paddingTop="4dp"
+                                        android:textColor="@color/color_666666"
+                                        android:textSize="13sp"
+                                        app:layout_constraintLeft_toLeftOf="@+id/walletDes"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@+id/walletNameTV" />
+
+                                <View
+                                        android:id="@+id/view1"
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:background="@color/color_DFE2E5"
+                                        app:layout_constraintLeft_toLeftOf="@+id/walletDes"
+                                        app:layout_constraintRight_toRightOf="@+id/walletNameTV"
+                                        app:layout_constraintTop_toBottomOf="@id/addressTV" />
+
+                                <TextView
+                                        android:id="@+id/tokenName"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingBottom="12dp"
+                                        android:paddingTop="11dp"
+                                        android:text="@string/swap_token_name"
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="15sp"
+                                        android:textStyle="bold"
+                                        app:layout_constraintLeft_toLeftOf="@+id/walletDes"
+                                        app:layout_constraintTop_toBottomOf="@+id/view1" />
+
+                                <TextView
+                                        android:id="@+id/token"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="NAS"
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="17sp"
+                                        android:textStyle="bold"
+                                        app:layout_constraintBottom_toTopOf="@+id/view2"
+                                        app:layout_constraintRight_toRightOf="@+id/walletNameTV"
+                                        app:layout_constraintTop_toBottomOf="@+id/view1" />
+
+                                <io.nebulas.wallet.android.view.AutoFitTextView
+                                        android:id="@+id/amount"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="right"
+                                        android:paddingLeft="3dp"
+                                        android:paddingRight="3dp"
+                                        android:singleLine="true"
+                                        android:textColor="@color/colorAccent"
+                                        android:textSize="17sp"
+                                        android:textStyle="bold"
+                                        app:layout_constraintBottom_toBottomOf="@+id/token"
+                                        app:layout_constraintLeft_toRightOf="@+id/tokenName"
+                                        app:layout_constraintRight_toLeftOf="@+id/token"
+                                        app:layout_constraintTop_toTopOf="@+id/token" />
+
+                                <View
+                                        android:id="@+id/view2"
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:background="@color/color_DFE2E5"
+                                        app:layout_constraintLeft_toLeftOf="@+id/walletDes"
+                                        app:layout_constraintRight_toRightOf="@+id/walletNameTV"
+                                        app:layout_constraintTop_toBottomOf="@id/tokenName" />
+
+                                <TextView
+                                        android:id="@+id/gasFeeDes"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingBottom="12dp"
+                                        android:paddingTop="11dp"
+                                        android:text="@string/gas_fee"
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="15sp"
+                                        android:textStyle="bold"
+                                        app:layout_constraintLeft_toLeftOf="@+id/walletDes"
+                                        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+                                <TextView
+                                        android:id="@+id/gasToken"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="ETH"
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="17sp"
+                                        android:textStyle="bold"
+                                        app:layout_constraintBottom_toBottomOf="@+id/view3"
+                                        app:layout_constraintRight_toRightOf="@+id/walletNameTV"
+                                        app:layout_constraintTop_toTopOf="@+id/view2" />
+
+                                <io.nebulas.wallet.android.view.AutoFitTextView
+                                        android:id="@+id/gasFee"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="right"
+                                        android:paddingLeft="3dp"
+                                        android:paddingRight="3dp"
+                                        android:singleLine="true"
+                                        android:textColor="@color/colorAccent"
+                                        android:textSize="17sp"
+                                        android:textStyle="bold"
+                                        app:layout_constraintBottom_toBottomOf="@+id/gasToken"
+                                        app:layout_constraintLeft_toRightOf="@+id/gasFeeDes"
+                                        app:layout_constraintRight_toLeftOf="@+id/gasToken"
+                                        app:layout_constraintTop_toTopOf="@+id/gasToken" />
+
+                                <View
+                                        android:id="@+id/view3"
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:background="@color/color_DFE2E5"
+                                        app:layout_constraintLeft_toLeftOf="@+id/walletDes"
+                                        app:layout_constraintRight_toRightOf="@+id/walletNameTV"
+                                        app:layout_constraintTop_toBottomOf="@id/gasFeeDes" />
+
+                                <TextView
+                                        android:id="@+id/create_time_des"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingBottom="12dp"
+                                        android:paddingLeft="18dp"
+                                        android:paddingTop="11dp"
+                                        android:text="@string/swap_start"
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="15sp"
+                                        android:textStyle="bold"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+                                <io.nebulas.wallet.android.view.AutoFitTextView
+                                        android:id="@+id/createTime"
+                                        android:layout_width="180dp"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="right"
+                                        android:textColor="@color/color_8F8F8F"
+                                        android:textSize="13sp"
+                                        app:layout_constraintBottom_toTopOf="@+id/view4"
+                                        app:layout_constraintRight_toRightOf="@+id/walletNameTV"
+                                        app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+                                <View
+                                        android:id="@+id/view4"
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:background="@color/color_DFE2E5"
+                                        app:layout_constraintLeft_toLeftOf="@+id/walletDes"
+                                        app:layout_constraintRight_toRightOf="@+id/walletNameTV"
+                                        app:layout_constraintTop_toBottomOf="@id/create_time_des" />
+
+                                <TextView
+                                        android:id="@+id/confirmBtn"
+                                        android:layout_width="0dp"
+                                        android:layout_height="48dp"
+                                        android:background="@drawable/selector_for_exchange_next"
+                                        android:gravity="center"
+                                        android:text="@string/swap_again"
+                                        android:textColor="@color/white"
+                                        android:textSize="@dimen/size_17_sp"
+                                        android:textStyle="bold"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintLeft_toLeftOf="@+id/walletDes"
+                                        app:layout_constraintRight_toRightOf="@+id/walletNameTV" />
+                        </android.support.constraint.ConstraintLayout>
+
+                        <ImageView
+                                android:id="@+id/swapStateImg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:src="@drawable/ic_status_pending"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                </android.support.constraint.ConstraintLayout>
+
+        </ScrollView>
+
+        <include
+                android:id="@+id/loadingView"
+                layout="@layout/loading_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+</android.support.constraint.ConstraintLayout>

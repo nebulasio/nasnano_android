@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="io.nebulas.wallet.android.module.swap.introduction.SwapIntroductionActivity">
+
+        <include
+                android:id="@+id/app_bar"
+                layout="@layout/app_bar_main"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+                android:id="@+id/layout_operations"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:paddingBottom="12dp"
+                android:paddingEnd="18dp"
+                android:paddingStart="18dp"
+                android:paddingTop="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                        android:id="@+id/tv_give_up_swap"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/ripple_white_solid_with_border"
+                        android:gravity="center"
+                        android:text="@string/swap_action_give_up"
+                        android:textColor="@color/color_8F8F8F"
+                        android:textSize="17sp" />
+
+                <TextView
+                        android:id="@+id/tv_start_to_swap"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="15dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/ripple_btn_start_import"
+                        android:gravity="center"
+                        android:text="@string/swap_action_start"
+                        android:textColor="@color/white"
+                        android:textSize="17sp" />
+
+        </LinearLayout>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:id="@+id/line"
+                android:background="@color/color_DFE2E5"
+                app:layout_constraintBottom_toTopOf="@id/layout_operations"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@id/line"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/app_bar">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="18dp"
+                        android:paddingEnd="18dp"
+                        android:orientation="vertical">
+                        
+                        <ImageView
+                                android:layout_width="107dp"
+                                android:layout_height="137dp"
+                                android:layout_marginTop="50dp"
+                                android:layout_gravity="center_horizontal"
+                                android:src="@drawable/img_exchange_introduction"/>
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/color_202020"
+                                android:textStyle="bold"
+                                android:breakStrategy="simple"
+                                android:layout_marginTop="50dp"
+                                android:textSize="20sp"
+                                android:lineSpacingMultiplier="1.2"
+                                android:text="@string/swap_text_introduction_desc"/>
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/color_666666"
+                                android:textSize="15sp"
+                                android:breakStrategy="simple"
+                                android:lineSpacingMultiplier="1.2"
+                                android:layout_marginTop="20dp"
+                                android:text="@string/swap_text_introduction_desc_1"/>
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/color_666666"
+                                android:textSize="15sp"
+                                android:breakStrategy="simple"
+                                android:lineSpacingMultiplier="1.2"
+                                android:layout_marginTop="20dp"
+                                android:text="@string/swap_text_introduction_desc_2"/>
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/color_666666"
+                                android:textSize="15sp"
+                                android:breakStrategy="simple"
+                                android:lineSpacingMultiplier="1.2"
+                                android:layout_marginTop="20dp"
+                                android:text="@string/swap_text_introduction_desc_3"/>
+                </LinearLayout>
+        </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

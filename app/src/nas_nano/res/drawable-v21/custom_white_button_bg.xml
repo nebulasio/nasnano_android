@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+        android:color="@color/btn_ripple_color">
+        <item>
+                <shape xmlns:android="http://schemas.android.com/apk/res/android">
+                        <corners android:radius="0dp" />
+                        <solid android:color="@color/btn_ripple_color" />
+                </shape>
+        </item>
+
+
+        <!-- Even though these two point to the same resource, have two states so the drawable will invalidate itself when coming out of pressed state. -->
+        <item android:state_focused="true"
+              android:state_enabled="false"
+              android:state_pressed="true">
+
+                <shape xmlns:android="http://schemas.android.com/apk/res/android">
+                        <corners android:radius="0dp" />
+                        <solid android:color="@color/white"/>
+                </shape>
+        </item>
+        <item android:state_focused="true"
+              android:state_enabled="false">
+
+                <shape xmlns:android="http://schemas.android.com/apk/res/android">
+                        <corners android:radius="0dp" />
+                        <solid android:color="@color/white"/>
+                </shape>
+        </item>
+</ripple>

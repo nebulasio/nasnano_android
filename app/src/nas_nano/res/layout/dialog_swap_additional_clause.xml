@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_top_corner_ffffff">
+
+        <RelativeLayout
+                android:id="@+id/layout_agree"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/color_DFE2E5"/>
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginEnd="18dp"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/ripple_bottom_button_with_corner"
+                        android:gravity="center"
+                        android:id="@+id/tv_agree"
+                        android:text="@string/swap_action_agree"
+                        android:textColor="@color/white"
+                        android:textSize="17sp" />
+        </RelativeLayout>
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/shape_top_corner_ffffff"
+                app:layout_constraintBottom_toTopOf="@id/layout_agree"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="24dp"
+                        android:layout_marginTop="24dp"
+                        android:orientation="vertical"
+                        android:paddingEnd="24dp"
+                        android:paddingStart="24dp">
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:lineSpacingExtra="6dp"
+                                android:gravity="center"
+                                android:text="@string/swap_conditions_title"
+                                android:textColor="@color/color_202020"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:lineSpacingMultiplier="1.1"
+                                android:text="@string/swap_conditions_desc"
+                                android:textColor="@color/color_666666"
+                                android:textSize="15sp" />
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:layout_marginBottom="72dp"
+                                android:lineSpacingMultiplier="1.1"
+                                android:text="@string/swap_conditions_desc_1"
+                                android:textColor="@color/color_666666"
+                                android:textSize="15sp" />
+
+                </LinearLayout>
+        </ScrollView>
+</android.support.constraint.ConstraintLayout>

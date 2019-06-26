@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="io.nebulas.wallet.android.module.wallet.create.KeyStoreCoinListActivity">
+
+        <include
+                android:id="@+id/toolbar_layout"
+                layout="@layout/app_bar_main"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+        <TextView
+                android:id="@+id/description_tv"
+                android:text="@string/import_coin_type_des"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common_mid_margin"
+                android:layout_marginLeft="@dimen/common_mid_margin"
+                android:layout_marginRight="@dimen/common_mid_margin"
+                android:layout_marginStart="@dimen/common_mid_margin"
+                android:layout_marginEnd="@dimen/common_mid_margin"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar_layout"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+        <LinearLayout
+                android:id="@+id/nasLayout"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:background="@drawable/white_rect_corner"
+                android:elevation="3dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/common_mid_margin"
+                android:layout_marginTop="@dimen/common_mid_margin"
+                android:layout_marginLeft="@dimen/common_mid_margin"
+                android:layout_marginRight="@dimen/common_mid_margin"
+                android:layout_marginStart="@dimen/common_mid_margin"
+                android:layout_marginEnd="@dimen/common_mid_margin"
+                app:layout_constraintTop_toBottomOf="@+id/description_tv"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
+
+                <TextView
+                        android:text="NAS"
+                        android:textSize="18sp"
+                        android:textColor="@color/color_333333"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/ethLayout"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:background="@drawable/white_rect_corner"
+                android:elevation="3dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/common_mid_margin"
+                android:layout_marginTop="@dimen/common_mid_margin"
+                android:layout_marginLeft="@dimen/common_mid_margin"
+                android:layout_marginRight="@dimen/common_mid_margin"
+                android:layout_marginStart="@dimen/common_mid_margin"
+                android:layout_marginEnd="@dimen/common_mid_margin"
+                app:layout_constraintTop_toBottomOf="@+id/nasLayout"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
+
+                <TextView
+                        android:text="ETH"
+                        android:textSize="18sp"
+                        android:textColor="@color/color_333333"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

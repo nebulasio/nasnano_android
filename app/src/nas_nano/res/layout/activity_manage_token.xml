@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/white"
+        android:fitsSystemWindows="true"
+        android:focusableInTouchMode="true"
+        tools:context="io.nebulas.wallet.android.module.token.ManageTokenActivity">
+
+        <include layout="@layout/app_bar_collapse"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <EditText
+                        android:id="@+id/searchET"
+                        android:layout_width="match_parent"
+                        android:layout_height="47dp"
+                        android:layout_margin="18dp"
+                        android:hint="@string/input_coin_to_search"
+                        android:textSize="17sp"
+                        android:textColor="@color/color_202020"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:imeOptions="actionSearch"
+                        android:drawableStart="@drawable/icons_search"
+                        android:drawablePadding="6dp"
+                        android:background="@drawable/corner_bg_edittext"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+                <android.support.v7.widget.RecyclerView
+                        android:id="@+id/manageTokenRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

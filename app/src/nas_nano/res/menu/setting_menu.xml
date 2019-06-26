@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+        <item
+                android:id="@+id/settingBtn"
+                android:icon="@drawable/me_icon_setting"
+                android:title="@string/setting"
+                android:orderInCategory="100"
+                app:showAsAction="always"/>
+
+</menu>

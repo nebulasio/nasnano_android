@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+        <data>
+
+                <import type="android.view.View"/>
+
+                <variable
+                        name="item"
+                        type="io.nebulas.wallet.android.module.wallet.manage.model.WalletSettingListModel"/>
+        </data>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:visibility='@{null != item.cateName ? View.VISIBLE : View.GONE}'>
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text='@{item.cateName}'
+                                android:textSize="15sp"
+                                android:textColor="@color/color_8F8F8F"
+                                android:layout_marginStart="18dp"
+                                android:layout_gravity="center_vertical"/>
+
+                </LinearLayout>
+                
+                <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="65dp"
+                        android:visibility='@{null != item.name ? View.VISIBLE : View.GONE}'>
+
+                        <View
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/divider_height"
+                                android:background="@color/divider_line"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                android:layout_marginStart="18dp"
+                                android:layout_marginEnd="18dp"/>
+
+                        <TextView
+                                android:id="@+id/title_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text='@{item.name}'
+                                android:textSize="17sp"
+                                android:textColor="@color/color_202020"
+                                android:singleLine="true"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                android:layout_marginStart="18dp"/>
+
+                        <ImageView
+                                android:id="@+id/arrow_iv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/arrow"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                android:layout_marginEnd="23dp"/>
+
+                        <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text='@{item.des}'
+                                android:textSize="17sp"
+                                android:textColor='@{item.highlight ? @color/color_FF5552 : @color/color_8F8F8F}'
+                                android:singleLine="true"
+                                android:gravity="right"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toRightOf="@+id/title_tv"
+                                app:layout_constraintRight_toLeftOf="@+id/arrow_iv"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"/>
+
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="65dp"
+                        android:visibility='@{item.hasFooter ? View.VISIBLE : View.GONE}'>
+
+                        <TextView
+                                android:id="@+id/delWalletBtn"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:padding="18dp"
+                                android:text="@string/wallet_setting_del_wallet_btn"
+                                android:textSize="17sp"
+                                android:textColor="@color/color_FF5552"
+                                android:gravity="center_vertical"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"/>
+
+                        <View
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/divider_height"
+                                android:background="@color/divider_line"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                android:layout_marginStart="18dp"
+                                android:layout_marginEnd="18dp"/>
+
+                </android.support.constraint.ConstraintLayout>
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="9dp"
+                        android:background="@color/color_EEF1F4"
+                        android:visibility='@{item.separate ? View.VISIBLE : View.GONE}'/>
+
+
+        </LinearLayout>
+
+
+</layout>

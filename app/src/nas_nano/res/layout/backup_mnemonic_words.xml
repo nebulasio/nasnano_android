@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="25dp">
+
+        <LinearLayout
+                android:id="@+id/layoutShowOrHide"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/shape_round_corner_8dp_ffffff_ff8f00"
+                android:gravity="center"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                        android:id="@+id/ivShowingStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_eye_open_ff8f00" />
+
+                <TextView
+                        android:id="@+id/contentSwitchBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="12dp"
+                        android:background="@color/transparent"
+                        android:gravity="center"
+                        android:textColor="@color/color_FF8F00"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+                android:id="@+id/tips1_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:text="@string/wallet_backup_detail_tips1"
+                android:visibility="gone"
+                android:textColor="@color/color_FF5552"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="@+id/layoutShowOrHide"
+                app:layout_constraintTop_toBottomOf="@+id/layoutShowOrHide" />
+
+        <TextView
+                android:id="@+id/tips2_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/wallet_backup_detail_tips2"
+                android:textColor="@color/color_FF5552"
+                android:textSize="13sp"
+                android:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="@+id/layoutShowOrHide"
+                app:layout_constraintRight_toRightOf="@+id/layoutShowOrHide"
+                app:layout_constraintTop_toBottomOf="@+id/tips1_tv" />
+
+        <TextView
+                android:id="@+id/doSomethingBtn"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/selector_for_btn_import_wallet"
+                android:clickable="false"
+                android:enabled="false"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tips2_tv" />
+</android.support.constraint.ConstraintLayout>

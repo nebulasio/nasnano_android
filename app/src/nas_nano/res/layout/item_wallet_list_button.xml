@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/addWalletBtn"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/add_wallet_btn"
+        android:textSize="17sp"
+        android:layout_marginBottom="18dp"
+        android:textColor="@color/color_038AFB"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@drawable/stroke_038afb_rect_corner"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"/>

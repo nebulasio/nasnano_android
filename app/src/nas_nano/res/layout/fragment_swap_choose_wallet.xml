@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="io.nebulas.wallet.android.module.swap.step.step1.SwapChooseWalletFragment">
+
+        <TextView
+                android:id="@+id/tv_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="18dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="18dp"
+                android:text="@string/swap_text_nas_wallet_desc"
+                android:textColor="@color/color_8F8F8F"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <RelativeLayout
+                android:id="@+id/layout_operations"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/color_DFE2E5" />
+
+                <TextView
+                        android:id="@+id/tv_choose_complete"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginEnd="18dp"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/selector_for_btn_import_wallet"
+                        android:enabled="false"
+                        android:gravity="center"
+                        android:text="@string/swap_action_ready_to_next"
+                        android:textColor="@color/white"
+                        android:textSize="17sp" />
+
+                <TextView
+                        android:id="@+id/tv_add_wallet"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginEnd="18dp"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/ripple_btn_start_import"
+                        android:gravity="center"
+                        android:text="@string/swap_action_add_wallet"
+                        android:textColor="@color/white"
+                        android:textSize="17sp" />
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="18dp"
+                app:layout_constraintBottom_toTopOf="@id/layout_operations"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_tip" />
+
+        <LinearLayout
+                android:id="@+id/layout_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:visibility="gone"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@id/layout_operations"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                        android:layout_width="151dp"
+                        android:layout_height="151dp"
+                        android:src="@drawable/wallet_detail_null" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:text="@string/swap_text_no_wallet_tip"
+                        android:textColor="@color/color_8F8F8F"
+                        android:textSize="15sp" />
+        </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

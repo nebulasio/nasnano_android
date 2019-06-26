@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="240dp"
+        android:layout_height="105dp"
+        android:background="@drawable/shape_round_corner_ffffff_038afb"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <ImageView
+                android:id="@+id/selectedWalletIV"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/icon_transfer_wallet_selected"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="12dp"
+                android:clipToPadding="false"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
+
+                <TextView
+                        android:id="@+id/wallet_name_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="120dp"
+                        android:lines="1"
+                        android:ellipsize="end"
+                        android:textSize="20sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"/>
+
+                <TextView
+                        android:id="@+id/default_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/confirm_transfer_default"
+                        android:textSize="20sp"
+                        app:layout_constraintTop_toTopOf="@+id/wallet_name_tv"
+                        app:layout_constraintLeft_toRightOf="@+id/wallet_name_tv"/>
+
+                <TextView
+                        android:id="@+id/transferTokenSymbolTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textColor="@color/color_202020"
+                        app:layout_constraintTop_toBottomOf="@+id/wallet_name_tv"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        android:layout_marginTop="10dp"/>
+
+                <io.nebulas.wallet.android.view.AutoFitTextView
+                        android:id="@+id/transferTokenBalanceTV"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textColor="@color/color_8F8F8F"
+                        android:gravity="end"
+                        android:lines="1"
+                        app:layout_constraintTop_toTopOf="@+id/transferTokenSymbolTV"
+                        app:layout_constraintBottom_toBottomOf="@+id/transferTokenSymbolTV"
+                        app:layout_constraintLeft_toRightOf="@+id/transferTokenSymbolTV"
+                        app:layout_constraintRight_toRightOf="parent"/>
+
+                <TextView
+                        android:id="@+id/transferGasSymbolTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textColor="@color/color_202020"
+                        app:layout_constraintTop_toBottomOf="@+id/transferTokenSymbolTV"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        android:layout_marginTop="5dp"/>
+
+                <io.nebulas.wallet.android.view.AutoFitTextView
+                        android:id="@+id/transferGasBalanceTV"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textColor="@color/color_8F8F8F"
+                        android:gravity="end"
+                        android:lines="1"
+                        app:layout_constraintTop_toTopOf="@+id/transferGasSymbolTV"
+                        app:layout_constraintBottom_toBottomOf="@+id/transferGasSymbolTV"
+                        app:layout_constraintLeft_toRightOf="@+id/transferGasSymbolTV"
+                        app:layout_constraintRight_toRightOf="parent"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

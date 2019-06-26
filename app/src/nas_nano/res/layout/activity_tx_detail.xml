@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+        <data>
+
+                <import type="android.view.View" />
+
+                <import type="io.nebulas.wallet.android.common.URLConstants" />
+
+                <variable
+                        name="tx"
+                        type="io.nebulas.wallet.android.module.transaction.model.Transaction" />
+
+                <variable
+                        name="gasSymbol"
+                        type="String" />
+        </data>
+
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="io.nebulas.wallet.android.module.transaction.TxDetailActivity">
+
+                <android.support.design.widget.AppBarLayout
+                        android:id="@+id/appBarLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fitsSystemWindows="true"
+                        app:layout_behavior="io.nebulas.wallet.android.view.research.FixAppBarLayoutBehavior">
+
+                        <android.support.v7.widget.Toolbar
+                                android:id="@+id/toolbar"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/black"
+                                android:fitsSystemWindows="true"
+                                app:contentInsetStart="0dp"
+                                app:layout_scrollFlags="scroll|enterAlways">
+
+                                <TextView
+                                        android:id="@+id/titleTV"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="@dimen/toolbar_height"
+                                        android:layout_gravity="center|top"
+                                        android:gravity="center"
+                                        android:textColor="@color/white"
+                                        android:textSize="@dimen/toolebar_title_size"
+                                        android:textStyle="bold"
+                                        tools:text="Transaction details" />
+
+                        </android.support.v7.widget.Toolbar>
+                </android.support.design.widget.AppBarLayout>
+
+                <ScrollView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@color/black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:paddingBottom="18dp"
+                                android:paddingEnd="18dp"
+                                android:paddingStart="18dp">
+
+                                <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <android.support.constraint.ConstraintLayout
+                                                android:id="@+id/layoutFee"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:layout_marginTop="60dp"
+                                                android:background="@drawable/shape_top_corner_ffffff">
+
+                                                <io.nebulas.wallet.android.view.AutoFitTextView
+                                                        android:id="@+id/amountTV"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginEnd="18dp"
+                                                        android:layout_marginStart="18dp"
+                                                        android:layout_marginTop="60dp"
+                                                        android:gravity="center_horizontal"
+                                                        android:text='@{(tx.isSend ? "-" : "+") + tx.amountString + tx.coinSymbol}'
+                                                        android:textColor="@color/color_202020"
+                                                        android:textSize="24sp"
+                                                        android:textStyle="bold"
+                                                        app:layout_constraintLeft_toLeftOf="parent"
+                                                        app:layout_constraintRight_toRightOf="parent"
+                                                        app:layout_constraintTop_toTopOf="parent"
+                                                        tools:text="+1.0000NAS" />
+
+                                                <io.nebulas.wallet.android.view.AutoFitTextView
+                                                        android:id="@+id/amountValueTV"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginEnd="18dp"
+                                                        android:layout_marginStart="18dp"
+                                                        android:layout_marginTop="6dp"
+                                                        android:gravity="center_horizontal"
+                                                        android:textColor="@color/color_202020"
+                                                        android:textSize="17sp"
+                                                        app:layout_constraintLeft_toLeftOf="parent"
+                                                        app:layout_constraintRight_toRightOf="parent"
+                                                        app:layout_constraintTop_toBottomOf="@+id/amountTV"
+                                                        tools:text="+1.0000NAS" />
+
+                                                <io.nebulas.wallet.android.view.AutoFitTextView
+                                                        android:id="@+id/gasFeeTV"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_margin="18dp"
+                                                        android:gravity="center_horizontal"
+                                                        android:text='@{@string/transfer_gas_fee_title + ":" + tx.txFeeString + gasSymbol + "(" + @string/approximate_text + tx.currencySymbol + tx.txFeeCurrency + ") "}'
+                                                        android:textColor="@color/color_8F8F8F"
+                                                        android:textSize="15sp"
+                                                        app:layout_constraintBottom_toBottomOf="parent"
+                                                        app:layout_constraintLeft_toLeftOf="parent"
+                                                        app:layout_constraintRight_toRightOf="parent"
+                                                        app:layout_constraintTop_toBottomOf="@+id/amountValueTV"
+                                                        tools:text="Gas Fee: 0.0132NAS(≈$17.59)" />
+
+                                        </android.support.constraint.ConstraintLayout>
+
+                                        <!--android:src='@{tx.status.equals("fail") ? @drawable/ic_status_failed : (tx.status.equals("waiting") ? @drawable/ic_status_pending : (tx.status.equals("success") ? @drawable/ic_status_success : @drawable/ic_status_pending))}'-->
+                                        <ImageView
+                                                android:id="@+id/ivTransactionStatus"
+                                                android:layout_width="120dp"
+                                                android:layout_height="120dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:scaleType="fitXY"
+                                                android:src='@{tx.status.equals("fail") ? @drawable/icon_failed : (tx.confirmed? @drawable/icon_success:@drawable/ic_status_pending)}'
+                                                tools:src="@drawable/ic_status_pending" />
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/tx_detail_divider_line">
+
+                                        <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:background="@color/white"
+                                                android:paddingEnd="6dp"
+                                                android:paddingStart="6dp"
+                                                android:text="@string/text_address"
+                                                android:textColor="@color/color_8F8F8F"
+                                                android:textSize="15sp"
+                                                tools:text="Address" />
+                                </RelativeLayout>
+
+
+                                <RelativeLayout
+                                        android:id="@+id/layoutAddressArea"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="@color/white"
+                                        android:padding="15dp"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent">
+
+                                        <TextView
+                                                android:id="@+id/tv_address_from_text"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="8dp"
+                                                android:text='@{tx.account.equals(tx.sender) ? @string/tx_detail_sender + "(" + @string/text_me + ")" : @string/tx_detail_sender}'
+                                                android:textColor="@color/color_202020"
+                                                android:textSize="15sp" />
+
+                                        <TextView
+                                                android:id="@+id/from_address_tv"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_below="@+id/tv_address_from_text"
+                                                android:layout_marginStart="8dp"
+                                                android:lineSpacingExtra="3sp"
+                                                android:text='@{tx.sender}'
+                                                android:textColor="@color/color_8F8F8F"
+                                                android:textSize="13sp"
+                                                tools:text="3e7hkpfe2a71ca32c044fa75fb370a72feab25833450eo" />
+
+                                        <TextView
+                                                android:id="@+id/tv_address_target_text"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_below="@+id/from_address_tv"
+                                                android:layout_marginStart="8dp"
+                                                android:layout_marginTop="15dp"
+                                                android:text='@{tx.account.equals(tx.receiver) ? (@string/tx_detail_receiver+"(" + @string/text_me + ")") : @string/tx_detail_receiver}'
+                                                android:textColor="@color/color_202020"
+                                                android:textSize="15sp" />
+
+                                        <TextView
+                                                android:id="@+id/target_address_tv"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_below="@+id/tv_address_target_text"
+                                                android:layout_marginStart="8dp"
+                                                android:lineSpacingExtra="3sp"
+                                                android:text='@{tx.receiver}'
+                                                android:textColor="@color/color_8F8F8F"
+                                                android:textSize="13sp"
+                                                tools:text="3e7hkpfe2a71ca32c044fa75fb370a72feab25833450eo" />
+
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/tx_detail_divider_line">
+
+                                        <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:background="@color/white"
+                                                android:paddingEnd="6dp"
+                                                android:paddingStart="6dp"
+                                                android:text="@string/text_transfer_schedule"
+                                                android:textColor="@color/color_8F8F8F"
+                                                android:textSize="15sp"
+                                                tools:text="Transfer schedule" />
+                                </RelativeLayout>
+
+                                <android.support.constraint.ConstraintLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="@color/white"
+                                        android:paddingBottom="15dp">
+
+                                        <ImageView
+                                                android:id="@+id/start_iv"
+                                                android:layout_width="18dp"
+                                                android:layout_height="18dp"
+                                                android:layout_marginStart="50dp"
+                                                android:layout_marginTop="48dp"
+                                                android:src="@drawable/drawable_transfer_status_yes"
+                                                app:layout_constraintLeft_toLeftOf="parent"
+                                                app:layout_constraintTop_toTopOf="parent" />
+
+                                        <View
+                                                android:id="@+id/process_divider_iv"
+                                                android:layout_width="0dp"
+                                                android:layout_height="@dimen/divider_height"
+                                                android:layout_marginEnd="6dp"
+                                                android:layout_marginStart="6dp"
+                                                android:background='@{tx.status.equals("waiting") ? @color/color_DFE2E5 : @color/color_00CB91}'
+                                                app:layout_constraintBottom_toBottomOf="@+id/start_iv"
+                                                app:layout_constraintLeft_toRightOf="@+id/start_iv"
+                                                app:layout_constraintRight_toLeftOf="@+id/process_iv"
+                                                app:layout_constraintTop_toTopOf="@+id/start_iv" />
+
+                                        <ImageView
+                                                android:id="@+id/process_iv"
+                                                android:layout_width="18dp"
+                                                android:layout_height="18dp"
+                                                android:src='@{tx.status.equals("fail") ? @drawable/drawable_transfer_status_no : (tx.confirmed ? @drawable/drawable_transfer_status_yes : @drawable/drawable_transfer_status_pending)}'
+                                                app:layout_constraintLeft_toLeftOf="parent"
+                                                app:layout_constraintRight_toRightOf="parent"
+                                                app:layout_constraintTop_toTopOf="@+id/start_iv" />
+
+                                        <View
+                                                android:id="@+id/finish_divider_iv"
+                                                android:layout_width="0dp"
+                                                android:layout_height="@dimen/divider_height"
+                                                android:layout_marginEnd="6dp"
+                                                android:layout_marginStart="6dp"
+                                                android:background='@{tx.status.equals("fail") ? @color/color_FF5552 : (tx.confirmed ? @color/color_00CB91 : @color/color_DFE2E5)}'
+                                                app:layout_constraintBottom_toBottomOf="@+id/start_iv"
+                                                app:layout_constraintLeft_toRightOf="@+id/process_iv"
+                                                app:layout_constraintRight_toLeftOf="@+id/finish_iv"
+                                                app:layout_constraintTop_toTopOf="@+id/start_iv" />
+
+                                        <ImageView
+                                                android:id="@+id/finish_iv"
+                                                android:layout_width="18dp"
+                                                android:layout_height="18dp"
+                                                android:layout_marginEnd="50dp"
+                                                android:src='@{tx.status.equals("fail") ? @drawable/drawable_transfer_status_no : (tx.confirmed ? @drawable/drawable_transfer_status_yes : @drawable/drawable_transfer_status_pending)}'
+                                                app:layout_constraintRight_toRightOf="parent"
+                                                app:layout_constraintTop_toTopOf="@+id/start_iv" />
+
+                                        <TextView
+                                                android:id="@+id/start_tv"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="10dp"
+                                                android:gravity="center"
+                                                android:text="@string/tx_detail_start"
+                                                android:textColor="@color/color_202020"
+                                                android:textSize="15sp"
+                                                app:layout_constraintBottom_toTopOf="@+id/start_iv"
+                                                app:layout_constraintLeft_toLeftOf="@+id/start_iv"
+                                                app:layout_constraintRight_toRightOf="@+id/start_iv" />
+
+                                        <TextView
+                                                android:id="@+id/process_tv"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:gravity="center"
+                                                android:text="@string/tx_detail_process"
+                                                android:textColor="@color/color_202020"
+                                                android:textSize="15sp"
+                                                app:layout_constraintLeft_toLeftOf="@+id/process_iv"
+                                                app:layout_constraintRight_toRightOf="@+id/process_iv"
+                                                app:layout_constraintTop_toTopOf="@+id/start_tv" />
+
+                                        <TextView
+                                                android:id="@+id/finish_tv"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:gravity="center"
+                                                android:text="@string/tx_detail_finish"
+                                                android:textColor="@color/color_202020"
+                                                android:textSize="15sp"
+                                                app:layout_constraintLeft_toLeftOf="@+id/finish_iv"
+                                                app:layout_constraintRight_toRightOf="@+id/finish_iv"
+                                                app:layout_constraintTop_toTopOf="@+id/start_tv" />
+
+                                        <!--发起转账时间-年月日-->
+                                        <TextView
+                                                android:id="@+id/start_time1_tv"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="10dp"
+                                                android:gravity="center"
+                                                android:textColor="@color/color_8F8F8F"
+                                                android:textSize="13sp"
+                                                app:dateYYYYMMdd="@{tx.sendTimestamp}"
+                                                app:layout_constraintLeft_toLeftOf="@+id/start_iv"
+                                                app:layout_constraintRight_toRightOf="@+id/start_iv"
+                                                app:layout_constraintTop_toBottomOf="@+id/start_iv" />
+                                        <!--发起转账时间-时分秒-->
+                                        <TextView
+                                                android:id="@+id/start_time2_tv"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:gravity="center"
+                                                android:textColor="@color/color_8F8F8F"
+                                                android:textSize="11sp"
+                                                app:dateHHmmss="@{tx.sendTimestamp}"
+                                                app:layout_constraintLeft_toLeftOf="@+id/start_time1_tv"
+                                                app:layout_constraintRight_toRightOf="@+id/start_time1_tv"
+                                                app:layout_constraintTop_toBottomOf="@+id/start_time1_tv" />
+                                        <!--交易中-->
+                                        <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:gravity="center"
+                                                android:text='@{"(" + (tx.confirmedCnt > tx.maxConfirmCnt ? tx.maxConfirmCnt : tx.confirmedCnt) + "/" + tx.maxConfirmCnt + ")"}'
+                                                android:textColor="@color/color_8F8F8F"
+                                                android:textSize="13sp"
+                                                android:visibility='@{tx.status.equals("fail") ? View.GONE : View.VISIBLE}'
+                                                app:layout_constraintLeft_toLeftOf="@+id/process_iv"
+                                                app:layout_constraintRight_toRightOf="@+id/process_iv"
+                                                app:layout_constraintTop_toTopOf="@+id/start_time1_tv" />
+                                        <!--转账成功时间-年月日-->
+                                        <TextView
+                                                android:id="@+id/end_time1_tv"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:gravity="center"
+                                                android:textColor="@color/color_8F8F8F"
+                                                android:textSize="13sp"
+                                                android:visibility='@{tx.status.equals("fail") ? View.GONE : View.VISIBLE}'
+                                                app:dateYYYYMMdd="@{tx.libTimestamp}"
+                                                app:layout_constraintLeft_toLeftOf="@+id/finish_iv"
+                                                app:layout_constraintRight_toRightOf="@+id/finish_iv"
+                                                app:layout_constraintTop_toTopOf="@+id/start_time1_tv" />
+                                        <!--转账成功时间-时分秒-->
+                                        <TextView
+                                                android:id="@+id/end_time2_tv"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:gravity="center"
+                                                android:textColor="@color/color_8F8F8F"
+                                                android:textSize="11sp"
+                                                android:visibility='@{tx.status.equals("fail") ? View.GONE : View.VISIBLE}'
+                                                app:dateHHmmss="@{tx.libTimestamp}"
+                                                app:layout_constraintLeft_toLeftOf="@+id/end_time1_tv"
+                                                app:layout_constraintRight_toRightOf="@+id/end_time1_tv"
+                                                app:layout_constraintTop_toBottomOf="@+id/end_time1_tv" />
+                                </android.support.constraint.ConstraintLayout>
+
+                                <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/tx_detail_divider_line">
+
+                                        <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:background="@color/white"
+                                                android:paddingEnd="6dp"
+                                                android:paddingStart="6dp"
+                                                android:text="@string/tx_detail_remark"
+                                                android:textColor="@color/color_8F8F8F"
+                                                android:textSize="15sp"
+                                                tools:text="Memo" />
+                                </RelativeLayout>
+
+                                <TextView
+                                        android:id="@+id/remark_tv"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/shape_bottom_corner_ffffff"
+                                        android:gravity="center_horizontal"
+                                        android:padding="18dp"
+                                        android:text='@{(tx.remark == null || tx.remark.equals("")) ? @string/tx_detail_remark_nothing : tx.remark}'
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="15sp"
+                                        tools:text="This is your reward! This is your reward!" />
+
+                                <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="18dp"
+                                        android:background="@drawable/shape_round_corner_8dp_ffffff"
+                                        android:orientation="vertical"
+                                        android:padding="15dp">
+
+                                        <TextView
+                                                android:id="@+id/tvDetailText"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:drawablePadding="6dp"
+                                                android:drawableStart="@drawable/ic_transfer_detail"
+                                                android:text="@string/tx_detail_detail_text"
+                                                android:textColor="@color/color_8F8F8F"
+                                                android:textSize="15sp"
+                                                tools:text="Detail" />
+
+                                        <View
+                                                android:id="@+id/viewDividerLine"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="1dp"
+                                                android:layout_below="@+id/tvDetailText"
+                                                android:layout_marginBottom="15dp"
+                                                android:layout_marginTop="15dp"
+                                                android:background="@color/divider_line" />
+
+                                        <ImageView
+                                                android:id="@+id/qr_code_iv"
+                                                android:layout_width="80dp"
+                                                android:layout_height="80dp"
+                                                android:layout_alignParentEnd="true"
+                                                android:layout_below="@+id/viewDividerLine"
+                                                android:src="@mipmap/ic_launcher"
+                                                tools:src="@mipmap/face_book" />
+
+                                        <TextView
+                                                android:id="@+id/copyLinkBtn"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_alignEnd="@+id/qr_code_iv"
+                                                android:layout_alignStart="@+id/qr_code_iv"
+                                                android:layout_below="@+id/qr_code_iv"
+                                                android:layout_marginTop="3dp"
+                                                android:gravity="center_horizontal"
+                                                android:text="@string/tx_detail_copy_links"
+                                                android:textColor="@color/color_038AFB"
+                                                android:textSize="13sp" />
+
+                                        <TextView
+                                                android:id="@+id/hash_title_tv"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_below="@+id/viewDividerLine"
+                                                android:text="@string/tx_detail_hash"
+                                                android:textColor="@color/color_8F8F8F"
+                                                android:textSize="15sp" />
+
+                                        <TextView
+                                                android:id="@+id/hashTV"
+                                                android:layout_width="140dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_below="@+id/hash_title_tv"
+                                                android:layout_marginTop="10dp"
+                                                android:ellipsize="middle"
+                                                android:singleLine="true"
+                                                android:text='@{tx.hash}'
+                                                android:textColor="@color/color_038AFB"
+                                                android:textSize="15sp"
+                                                tools:text="889148308485195232" />
+
+                                        <TextView
+                                                android:id="@+id/block_height_title_tv"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_below="@+id/hashTV"
+                                                android:layout_marginTop="12dp"
+                                                android:text="@string/tx_detail_block_height"
+                                                android:textColor="@color/color_8F8F8F"
+                                                android:textSize="15sp" />
+
+                                        <TextView
+                                                android:id="@+id/block_height_tv"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_below="@+id/block_height_title_tv"
+                                                android:layout_marginTop="10dp"
+                                                android:text='@{tx.blockHeight}'
+                                                android:textColor="@color/color_202020"
+                                                android:textSize="15sp" />
+
+                                </RelativeLayout>
+                        </LinearLayout>
+                </ScrollView>
+
+
+                <include
+                        android:id="@+id/progressBar"
+                        layout="@layout/loading_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+
+</layout>

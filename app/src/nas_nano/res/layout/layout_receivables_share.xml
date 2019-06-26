@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/shareViewLayout"
+        android:layout_width="375dp"
+        android:layout_height="667dp"
+        android:background="@mipmap/generate_bg"
+        android:orientation="vertical">
+
+        <android.support.constraint.ConstraintLayout
+                android:id="@+id/share_container_layout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="130dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="110dp"
+                android:background="@drawable/blue_rect_corner"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                        android:layout_width="43dp"
+                        android:layout_height="43dp"
+                        android:layout_marginTop="24dp"
+                        android:background="@drawable/share_logo_bg_white_circle_corner"
+                        android:padding="3dp"
+                        android:scaleType="fitXY"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                        android:id="@+id/shareAddressIconIV"
+                        android:layout_width="37dp"
+                        android:layout_height="37dp"
+                        android:layout_marginTop="27dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                <LinearLayout
+                        android:id="@+id/shareTipsTVLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/shareAddressIconIV">
+
+                        <TextView
+                                android:id="@+id/shareTipsTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/receivables_share_tips"
+                                android:textColor="@color/white"
+                                android:textSize="15sp" />
+
+
+                        <TextView
+                                android:id="@+id/shareCoinSymbolTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="3dp"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:visibility="gone" />
+                </LinearLayout>
+
+                <ImageView
+                        android:id="@+id/shareQRCodeIV"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="84dp"
+                        android:layout_marginLeft="60dp"
+                        android:layout_marginRight="60dp"
+                        android:layout_marginTop="23dp"
+                        android:background="@drawable/shape_round_corner_6dp_ffffff"
+                        android:padding="4dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/shareTipsTVLayout" />
+
+                <ImageView
+                        android:id="@+id/shareTokenLogoIV"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/token_logo_bg_white_rect_corner"
+                        android:padding="3dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/shareQRCodeIV"
+                        app:layout_constraintLeft_toLeftOf="@+id/shareQRCodeIV"
+                        app:layout_constraintRight_toRightOf="@+id/shareQRCodeIV"
+                        app:layout_constraintTop_toTopOf="@+id/shareQRCodeIV"
+                        android:src="@mipmap/ic_launcher" />
+
+                <TextView
+                        android:id="@+id/shareAddressTV"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="22dp"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/shareQRCodeIV" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <TextView
+                android:id="@+id/shareTestNetTipsTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="55dp"
+                android:layout_marginStart="55dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_horizontal"
+                android:text="@string/test_net_tips"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/share_container_layout" />
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="52dp"
+                android:src="@mipmap/receivables_pic_nas_nano"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

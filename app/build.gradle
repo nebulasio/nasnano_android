@@ -1,0 +1,322 @@
+import java.text.SimpleDateFormat
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'io.fabric'
+
+apply plugin: 'channel'
+
+//apply plugin: 'com.mob.sdk'
+
+
+apply from: "../config.gradle"
+//apply from: '../MobSDK.gradle'
+
+def buildTime() {
+    def df = new SimpleDateFormat("MM.dd.HH.mm", Locale.CHINA)
+    return df.format(new Date())
+}
+
+android {
+    compileSdkVersion versions.compileSdkVersion
+    buildToolsVersion versions.buildToolsVersion
+
+    lintOptions {
+        abortOnError false
+    }
+
+    defaultConfig {
+        applicationId "io.nebulas.wallet.android"
+
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.targetSdkVersion
+        versionCode versions.versionCode
+        versionName versions.versionName
+        flavorDimensions "default"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+
+        // Enabling multidex support.
+        multiDexEnabled true
+
+
+        buildConfigField 'String', 'URL_HOST', '"http://13.59.69.215:8090/api/v1/"'
+    }
+
+    signingConfigs {
+        release {
+            Properties properties = new Properties()
+            InputStream inputStream = project.rootProject.file('local.properties').newDataInputStream();
+            properties.load(inputStream)
+
+            def keyFile = properties.getProperty('keyFile')
+            storeFile file(keyFile)
+
+            def key_keyAlias = properties.getProperty('keyAlias')
+            def key_keyPassword = properties.getProperty('keyPassword')
+            def key_storePassword = properties.getProperty('storePassword')
+
+            storePassword key_storePassword
+            keyAlias key_keyAlias
+            keyPassword key_keyPassword
+
+            v1SigningEnabled true
+            v2SigningEnabled false
+        }
+
+    }
+
+    buildTypes {
+
+        debug {
+            applicationIdSuffix ".debug"
+
+            //NAS nano
+            buildConfigField 'String', 'URL_HOST', '"https://walletapi.nebulas.io/testnet/"'
+
+            //DApp store url
+            buildConfigField 'String', 'DAPP_STORE_URL_EN', '"https://incentive.nebulas.io/dappstore_testurl.html"'
+            buildConfigField 'String', 'DAPP_STORE_URL_CN', '"https://incentive.nebulas.io/cn/dappstore_testurl.html"'
+
+            //官方换币锁仓地址
+            buildConfigField 'String', 'OFFICIAL_SWAP_ERC20_ADDRESS', '"0x8803E5d39c4906714775a3011B0B29dC8905e79B"'
+            //ERC20合约地址
+            buildConfigField 'String', 'ERC20_NEBULAS_CONTRACT_ADDRESS', '"0x142aC934169cB82e57a6eF18a6AeDCD741786152"'
+
+            buildConfigField 'int', "NAS_CHAIN_ID", '1001' //1001
+            buildConfigField 'int', "ETH_CHAIN_ID", '3'
+
+            manifestPlaceholders = [
+                    app_icon      : "@mipmap/ic_launcher_debug",
+                    app_icon_round: "@mipmap/ic_launcher_debug",
+                    app_scheme    : "openapp.nasnano",
+                    package       : "io.nebulas.wallet.android.debug"
+            ]
+        }
+
+        qa {
+
+//            setVersionNameSuffix("." + buildTime())
+
+            applicationIdSuffix ".test"
+
+            signingConfig signingConfigs.release
+            debuggable true
+
+            //NAS nano
+            buildConfigField 'String', 'URL_HOST', '"https://walletapi.nebulas.io/testnet/"'
+
+            //DApp store url
+            buildConfigField 'String', 'DAPP_STORE_URL_EN', '"https://incentive.nebulas.io/dappstore_testurl.html"'
+            buildConfigField 'String', 'DAPP_STORE_URL_CN', '"https://incentive.nebulas.io/cn/dappstore_testurl.html"'
+
+            //官方换币锁仓地址
+            buildConfigField 'String', 'OFFICIAL_SWAP_ERC20_ADDRESS', '"0x8803E5d39c4906714775a3011B0B29dC8905e79B"'
+            //ERC20合约地址
+            buildConfigField 'String', 'ERC20_NEBULAS_CONTRACT_ADDRESS', '"0x142aC934169cB82e57a6eF18a6AeDCD741786152"'
+
+            buildConfigField 'int', "NAS_CHAIN_ID", '1001'
+            buildConfigField 'int', "ETH_CHAIN_ID", '3'
+
+
+            manifestPlaceholders = [
+                    app_icon      : "@mipmap/ic_launcher_test",
+                    app_icon_round: "@mipmap/ic_launcher_test",
+                    app_scheme    : "openapp.nasnano",
+                    package       : "io.nebulas.wallet.android.test"
+            ]
+        }
+
+        Testnet {
+
+            applicationIdSuffix ".testnet"
+
+            signingConfig signingConfigs.release
+
+            minifyEnabled true // 开启混淆
+            shrinkResources true // 去除无效的资源文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField 'String', 'URL_HOST', '"https://walletapi.nebulas.io/testnet/"'
+
+            //DApp store url
+            buildConfigField 'String', 'DAPP_STORE_URL_EN', '"https://incentive.nebulas.io/dappstore_testurl.html"'
+            buildConfigField 'String', 'DAPP_STORE_URL_CN', '"https://incentive.nebulas.io/cn/dappstore_testurl.html"'
+
+            //官方换币锁仓地址
+            buildConfigField 'String', 'OFFICIAL_SWAP_ERC20_ADDRESS', '"0x8803E5d39c4906714775a3011B0B29dC8905e79B"'
+            //ERC20合约地址
+            buildConfigField 'String', 'ERC20_NEBULAS_CONTRACT_ADDRESS', '"0x142aC934169cB82e57a6eF18a6AeDCD741786152"'
+
+            buildConfigField 'int', "NAS_CHAIN_ID", '1001'
+            buildConfigField 'int', "ETH_CHAIN_ID", '3'
+
+            manifestPlaceholders = [
+                    app_icon      : "@mipmap/ic_launcher_testnet",
+                    app_icon_round: "@mipmap/ic_launcher_testnet",
+                    app_scheme    : "openapp.nasnano.testnet",
+                    package       : "io.nebulas.wallet.android.testnet"
+            ]
+        }
+
+        release {
+
+            signingConfig signingConfigs.release
+
+            minifyEnabled true // 开启混淆
+            shrinkResources true // 去除无效的资源文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField 'String', 'URL_HOST', '"https://walletapi.nebulas.io/"'
+
+            //DApp store url
+            buildConfigField 'String', 'DAPP_STORE_URL_EN', '"https://incentive.nebulas.io/dappstore.html"'
+            buildConfigField 'String', 'DAPP_STORE_URL_CN', '"https://incentive.nebulas.io/cn/dappstore.html"'
+
+            //官方换币锁仓地址
+            buildConfigField 'String', 'OFFICIAL_SWAP_ERC20_ADDRESS', '"0x4A8472a7136CDbf7b86124FD21D31fa822d88Ee7"'
+            //ERC20合约地址
+            buildConfigField 'String', 'ERC20_NEBULAS_CONTRACT_ADDRESS', '"0x5d65D971895Edc438f465c17DB6992698a52318D"'
+
+            buildConfigField 'int', "NAS_CHAIN_ID", '1'
+            buildConfigField 'int', "ETH_CHAIN_ID", '1'
+
+            manifestPlaceholders = [
+                    app_icon      : "@mipmap/ic_launcher",
+                    app_icon_round: "@mipmap/ic_launcher",
+                    app_scheme    : "openapp.nasnano",
+                    package       : "io.nebulas.wallet.android"
+            ]
+
+        }
+
+    }
+
+    productFlavors {
+        nas_nano {
+            applicationId "io.nebulas.wallet.android"
+            dimension "default"
+
+            versionCode versions.nanoVersionCode
+            versionName versions.nanoVersionName
+
+            buildConfigField 'String', 'DB_NAME', '"nas_nano.db"'
+            buildConfigField 'String', 'PLATFORMS', '"nebulas"'
+//            buildConfigField 'String', 'PLATFORMS', '"nebulas;ethereum"'
+
+
+        }
+
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+
+}
+
+repositories {
+
+    mavenCentral()
+
+    flatDir {
+        dir 'libs'
+    }
+}
+
+//使用生成文件
+kapt {
+    generateStubs = true
+}
+
+//vasDolly
+channel {
+    //多渠道包的输出目录，默认为new File(project.buildDir,"channel")
+    baseOutputDir = new File(project.rootDir, "product")
+    //多渠道包的命名规则，默认为：${appName}-${versionName}-${versionCode}-${flavorName}-${buildType}
+    apkNameFormat = '${appName}-${flavorName}-${buildType}'
+    //快速模式：生成渠道包时不进行校验（速度可以提升10倍以上，默认为false）
+    isFastMode = false
+    //buildTime的时间格式，默认格式：yyyyMMdd-HHmmss
+    buildTimeDateFormat = 'yyyyMMdd-HH:mm:ss'
+    //低内存模式（仅针对V2签名，默认为false）：只把签名块、中央目录和EOCD读取到内存，不把最大头的内容块读取到内存，在手机上合成APK时，可以使用该模式
+    lowMemory = false
+}
+
+dependencies {
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testImplementation 'junit:junit:4.12'
+
+
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(include: ['*.aar'], dir: 'libs')
+    //    compile project(':core')
+    implementation deps.kotlin_stdlib
+    implementation deps.anko_common
+    kapt deps.databinding_compiler
+    implementation deps.swipebacklayout
+    implementation deps.recyclerview
+    implementation deps.supportAppcompat
+    implementation deps.supportConstraint
+    implementation deps.supportV4
+    implementation deps.supportDesign
+    implementation deps.supportVector
+    implementation deps.supportV13
+    implementation deps.constraint_layout
+    //glide
+    implementation deps.glide
+    kapt deps.glide_compiler
+    implementation deps.retrofit
+    implementation deps.retrofit_gson
+    implementation deps.retrofit_rxjava
+    implementation deps.rxjava_rxandroid
+    implementation deps.rxjava
+    //lifecycle
+    implementation deps.lifecycle_runtime
+    kapt deps.lifecycle_compiler
+    //viewmodel and livedata
+    implementation deps.lifecycle_vm_livedata
+    //room
+    implementation deps.room_runtime
+    kapt deps.room_compiler
+    implementation deps.room_rxjava2
+    //密码输入框
+    implementation deps.grid_password_view
+    //zxing
+//        compile deps.zxing
+//        compile deps.zxing_android_core
+    //firebase
+    implementation deps.firebase_core
+    implementation deps.firebase_messaging
+    implementation('com.crashlytics.sdk.android:crashlytics:2.9.1@aar') {
+        transitive = true
+    }
+    implementation deps.multidex
+    implementation deps.vas_dolly_channel_helper
+    implementation deps.lottie
+//    implementation deps.ds_bridge
+    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    //杨旭存的数据绑定框架
+    implementation deps.young_binder
+    implementation deps.young_binder_lifecycle
+    implementation deps.young_polling_task
+    implementation deps.young_scanner
+    implementation deps.young_scanner_zxing
+    implementation deps.young_adaptive
+    //atpk lib
+//    api(name: 'atpKit-release', ext: 'aar')
+//    api(name: 'atpRenderer-release', ext: 'aar')
+    implementation 'com.alibaba:fastjson:1.2.36'
+}
+
+
+apply plugin: 'com.google.gms.google-services'

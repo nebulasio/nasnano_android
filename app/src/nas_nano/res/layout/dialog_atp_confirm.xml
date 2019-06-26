@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent"
+        android:fitsSystemWindows="true">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/white_rect_corner"
+                android:orientation="vertical">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/shape_top_corner_eef1f4">
+
+                                <TextView
+                                        android:id="@+id/title_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:layout_margin="18dp"
+                                        android:text="@string/title_atp_gas_fee_confirm"
+                                        android:textColor="@color/color_666666"
+                                        android:textSize="17sp"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                <ImageButton
+                                        android:id="@+id/ib_close"
+                                        android:layout_width="42dp"
+                                        android:layout_height="42dp"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_centerVertical="true"
+                                        android:background="@color/transparent"
+                                        android:src="@drawable/icon_grey_back"
+                                        app:layout_constraintBottom_toBottomOf="@+id/title_tv"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintTop_toTopOf="@+id/title_tv" />
+
+                        </RelativeLayout>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:paddingStart="18dp"
+                                android:paddingTop="30dp"
+                                android:paddingEnd="18dp"
+                                android:paddingBottom="27dp">
+
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:text="@string/gas"
+                                        android:textColor="@color/color_8F8F8F"
+                                        android:textSize="17sp"
+                                        android:visibility="visible" />
+
+                                <io.nebulas.wallet.android.view.AutoFitTextView
+                                        android:id="@+id/tv_gas"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginStart="12dp"
+                                        android:layout_weight="1"
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="17sp"
+                                        tools:text="0.0000" />
+                        </LinearLayout>
+
+                        <android.support.constraint.ConstraintLayout
+                                android:layout_width="240dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@drawable/shape_round_corner_8dp_ffffff_00abff"
+                                android:padding="12dp">
+
+                                <TextView
+                                        android:id="@+id/tv_wallet_name"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:lines="1"
+                                        android:textColor="@color/color_00ABFF"
+                                        android:textSize="20sp"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        tools:text="Young's Wallet" />
+
+                                <TextView
+                                        android:id="@+id/tv_wallet_address"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="10dp"
+                                        android:ellipsize="middle"
+                                        android:singleLine="true"
+                                        android:textColor="@color/color_8F8F8F"
+                                        android:textSize="13sp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@+id/tv_wallet_name"
+                                        tools:text="Wallet Address: n1.....8jNphcua" />
+
+                                <TextView
+                                        android:id="@+id/tv_nas"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="10dp"
+                                        android:text="NAS"
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="15sp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@+id/tv_wallet_address" />
+
+                                <io.nebulas.wallet.android.view.AutoFitTextView
+                                        android:id="@+id/tv_balance_nas"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="12dp"
+                                        android:gravity="end"
+                                        android:lines="1"
+                                        android:textColor="@color/color_8F8F8F"
+                                        android:textSize="15sp"
+                                        app:layout_constraintBottom_toBottomOf="@+id/tv_nas"
+                                        app:layout_constraintLeft_toRightOf="@+id/tv_nas"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintTop_toTopOf="@+id/tv_nas"
+                                        tools:text="1.2324098300000001" />
+
+
+                        </android.support.constraint.ConstraintLayout>
+
+                        <Button
+                                android:id="@+id/btn_confirm"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:layout_marginStart="18dp"
+                                android:layout_marginEnd="18dp"
+                                android:layout_marginBottom="18dp"
+                                android:layout_marginTop="28dp"
+                                android:background="@drawable/ripple_confirm_transaction"
+                                android:text="@string/confirm_btn"
+                                android:textColor="@color/white"
+                                android:textSize="18sp" />
+                </LinearLayout>
+
+                <include
+                        android:id="@+id/view_loading"
+                        layout="@layout/loading_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true" />
+        </RelativeLayout>
+</RelativeLayout>

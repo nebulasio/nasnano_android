@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <data>
+
+                <import type="android.view.View"/>
+
+                <variable
+                        name="item"
+                        type="io.nebulas.wallet.android.module.transaction.model.TransferTargetListModel"/>
+        </data>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.constraint.ConstraintLayout
+                        android:id="@+id/target_type_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="75dp"
+                        android:paddingTop="@dimen/common_big_margin"
+                        android:paddingBottom="@dimen/common_big_margin"
+                        android:paddingLeft="18dp"
+                        android:paddingRight="18dp"
+                        android:background="@color/white"
+                        android:visibility='@{null == item.targetType ? View.GONE : View.VISIBLE}'>
+
+                        <ImageView
+                                android:id="@+id/imageBg"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:src='@{item.imageBg}'
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                />
+                        <ImageView
+                                android:src='@{item.image}'
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:layout_marginLeft="12dp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                />
+                        <TextView
+                                android:text='@{item.targetType}'
+                                android:textSize="17sp"
+                                android:textColor="@color/color_202020"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toRightOf="@id/imageBg"
+                                android:layout_marginLeft="12dp"
+                                />
+
+                        <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/arrow_common"
+                                android:layout_gravity="right"
+                                android:layout_marginRight="5dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"/>
+
+                </android.support.constraint.ConstraintLayout>
+
+                <TextView
+                        android:id="@+id/cate_tv"
+                        android:text='@{item.category}'
+                        android:textColor="@color/color_323232"
+                        android:textSize="24sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="62dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/common_big_margin"
+                        android:paddingStart="@dimen/common_big_margin"
+                        android:visibility='@{null == item.category ? View.GONE : View.VISIBLE}'/>
+
+
+                <!--交易记录item-->
+                <include
+                        layout="@layout/layout_transaction_record"
+                        app:transaction='@{item.transaction}'/>
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/divider_height"
+                        android:background="@color/color_EFEFEF"
+                        android:layout_marginLeft="18dp"
+                        android:layout_marginRight="18dp"
+                        android:visibility='@{null != item.category ? View.GONE : View.VISIBLE}'/>
+
+        </LinearLayout>
+
+</layout>

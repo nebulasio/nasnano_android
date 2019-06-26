@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="io.nebulas.wallet.android.module.setting.SettingActivity">
+
+        <include
+                android:id="@+id/toolbar_layout"
+                layout="@layout/app_bar_collapse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="131dp">
+
+                        <TextView
+                                android:id="@+id/basic_setting"
+                                android:layout_width="0dp"
+                                android:layout_height="39dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="18dp"
+                                android:paddingRight="18dp"
+                                android:text="@string/basic_settings"
+                                android:textColor="@color/color_8F8F8F"
+                                android:textSize="15sp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_marginLeft="18dp"
+                                android:layout_marginRight="18dp"
+                                android:background="@color/color_DFE2E5"
+                                app:layout_constraintBottom_toBottomOf="@id/basic_setting"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent" />
+
+                        <TextView
+                                android:id="@+id/paymentWallet"
+                                android:layout_width="0dp"
+                                android:layout_height="66dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="18dp"
+                                android:paddingRight="18dp"
+                                android:text="@string/payment_wallet"
+                                android:textColor="@color/color_202020"
+                                android:textSize="17sp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/basic_setting" />
+
+                        <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp"
+                                android:paddingRight="18dp"
+                                android:src="@mipmap/arrow_common"
+                                app:layout_constraintBottom_toBottomOf="@+id/paymentWallet"
+                                app:layout_constraintRight_toRightOf="@+id/paymentWallet"
+                                app:layout_constraintTop_toTopOf="@+id/paymentWallet" />
+
+                        <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_marginLeft="18dp"
+                                android:layout_marginRight="18dp"
+                                android:background="@color/color_DFE2E5"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/paymentWallet" />
+
+                        <TextView
+                                android:id="@+id/receivingWallet"
+                                android:layout_width="0dp"
+                                android:layout_height="66dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="18dp"
+                                android:paddingRight="18dp"
+                                android:text="@string/receiving_wallet"
+                                android:textColor="@color/color_202020"
+                                android:textSize="17sp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/paymentWallet" />
+
+                        <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp"
+                                android:paddingRight="18dp"
+                                android:src="@mipmap/arrow_common"
+                                app:layout_constraintBottom_toBottomOf="@+id/receivingWallet"
+                                app:layout_constraintRight_toRightOf="@+id/receivingWallet"
+                                app:layout_constraintTop_toTopOf="@+id/receivingWallet" />
+
+                        <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_marginLeft="18dp"
+                                android:layout_marginRight="18dp"
+                                android:background="@color/color_DFE2E5"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/receivingWallet" />
+
+                        <TextView
+                                android:id="@+id/language"
+                                android:layout_width="0dp"
+                                android:layout_height="66dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="18dp"
+                                android:paddingRight="18dp"
+                                android:text="@string/language"
+                                android:textColor="@color/color_202020"
+                                android:textSize="17sp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/receivingWallet" />
+
+                        <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp"
+                                android:paddingRight="18dp"
+                                android:src="@mipmap/arrow_common"
+                                app:layout_constraintBottom_toBottomOf="@+id/language"
+                                app:layout_constraintRight_toRightOf="@+id/language"
+                                app:layout_constraintTop_toTopOf="@+id/language" />
+
+                        <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_marginLeft="18dp"
+                                android:layout_marginRight="18dp"
+                                android:background="@color/color_DFE2E5"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/language" />
+
+                        <TextView
+                                android:id="@+id/currencyUnit"
+                                android:layout_width="0dp"
+                                android:layout_height="66dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="18dp"
+                                android:paddingRight="18dp"
+                                android:text="@string/currency_unit"
+                                android:textColor="@color/color_202020"
+                                android:textSize="17sp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/language" />
+
+                        <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp"
+                                android:paddingRight="18dp"
+                                android:src="@mipmap/arrow_common"
+                                app:layout_constraintBottom_toBottomOf="@+id/currencyUnit"
+                                app:layout_constraintRight_toRightOf="@+id/currencyUnit"
+                                app:layout_constraintTop_toTopOf="@+id/currencyUnit" />
+
+                        <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_marginLeft="18dp"
+                                android:layout_marginRight="18dp"
+                                android:background="@color/color_DFE2E5"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/currencyUnit" />
+
+                        <TextView
+                                android:id="@+id/notificationSetting"
+                                android:layout_width="0dp"
+                                android:layout_height="66dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="18dp"
+                                android:paddingRight="18dp"
+                                android:text="@string/text_notification"
+                                android:textColor="@color/color_202020"
+                                android:textSize="17sp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/currencyUnit" />
+
+                        <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp"
+                                android:paddingRight="18dp"
+                                android:src="@mipmap/arrow_common"
+                                app:layout_constraintBottom_toBottomOf="@+id/notificationSetting"
+                                app:layout_constraintRight_toRightOf="@+id/notificationSetting"
+                                app:layout_constraintTop_toTopOf="@+id/notificationSetting" />
+
+                        <android.support.constraint.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/layoutFingerprint"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/notificationSetting">
+
+                                <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:layout_marginLeft="18dp"
+                                        android:layout_marginRight="18dp"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        android:background="@color/color_DFE2E5" />
+
+                                <TextView
+                                        android:id="@+id/fingerprint"
+                                        android:layout_width="0dp"
+                                        android:layout_height="66dp"
+                                        android:gravity="center_vertical"
+                                        android:paddingLeft="18dp"
+                                        android:paddingRight="18dp"
+                                        android:text="@string/text_setting_fingerprint"
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="17sp"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintRight_toRightOf="parent" />
+
+                                <Switch
+                                        android:id="@+id/switchFingerprint"
+                                        android:layout_width="50dp"
+                                        android:layout_height="25dp"
+                                        android:layout_marginEnd="18dp"
+                                        android:thumb="@drawable/shape_switch_thumb"
+                                        android:track="@drawable/selector_switch_track"
+                                        app:layout_constraintBottom_toBottomOf="@+id/fingerprint"
+                                        app:layout_constraintEnd_toEndOf="@+id/fingerprint"
+                                        app:layout_constraintTop_toTopOf="@+id/fingerprint" />
+                        </android.support.constraint.ConstraintLayout>
+
+                        <View
+                                android:id="@+id/view"
+                                android:layout_width="0dp"
+                                android:layout_height="9dp"
+                                android:background="@color/color_EEF1F4"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/layoutFingerprint" />
+
+                        <TextView
+                                android:id="@+id/about_appname"
+                                android:layout_width="0dp"
+                                android:layout_height="39dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="18dp"
+                                android:paddingRight="18dp"
+                                android:text="@string/about_appname"
+                                android:textColor="@color/color_8F8F8F"
+                                android:textSize="17sp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/view" />
+
+                        <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_marginLeft="18dp"
+                                android:layout_marginRight="18dp"
+                                android:background="@color/color_DFE2E5"
+                                app:layout_constraintBottom_toBottomOf="@id/about_appname"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent" />
+                        <TextView
+                                android:id="@+id/feedback"
+                                android:layout_width="0dp"
+                                android:layout_height="66dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="18dp"
+                                android:paddingRight="18dp"
+                                android:visibility="gone"
+                                android:text="@string/feed_back"
+                                android:textColor="@color/color_202020"
+                                android:textSize="17sp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/about_appname" />
+
+                        <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp"
+                                android:paddingRight="18dp"
+                                android:visibility="gone"
+                                android:src="@mipmap/arrow_common"
+                                app:layout_constraintBottom_toBottomOf="@+id/feedback"
+                                app:layout_constraintRight_toRightOf="@+id/feedback"
+                                app:layout_constraintTop_toTopOf="@+id/feedback" />
+
+                        <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:visibility="gone"
+                                android:layout_marginLeft="18dp"
+                                android:layout_marginRight="18dp"
+                                android:background="@color/color_DFE2E5"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/feedback" />
+
+                        <TextView
+                                android:id="@+id/aboutUs"
+                                android:layout_width="0dp"
+                                android:layout_height="66dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="18dp"
+                                android:paddingRight="18dp"
+                                android:text="@string/about_us"
+                                android:textColor="@color/color_202020"
+                                android:textSize="17sp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/feedback" />
+
+                        <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp"
+                                android:paddingRight="18dp"
+                                android:src="@mipmap/arrow_common"
+                                app:layout_constraintBottom_toBottomOf="@+id/aboutUs"
+                                app:layout_constraintRight_toRightOf="@+id/aboutUs"
+                                app:layout_constraintTop_toTopOf="@+id/aboutUs" />
+
+                        <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_marginLeft="18dp"
+                                android:layout_marginRight="18dp"
+                                android:background="@color/color_DFE2E5"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/aboutUs" />
+                </android.support.constraint.ConstraintLayout>
+        </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

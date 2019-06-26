@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/colorPrimaryDark">
+    <item
+        android:drawable="@drawable/shape_round_corner_8dp_038afb"
+        android:state_pressed="true" />
+    <item
+        android:drawable="@drawable/shape_round_corner_8dp_d4d9de"
+        android:state_enabled="false" />
+    <item
+        android:drawable="@drawable/shape_round_corner_8dp_038afb"
+        android:state_enabled="true" />
+</ripple>

@@ -1,0 +1,319 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="io.nebulas.wallet.android.module.swap.step.step2.SwapTransferFragment">
+
+        <include layout="@layout/layout_receivables_share" />
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_EEF1F4">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <android.support.constraint.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="18dp"
+                                android:background="@drawable/shape_round_corner_8dp_ffffff"
+                                android:elevation="6dp">
+
+                                <android.support.v7.widget.AppCompatTextView
+                                        android:id="@+id/text_view_1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="18dp"
+                                        android:layout_marginEnd="18dp"
+                                        android:layout_marginTop="18dp"
+                                        android:text="@string/swap_title_import_token"
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="24sp"
+                                        android:maxLines="1"
+                                        android:textStyle="bold"
+                                        android:gravity="start"
+                                        app:autoSizeTextType="uniform"
+                                        app:autoSizeMaxTextSize="24sp"
+                                        app:autoSizeMinTextSize="10sp"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                        android:id="@+id/text_view_2"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:lineSpacingMultiplier="1.1"
+                                        android:layout_marginEnd="18dp"
+                                        android:layout_marginStart="18dp"
+                                        android:text="@string/swap_text_import_token_desc"
+                                        android:textColor="@color/color_8F8F8F"
+                                        android:textSize="15sp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_1" />
+
+
+                                <TextView
+                                        android:id="@+id/text_view_3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="18dp"
+                                        android:layout_marginTop="18dp"
+                                        android:text="@string/swap_text_swap_address"
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="13sp"
+                                        android:textStyle="bold"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_2" />
+
+
+                                <TextView
+                                        android:id="@+id/tv_swap_address"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="18dp"
+                                        android:layout_marginStart="18dp"
+                                        android:layout_marginTop="6dp"
+                                        android:text="3e7hkpfe2a71ca32c044fa75fb370a72feab25833450eo"
+                                        android:textColor="@color/color_8F8F8F"
+                                        android:textSize="15sp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/text_view_3" />
+
+                                <ImageView
+                                        android:id="@+id/iv_swap_address_qr_code"
+                                        android:layout_width="96dp"
+                                        android:layout_height="96dp"
+                                        android:layout_marginBottom="18dp"
+                                        android:layout_marginStart="18dp"
+                                        android:layout_marginTop="12dp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/tv_swap_address"
+                                        tools:src="@mipmap/ic_launcher" />
+
+                                <ImageView
+                                        android:id="@+id/iv_eth_icon"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:src="@drawable/ic_eth"
+                                        android:visibility="invisible"
+                                        app:layout_constraintBottom_toBottomOf="@id/iv_swap_address_qr_code"
+                                        app:layout_constraintEnd_toEndOf="@id/iv_swap_address_qr_code"
+                                        app:layout_constraintStart_toStartOf="@id/iv_swap_address_qr_code"
+                                        app:layout_constraintTop_toTopOf="@id/iv_swap_address_qr_code" />
+
+                                <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="36dp"
+                                        android:orientation="vertical"
+                                        app:layout_constraintBottom_toBottomOf="@id/iv_swap_address_qr_code"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintTop_toTopOf="@id/iv_swap_address_qr_code">
+
+                                        <TextView
+                                                android:id="@+id/tv_copy_address"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="36dp"
+                                                android:background="@drawable/ripple_round_corner_6dp_ffffff_50p8f8f8f"
+                                                android:gravity="center"
+                                                android:paddingEnd="14dp"
+                                                android:paddingStart="14dp"
+                                                android:text="@string/copy_address_text"
+                                                android:textColor="@color/color_8F8F8F" />
+
+                                        <TextView
+                                                android:id="@+id/tv_save_pic"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="36dp"
+                                                android:layout_marginTop="12dp"
+                                                android:background="@drawable/ripple_round_corner_6dp_ffffff_50p8f8f8f"
+                                                android:gravity="center"
+                                                android:paddingEnd="14dp"
+                                                android:paddingStart="14dp"
+                                                android:text="@string/save_pic_text"
+                                                android:textColor="@color/color_8F8F8F" />
+
+                                </LinearLayout>
+
+                        </android.support.constraint.ConstraintLayout>
+
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="18dp"
+                                android:layout_marginEnd="18dp"
+                                android:layout_marginStart="18dp"
+                                android:background="@drawable/shape_round_corner_8dp_ffffff"
+                                android:elevation="6dp"
+                                android:orientation="vertical"
+                                android:padding="18dp">
+
+                                <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center_vertical"
+                                                android:text="@string/swap_text_balance"
+                                                android:textColor="@color/color_202020"
+                                                android:textSize="15sp"
+                                                android:textStyle="bold" />
+
+                                        <TextView
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="6dp"
+                                                android:layout_weight="1"
+                                                android:layout_gravity="center_vertical"
+                                                android:text="@string/swap_text_should_wait"
+                                                android:textColor="@color/color_8F8F8F"
+                                                android:textSize="13sp" />
+
+                                        <LinearLayout
+                                                android:id="@+id/layout_refresh"
+                                                android:layout_gravity="center_vertical"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content">
+
+                                                <TextView
+                                                        android:id="@+id/tv_refresh"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginStart="6dp"
+                                                        android:gravity="center"
+                                                        android:text="@string/swap_action_refresh"
+                                                        android:textColor="@color/color_038AFB"
+                                                        android:textSize="13sp" />
+
+                                                <ImageView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:id="@+id/iv_refresh"
+                                                        android:layout_gravity="center_vertical"
+                                                        android:layout_marginStart="6dp"
+                                                        android:src="@drawable/ic_refresh" />
+                                        </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="20dp">
+
+                                        <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/swap_text_erc20"
+                                                android:textColor="@color/color_202020"
+                                                android:textSize="15sp"
+                                                android:textStyle="bold" />
+
+                                        <io.nebulas.wallet.android.view.AutoFitTextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:id="@+id/tv_balance_erc_20"
+                                                android:layout_marginStart="6dp"
+                                                android:gravity="end"
+                                                android:text="0.0000"
+                                                android:textColor="@color/color_038AFB"
+                                                android:textSize="17sp"
+                                                android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <View
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:layout_marginTop="10dp"
+                                        android:background="@color/divider_line" />
+
+                                <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="match_parent"
+                                                android:text="@string/swap_text_gas_fee"
+                                                android:gravity="bottom"
+                                                android:textColor="@color/color_202020"
+                                                android:textSize="15sp"
+                                                android:textStyle="bold" />
+
+                                        <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="match_parent"
+                                                android:layout_marginStart="6dp"
+                                                android:id="@+id/tv_range_of_gas_fee"
+                                                android:text="@string/swap_text_gas_fee_desc"
+                                                android:gravity="bottom"
+                                                android:textColor="@color/color_8F8F8F"
+                                                android:textSize="13sp" />
+
+                                        <RelativeLayout
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1">
+
+                                                <io.nebulas.wallet.android.view.AutoFitTextView
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginStart="6dp"
+                                                        android:id="@+id/tv_balance_eth"
+                                                        android:gravity="bottom|end"
+                                                        android:maxLines="1"
+                                                        android:layout_toStartOf="@+id/tv_eth_unit"
+                                                        android:layout_alignBaseline="@+id/tv_eth_unit"
+                                                        android:layout_centerVertical="true"
+                                                        android:text="0.0000"
+                                                        android:textColor="@color/color_038AFB"
+                                                        android:textSize="17sp"
+                                                        android:textStyle="bold" />
+
+                                                <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginStart="3dp"
+                                                        android:id="@+id/tv_eth_unit"
+                                                        android:gravity="bottom"
+                                                        android:layout_alignParentEnd="true"
+                                                        android:layout_centerVertical="true"
+                                                        android:text="ETH"
+                                                        android:textColor="@color/color_202020"
+                                                        android:textSize="15sp"
+                                                        android:textStyle="bold" />
+                                        </RelativeLayout>
+                                </LinearLayout>
+
+                                <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="48dp"
+                                        android:id="@+id/tv_confirm_swap"
+                                        android:layout_marginTop="20dp"
+                                        android:background="@drawable/selector_for_btn_import_wallet"
+                                        android:enabled="false"
+                                        android:textSize="17sp"
+                                        android:gravity="center"
+                                        android:text="@string/swap_action_confirm_swap"
+                                        android:textColor="@color/white" />
+
+                        </LinearLayout>
+
+                </LinearLayout>
+
+        </ScrollView>
+
+</FrameLayout>

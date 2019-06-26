@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+        <item
+                android:id="@+id/htmlActionMenuBack"
+                android:title=""
+                android:icon="@drawable/backarrow_black"
+                app:showAsAction="always"/>
+
+        <item
+                android:id="@+id/htmlActionMenuClose"
+                android:title=""
+                android:icon="@drawable/toolbar_close_icon"
+                app:showAsAction="always"/>
+
+
+</menu>

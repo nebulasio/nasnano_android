@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:background="@drawable/shape_round_corner_12dp_ffffff"
+        android:orientation="vertical">
+
+        <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="18dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_fingerprint_in_dialog"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_title"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/tip_title_please_verify_fingerprint"
+                android:gravity="center_horizontal"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="@color/color_030303"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_desc"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/text_verify_fingerprint_to_unlock"
+                android:gravity="center_horizontal"
+                android:textSize="13sp"
+                android:textColor="@color/color_030303"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/divider_line"/>
+        
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="43dp"
+                        android:layout_weight="1"
+                        android:id="@+id/tv_action_cancel"
+                        android:gravity="center"
+                        android:textSize="17sp"
+                        android:textColor="@color/color_007AFF"
+                        android:text="@string/cancel_btn"/>
+
+                <View
+                        android:layout_width="1dp"
+                        android:id="@+id/view_vertical_line"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"
+                        android:background="@color/divider_line"/>
+
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="43dp"
+                        android:id="@+id/tv_action_password"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        android:textSize="17sp"
+                        android:textColor="@color/color_007AFF"
+                        android:text="@string/action_to_verify_wallet_password_short"/>
+                
+                
+        </LinearLayout>
+</LinearLayout>

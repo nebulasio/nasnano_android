@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
+        tools:context="io.nebulas.wallet.android.module.transaction.ReceivablesActivity">
+
+        <!--分享生成的图片layout-->
+        <include layout="@layout/layout_receivables_share" />
+
+        <include
+                android:id="@+id/toolbar_layout"
+                layout="@layout/app_bar_main_no_underline"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scrollbars="vertical"
+                android:background="@color/white"
+                android:paddingBottom="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar_layout"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|center_horizontal"
+                        android:fitsSystemWindows="true"
+                        app:layout_collapseParallaxMultiplier="0.5">
+
+                        <TextView
+                                android:id="@+id/wallets"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="30dp"
+                                android:layout_marginTop="18dp"
+                                android:textColor="@color/color_202020"
+                                android:textSize="17sp"
+                                android:textStyle="bold"
+                                android:text="@string/wallet"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                 />
+
+                        <RelativeLayout
+                                android:id="@+id/walletLayout"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="30dp"
+                                android:layout_marginStart="30dp"
+                                app:layout_constraintBottom_toBottomOf="@+id/wallets"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/wallets"
+                                app:layout_constraintTop_toTopOf="@+id/wallets">
+
+                                <TextView
+                                        android:id="@+id/walletNameTV"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_toStartOf="@+id/tvWalletDefault"
+                                        android:textColor="@color/color_8F8F8F"
+                                        android:textSize="17sp"
+                                        android:lines="1"
+                                        android:ellipsize="end"
+                                        tools:text="NAS Wallet" />
+
+                                <TextView
+                                        android:id="@+id/tvWalletDefault"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_toStartOf="@+id/iv_arrow"
+                                        android:textColor="@color/color_8F8F8F"
+                                        android:textSize="17sp"
+                                        android:text="@string/confirm_transfer_default" />
+
+                                <ImageView
+                                        android:id="@+id/iv_arrow"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginStart="6dp"
+                                        android:src="@drawable/arrow" />
+
+                        </RelativeLayout>
+
+                        <android.support.constraint.ConstraintLayout
+                                android:id="@+id/background_layout"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="24dp"
+                                android:layout_marginRight="24dp"
+                                android:layout_marginTop="18dp"
+                                android:elevation="3dp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/wallets"
+                                tools:background="@color/color_038AFB">
+
+                                <ImageButton
+                                        android:id="@+id/ibShare"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="8dp"
+                                        android:layout_marginTop="8dp"
+                                        android:background="@color/transparent"
+                                        android:padding="18dp"
+                                        android:src="@mipmap/ic_share"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                <ImageView
+                                        android:id="@+id/addressIconIV"
+                                        android:layout_width="43dp"
+                                        android:layout_height="43dp"
+                                        android:layout_marginTop="24dp"
+                                        android:background="@drawable/shape_circle_ffffff"
+                                        android:padding="3dp"
+                                        android:scaleType="fitXY"
+                                        app:layout_constraintLeft_toLeftOf="@+id/background_layout"
+                                        app:layout_constraintRight_toRightOf="@+id/background_layout"
+                                        app:layout_constraintTop_toTopOf="@+id/background_layout"
+                                        tools:src="@mipmap/ic_launcher" />
+
+                                <TextView
+                                        android:id="@+id/addressTV"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="45dp"
+                                        android:layout_marginLeft="45dp"
+                                        android:layout_marginRight="45dp"
+                                        android:layout_marginStart="45dp"
+                                        android:layout_marginTop="24dp"
+                                        android:gravity="center_horizontal"
+                                        android:textColor="@color/white"
+                                        android:textSize="15sp"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@+id/addressIconIV"
+                                        tools:text="3e7hkpfe2a71ca32c044fa75fb370a72feab25833450eo" />
+
+                                <RelativeLayout
+                                        android:id="@+id/layoutQrCode"
+                                        android:layout_width="207dp"
+                                        android:layout_height="207dp"
+                                        android:layout_marginTop="24dp"
+                                        android:background="@drawable/white_rect_corner"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@+id/addressTV">
+
+                                        <ImageView
+                                                android:id="@+id/qrCodeIV"
+                                                android:layout_width="199dp"
+                                                android:layout_height="199dp"
+                                                android:layout_centerInParent="true" />
+
+                                        <ImageView
+                                                android:id="@+id/tokenLogoIV"
+                                                android:layout_width="42dp"
+                                                android:layout_height="42dp"
+                                                android:layout_centerInParent="true"
+                                                android:src="@mipmap/ic_launcher"
+                                                android:background="@drawable/token_logo_bg_white_rect_corner"
+                                                android:padding="8dp"
+                                                android:scaleType="fitCenter" />
+                                </RelativeLayout>
+
+
+                                <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="28dp"
+                                        android:layout_marginTop="24dp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@+id/layoutQrCode">
+
+                                        <TextView
+                                                android:id="@+id/copyTV"
+                                                android:layout_width="117dp"
+                                                android:layout_height="36dp"
+                                                android:background="@drawable/shape_round_corner_6dp_transparent_ffffff"
+                                                android:gravity="center"
+                                                android:text="@string/copy_address_text"
+                                                android:textColor="@color/white"
+                                                android:textSize="13sp" />
+
+                                        <TextView
+                                                android:id="@+id/savePicTV"
+                                                android:layout_width="117dp"
+                                                android:layout_height="36dp"
+                                                android:layout_marginStart="25dp"
+                                                android:background="@drawable/shape_round_corner_6dp_transparent_ffffff"
+                                                android:gravity="center"
+                                                android:text="@string/save_pic_text"
+                                                android:textColor="@color/white"
+                                                android:textSize="13sp" />
+
+
+                                </LinearLayout>
+
+                        </android.support.constraint.ConstraintLayout>
+
+                        <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="30dp"
+                                android:src="@mipmap/logo_nas_nano_for_receive"
+                                app:layout_constraintTop_toBottomOf="@+id/background_layout"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent" />
+
+
+                </android.support.constraint.ConstraintLayout>
+        </ScrollView>
+
+        <android.support.v4.widget.ContentLoadingProgressBar
+                android:id="@+id/progressBar"
+                style="@style/Base.Widget.AppCompat.ProgressBar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:id="@+id/testNetTipsTV"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:background="@color/color_2691B2"
+                android:gravity="center_vertical"
+                android:paddingEnd="15dp"
+                android:paddingStart="15dp"
+                android:text="@string/test_net_tips"
+                android:textColor="@color/white"
+                android:textSize="13dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

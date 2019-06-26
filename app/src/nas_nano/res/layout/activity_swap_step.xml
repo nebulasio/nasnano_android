@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_EEF1F4"
+        tools:context="io.nebulas.wallet.android.module.swap.step.SwapStepActivity">
+
+        <!--<android.support.design.widget.AppBarLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:elevation="0dp"-->
+                <!--android:id="@+id/app_bar">-->
+
+                <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:fitsSystemWindows="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimaryDark"
+                        app:contentInsetStart="0dp"
+                        app:layout_scrollFlags="scroll|enterAlways"
+                        app:navigationIcon="@drawable/ic_close_white">
+
+                        <TextView
+                                android:id="@+id/titleTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/toolbar_height"
+                                android:layout_gravity="center|top"
+                                android:ellipsize="marquee"
+                                android:gravity="center"
+                                android:marqueeRepeatLimit="marquee_forever"
+                                android:scrollHorizontally="true"
+                                android:singleLine="true"
+                                android:text="@string/swap_title_swap"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/toolebar_title_size"
+                                android:textStyle="bold" />
+
+
+                </android.support.v7.widget.Toolbar>
+        <!--</android.support.design.widget.AppBarLayout>-->
+
+        <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:id="@+id/layout_indicator"
+                android:background="@color/colorPrimaryDark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/swap_title_choose_wallet"
+                        android:textSize="15sp"
+                        android:id="@+id/tv_tab_step_1"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/white"/>
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_swap_step_process"
+                        android:layout_marginStart="26dp"
+                        android:layout_marginEnd="26dp"
+                        android:layout_toRightOf="@id/tv_tab_step_1"
+                        android:id="@+id/iv_next"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/swap_title_import_token"
+                        android:textSize="15sp"
+                        android:alpha="0.6"
+                        android:id="@+id/tv_tab_step_2"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/iv_next"
+                        android:textColor="@color/white"/>
+
+                <View
+                        android:layout_width="23dp"
+                        android:layout_height="11dp"
+                        android:id="@+id/view_indicator"
+                        android:background="@drawable/triangle"
+                        android:layout_alignParentBottom="true"/>
+        </RelativeLayout>
+        </RelativeLayout>
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/layout_container"
+                app:layout_constraintTop_toBottomOf="@id/layout_indicator"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+</android.support.constraint.ConstraintLayout>

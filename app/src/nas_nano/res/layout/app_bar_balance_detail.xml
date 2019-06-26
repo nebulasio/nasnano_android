@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.AppBarLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:fitsSystemWindows="true"
+        app:layout_behavior="io.nebulas.wallet.android.view.research.FixAppBarLayoutBehavior"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+        <!--<android.support.design.widget.CollapsingToolbarLayout-->
+                <!--android:id="@+id/collapsingToolBar"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:fitsSystemWindows="true">-->
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="216dp">
+
+                <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/toolbar_bg"
+                        android:fitsSystemWindows="true"
+                        app:contentInsetStart="0dp"
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                        <TextView
+                                android:id="@+id/titleTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/toolbar_height"
+                                android:textSize="@dimen/toolebar_title_size"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:layout_gravity="center|top"
+                                android:gravity="center"/>
+
+
+                </android.support.v7.widget.Toolbar>
+
+                <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:fitsSystemWindows="true"
+                        app:layout_collapseParallaxMultiplier="0.5">
+
+                        <!--<TextView-->
+                                <!--android:id="@+id/titleTV"-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="?attr/actionBarSize"-->
+                                <!--android:textColor="@color/white"-->
+                                <!--android:layout_gravity="center"-->
+                                <!--android:gravity="center"-->
+                                <!--android:textSize="@dimen/toolebar_title_size"-->
+                                <!--app:layout_constraintTop_toTopOf="parent"-->
+                                <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                                <!--app:layout_constraintRight_toRightOf="parent"/>-->
+
+                        <TextView
+                                android:id="@+id/coinSymbolTV"
+                                android:textSize="18sp"
+                                android:textColor="@color/white"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="83dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"/>
+
+                        <io.nebulas.wallet.android.view.AutoFitTextView
+                                android:id="@+id/totalCoinsTV"
+                                android:textSize="34sp"
+                                android:textColor="@color/white"
+                                android:lines="1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                app:layout_constraintTop_toBottomOf="@+id/coinSymbolTV"
+                                app:layout_constraintLeft_toLeftOf="@+id/coinSymbolTV"/>
+
+
+                        <TextView
+                                android:id="@+id/balanceValueTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:textSize="18sp"
+                                android:textColor="@color/white"
+                                app:layout_constraintTop_toBottomOf="@+id/totalCoinsTV"
+                                app:layout_constraintLeft_toLeftOf="@+id/totalCoinsTV"/>
+
+                        <TextView
+                                android:id="@+id/quotationTV"
+                                android:textSize="18sp"
+                                android:textColor="@color/color_FF4747"
+                                android:background="@drawable/bg_quotation"
+                                android:layout_width="70dp"
+                                android:layout_height="25dp"
+                                android:visibility="gone"
+                                android:gravity="center"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginEnd="20dp"
+                                app:layout_constraintTop_toTopOf="@+id/totalCoinsTV"
+                                app:layout_constraintBottom_toBottomOf="@+id/totalCoinsTV"
+                                app:layout_constraintRight_toRightOf="parent"/>
+
+                        <ImageButton
+                                android:id="@+id/showWalletListIB"
+                                android:layout_width="40dp"
+                                android:layout_height="30dp"
+                                android:background="@color/transparent"
+                                android:src="@drawable/arrow_down"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"/>
+
+
+                </android.support.constraint.ConstraintLayout>
+
+        </RelativeLayout>
+        <!--</android.support.design.widget.CollapsingToolbarLayout>-->
+
+        <!--<android.support.design.widget.TabLayout-->
+        <!--android:id="@+id/tabLayout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:visibility="gone"-->
+        <!--android:background="@color/colorPrimaryDark"-->
+        <!--app:tabGravity="fill"-->
+        <!--app:tabMode="fixed"-->
+        <!--app:tabIndicatorColor="@color/colorAccent_FF4081"-->
+        <!--app:tabSelectedTextColor="@color/colorAccent_FF4081"-->
+        <!--app:tabTextColor="@color/light_white"/>-->
+
+</android.support.design.widget.AppBarLayout>
+

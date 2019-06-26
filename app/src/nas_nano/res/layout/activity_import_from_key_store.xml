@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusableInTouchMode="true"
+                tools:context="io.nebulas.wallet.android.module.wallet.create.ImportFromKeyStoreActivity">
+
+
+        <include
+                android:id="@+id/toolbar_layout"
+                layout="@layout/app_bar_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/toolbar_layout"
+                android:scrollbars="vertical">
+
+                <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="18dp"
+                        android:layout_marginRight="18dp"
+                        android:fitsSystemWindows="true"
+                        android:paddingBottom="40dp">
+
+
+                        <TextView
+                                android:id="@+id/desTV"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="23dp"
+                                android:gravity="center_horizontal"
+                                android:text="@string/import_from_keystore"
+                                android:textColor="@color/color_202020"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"/>
+
+                        <TextView
+                                android:id="@+id/subDesTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="@string/text_subtitle_for_import_from_keystore"
+                                android:textColor="@color/color_8F8F8F"
+                                android:textSize="15sp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/desTV"/>
+
+
+                        <io.nebulas.wallet.android.view.ListenActionEditText
+                                android:id="@+id/keystoreContentEt"
+                                android:layout_width="0dp"
+                                android:layout_height="204dp"
+                                android:layout_marginTop="22dp"
+                                android:background="@drawable/keystore_import_bg"
+                                android:gravity="start"
+                                android:hint="@string/keystore_content"
+                                android:inputType="text|textMultiLine"
+                                android:padding="15dp"
+                                android:textColor="@color/color_202020"
+                                android:textColorHint="@color/color_8F8F8F"
+                                android:textSize="15sp"
+                                android:tag="@string/paste_remind_keystore"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/subDesTV"/>
+
+                        <EditText
+                                android:id="@+id/passPhraseEt"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="30dp"
+                                android:background="@drawable/keystore_pwd_bg"
+                                android:gravity="start"
+                                android:hint="@string/keystore_pwd"
+                                android:inputType="textPassword"
+                                android:paddingLeft="18dp"
+                                android:paddingTop="18dp"
+                                android:paddingBottom="18dp"
+                                android:paddingRight="42dp"
+                                android:textColor="@color/color_038AFB"
+                                android:textColorHint="@color/color_8F8F8F"
+                                android:textSize="17sp"
+                                app:layout_constraintLeft_toLeftOf="@+id/keystoreContentEt"
+                                app:layout_constraintRight_toRightOf="@+id/keystoreContentEt"
+                                app:layout_constraintTop_toBottomOf="@+id/keystoreContentEt"/>
+
+                        <ImageView
+                                android:id="@+id/changeEyePwd"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="18dp"
+                                android:src="@mipmap/open_eye"
+                                app:layout_constraintBottom_toBottomOf="@id/passPhraseEt"
+                                app:layout_constraintRight_toRightOf="@id/passPhraseEt"
+                                app:layout_constraintTop_toTopOf="@id/passPhraseEt"/>
+
+                        <LinearLayout
+                                android:id="@+id/agree_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="55dp"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical"
+                                app:layout_constraintTop_toBottomOf="@+id/passPhraseEt">
+
+                                <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:orientation="horizontal">
+
+                                        <android.support.v7.widget.AppCompatCheckBox
+                                                android:id="@+id/agreeCB"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/agree_text"
+                                                android:textColor="@color/color_8F8F8F"
+                                                android:textSize="15sp"
+                                                android:theme="@style/CheckboxStyle"/>
+
+                                        <TextView
+                                                android:id="@+id/privacyTV"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/protocol"
+                                                android:textColor="@color/btn_bg_color"
+                                                android:textSize="15sp"/>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                                android:id="@+id/text_and"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center_vertical"
+                                                android:text="@string/and"
+                                                android:textColor="@color/color_8F8F8F"
+                                                android:textSize="14sp"/>
+
+                                        <TextView
+                                                android:id="@+id/serviceProtocolTV"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center_vertical"
+                                                android:text="@string/service_protocol"
+                                                android:textColor="@color/color_038AFB"
+                                                android:textSize="14sp"/>
+                                </LinearLayout>
+                        </LinearLayout>
+
+                        <TextView
+                                android:id="@+id/importBtn"
+                                android:layout_width="0dp"
+                                android:layout_height="48dp"
+                                android:layout_marginTop="24dp"
+                                android:background="@drawable/btn_import_disable_bg"
+                                android:text="@string/start_import"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:gravity="center"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/agree_layout"/>
+
+                </android.support.constraint.ConstraintLayout>
+        </ScrollView>
+
+        <include
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                layout="@layout/loading_view_with_bg"
+                android:visibility="gone"
+                android:layout_centerInParent="true"/>
+
+
+</RelativeLayout>

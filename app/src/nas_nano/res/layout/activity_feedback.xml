@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+                android:id="@+id/title_layout"
+                layout="@layout/app_bar_main" />
+
+        <ScrollView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_layout">
+
+                <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="18dp"
+                        android:paddingRight="18dp">
+
+                        <TextView
+                                android:id="@+id/question"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="14dp"
+                                android:paddingTop="22dp"
+                                android:text="@string/question"
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+
+                        <android.support.constraint.ConstraintLayout
+                                android:id="@+id/des_layout"
+                                android:layout_width="0dp"
+                                android:layout_height="242dp"
+                                android:background="@drawable/grey_rect_corner"
+                                android:padding="12dp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/question">
+
+                                <EditText
+                                        android:id="@+id/questionDes"
+                                        android:layout_width="0dp"
+                                        android:layout_height="0dp"
+                                        android:background="@null"
+                                        android:gravity="start"
+                                        android:hint="@string/question_des"
+                                        android:inputType="text|textMultiLine"
+                                        android:paddingBottom="25dp"
+                                        android:textColor="@color/color_8F8F8F"
+                                        android:textSize="13sp"
+                                        android:maxLength="200"
+                                        app:layout_constraintBottom_toTopOf="@+id/image_iv1_layout"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                <android.support.constraint.ConstraintLayout
+                                        android:id="@+id/image_iv1_layout"
+                                        android:layout_width="70dp"
+                                        android:layout_height="70dp"
+                                        android:layout_marginBottom="6dp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintLeft_toLeftOf="parent">
+
+                                        <ImageView
+                                                android:id="@+id/image_iv1"
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:onClick="showDialog"
+                                                android:scaleType="fitXY"
+                                                android:src="@drawable/uploadpic"
+                                                app:layout_constraintBottom_toBottomOf="parent"
+                                                app:layout_constraintLeft_toLeftOf="parent" />
+
+                                        <ImageView
+                                                android:id="@+id/image_iv1_tag"
+                                                android:layout_width="24dp"
+                                                android:layout_height="24dp"
+                                                android:onClick="picDelete"
+                                                android:src="@drawable/delete"
+                                                app:layout_constraintRight_toRightOf="parent"
+                                                app:layout_constraintTop_toTopOf="parent" />
+
+                                </android.support.constraint.ConstraintLayout>
+
+
+                                <android.support.constraint.ConstraintLayout
+                                        android:id="@+id/image_iv2_layout"
+                                        android:layout_width="70dp"
+                                        android:layout_height="70dp"
+                                        android:visibility="gone"
+                                        app:layout_constraintBottom_toBottomOf="@+id/image_iv1_layout"
+                                        app:layout_constraintLeft_toRightOf="@+id/image_iv1_layout">
+
+                                        <ImageView
+                                                android:id="@+id/image_iv2"
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:onClick="showDialog"
+                                                android:scaleType="fitXY"
+                                                android:src="@drawable/uploadpic"
+                                                app:layout_constraintBottom_toBottomOf="parent"
+                                                app:layout_constraintLeft_toLeftOf="parent" />
+
+                                        <ImageView
+                                                android:id="@+id/image_iv2_tag"
+                                                android:layout_width="24dp"
+                                                android:layout_height="24dp"
+                                                android:onClick="picDelete"
+                                                android:src="@drawable/delete"
+                                                app:layout_constraintRight_toRightOf="parent"
+                                                app:layout_constraintTop_toTopOf="parent" />
+
+                                </android.support.constraint.ConstraintLayout>
+
+                                <android.support.constraint.ConstraintLayout
+                                        android:id="@+id/image_iv3_layout"
+                                        android:layout_width="70dp"
+                                        android:layout_height="70dp"
+                                        android:visibility="gone"
+                                        app:layout_constraintBottom_toBottomOf="@+id/image_iv1_layout"
+                                        app:layout_constraintLeft_toRightOf="@+id/image_iv2_layout">
+
+                                        <ImageView
+                                                android:id="@+id/image_iv3"
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:onClick="showDialog"
+                                                android:scaleType="fitXY"
+                                                android:src="@drawable/uploadpic"
+                                                app:layout_constraintBottom_toBottomOf="parent"
+                                                app:layout_constraintLeft_toLeftOf="parent" />
+
+                                        <ImageView
+                                                android:id="@+id/image_iv3_tag"
+                                                android:layout_width="24dp"
+                                                android:layout_height="24dp"
+                                                android:onClick="picDelete"
+                                                android:src="@drawable/delete"
+                                                app:layout_constraintRight_toRightOf="parent"
+                                                app:layout_constraintTop_toTopOf="parent" />
+
+                                </android.support.constraint.ConstraintLayout>
+
+                                <TextView
+                                        android:id="@+id/word_num"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingRight="6dp"
+                                        android:textColor="@color/color_8F8F8F"
+                                        android:textSize="13sp"
+                                        app:layout_constraintBottom_toBottomOf="@+id/image_iv1_layout"
+                                        app:layout_constraintRight_toRightOf="parent" />
+                        </android.support.constraint.ConstraintLayout>
+
+                        <TextView
+                                android:id="@+id/email_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="14dp"
+                                android:paddingTop="28dp"
+                                android:text="@string/email_title"
+                                android:textColor="@color/black"
+                                android:textSize="15sp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/des_layout" />
+
+                        <EditText
+                                android:id="@+id/email_ev"
+                                android:layout_width="0dp"
+                                android:layout_height="48dp"
+                                android:textSize="13sp"
+                                android:textColor="@color/color_202020"
+                                android:background="@drawable/grey_rect_corner"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/email_title" />
+
+                        <TextView
+                                android:id="@+id/remark_tv"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="55dp"
+                                android:paddingTop="22dp"
+                                android:text="@string/remark"
+                                android:textColor="@color/color_8F8F8F"
+                                android:textSize="@dimen/size_12_sp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/email_ev" />
+
+                        <TextView
+                                android:id="@+id/submitBtn"
+                                android:layout_width="0dp"
+                                android:layout_height="48dp"
+                                android:background="@drawable/selector_for_btn_import_wallet"
+                                android:gravity="center"
+                                android:text="@string/submit_feedback"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/remark_tv" />
+                </android.support.constraint.ConstraintLayout>
+        </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

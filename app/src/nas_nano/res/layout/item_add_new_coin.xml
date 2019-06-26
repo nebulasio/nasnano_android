@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+
+        <ImageView
+                android:id="@+id/walletIconTV"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_marginLeft="@dimen/common_mid_margin"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+                android:id="@+id/coinNameTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/coin_name_text"
+                android:layout_marginLeft="@dimen/common_mid_margin"
+                app:layout_constraintTop_toTopOf="@+id/walletIconTV"
+                app:layout_constraintLeft_toRightOf="@+id/walletIconTV"
+                app:layout_constraintBottom_toTopOf="@+id/coinDesTV"/>
+
+        <TextView
+                android:id="@+id/coinDesTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/coin_description_text"
+                app:layout_constraintLeft_toLeftOf="@+id/coinNameTV"
+                app:layout_constraintTop_toBottomOf="@+id/coinNameTV"
+                app:layout_constraintBottom_toBottomOf="@+id/walletIconTV"/>
+
+        <Switch
+                android:id="@+id/addSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/common_mid_margin"
+                app:layout_constraintTop_toTopOf="@+id/walletIconTV"
+                app:layout_constraintBottom_toBottomOf="@+id/walletIconTV"
+                app:layout_constraintRight_toRightOf="parent"
+                />
+
+
+</android.support.constraint.ConstraintLayout>

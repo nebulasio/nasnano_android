@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="6dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        android:background="@drawable/home_urgent_tips_gradient_bg">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/layout_backup_tip"
+                android:layout_below="@id/layout_wallet_info"
+                android:layout_marginTop="-8dp"
+                android:padding="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/swap_tip_backup_first"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/swap_action_backup_now_with_arrow"
+                        android:textColor="@color/white"
+                        android:textSize="13sp" />
+        </LinearLayout>
+
+
+        <RelativeLayout
+                android:id="@+id/layout_wallet_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_round_corner_8dp_ffffff"
+                android:padding="12dp">
+
+                <TextView
+                        android:id="@+id/tv_wallet_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:textStyle="bold"
+                        android:layout_marginEnd="12dp"
+                        android:textSize="17sp"
+                        android:layout_alignParentStart="true"
+                        android:gravity="start"
+                        android:layout_toStartOf="@+id/iv_selected_status"
+                        tools:text="Jack's wallet test long wallet name to display" />
+
+                <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:visibility="visible"
+                        android:id="@+id/iv_selected_status"
+                        android:src="@drawable/ic_radio_unselected"
+                        android:layout_alignParentEnd="true"/>
+
+                <TextView
+                        android:id="@+id/tv_wallet_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@id/tv_wallet_name"
+                        android:background="@drawable/shape_round_corner_6dp_eef1f4"
+                        android:padding="12dp"
+                        android:textSize="17sp"
+                        tools:text="3e7hkpfe2a71ca32c044fa75fb370a72feab25833450eo" />
+
+        </RelativeLayout>
+</RelativeLayout>

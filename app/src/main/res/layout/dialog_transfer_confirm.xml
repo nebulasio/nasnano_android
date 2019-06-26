@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent"
+        android:fitsSystemWindows="true">
+
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/white_rect_corner">
+
+                <RelativeLayout
+                        android:id="@+id/top_bg_view"
+                        android:layout_width="0dp"
+                        android:layout_height="58dp"
+                        android:background="@drawable/shape_top_corner_eef1f4"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tvTitle"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="18dp"
+                                android:textColor="@color/color_666666"
+                                android:textSize="17sp"
+                                tools:text="投票"/>
+
+                        <ImageButton
+                                android:id="@+id/closeIV"
+                                android:layout_width="42dp"
+                                android:layout_height="42dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentEnd="true"
+                                android:background="@color/transparent"
+                                android:src="@drawable/icon_grey_back" />
+                </RelativeLayout>
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:padding="18dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/top_bg_view">
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical">
+
+                                <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="74">
+
+                                        <ImageView
+                                                android:id="@+id/addressIconIV"
+                                                android:layout_width="36dp"
+                                                android:layout_height="36dp"
+                                                tools:src="@mipmap/ic_launcher_round"/>
+                                </LinearLayout>
+
+                                <TextView
+                                        android:id="@+id/transferToTV"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="265"
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="17sp"
+                                        tools:text="n1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"/>
+
+                        </LinearLayout>
+
+                        <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="15dp"
+                                android:background="@color/color_DFE2E5" />
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:gravity="center_vertical">
+
+                                <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="74"
+                                        android:text="@string/transfer_amount_title"
+                                        android:textColor="@color/color_8F8F8F"
+                                        android:textSize="17sp" />
+
+                                <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="265"
+                                        android:orientation="vertical">
+
+                                        <io.nebulas.wallet.android.view.AutoFitTextView
+                                                android:id="@+id/amountTV"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:textColor="@color/color_038AFB"
+                                                android:textSize="22sp"
+                                                tools:text="1 NAS"/>
+
+                                </LinearLayout>
+
+                        </LinearLayout>
+
+                        <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="15dp"
+                                android:background="@color/color_DFE2E5" />
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:gravity="center_vertical">
+
+                                <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="74"
+                                        android:text="@string/gas"
+                                        android:textColor="@color/color_8F8F8F"
+                                        android:textSize="17sp" />
+
+
+                                <io.nebulas.wallet.android.view.AutoFitTextView
+                                        android:id="@+id/gasFeeTV"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="265"
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="22sp"
+                                        tools:text="0.004NAS"/>
+
+
+                        </LinearLayout>
+
+                        <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="15dp"
+                                android:background="@color/color_DFE2E5" />
+
+                        <io.nebulas.wallet.android.module.transaction.view.WalletSelectViewPager
+                                android:id="@+id/walletViewPager"
+                                android:layout_width="match_parent"
+                                android:layout_height="105dp"
+                                android:layout_marginTop="30dp"
+                                android:clipChildren="false"
+                                android:clipToPadding="false" />
+
+                        <io.nebulas.wallet.android.view.PageControlView
+                                android:id="@+id/indicatorView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="10dp"
+                                android:layout_marginTop="15dp"
+                                android:background="@color/white"
+                                app:focusResId="@drawable/shape_round_corner_2dp_038afb"
+                                app:normalResId="@drawable/shape_round_corner_2dp_dfe2e5" />
+
+
+                        <Button
+                                android:id="@+id/confirmTransferBtn"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:layout_marginTop="20dp"
+                                android:background="@drawable/custom_corner_button_bg"
+                                android:text="@string/confirm_transfer"
+                                android:textColor="@color/white"
+                                android:textSize="17sp"
+                                android:textStyle="bold"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent" />
+
+                </LinearLayout>
+
+
+                <include
+                        android:id="@+id/progressBar"
+                        layout="@layout/loading_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+</RelativeLayout>

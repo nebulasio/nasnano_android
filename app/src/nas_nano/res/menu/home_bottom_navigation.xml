@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <item
+                android:id="@+id/navBalance"
+                android:title="@string/title_home"
+                android:icon="@drawable/home_tab_home_normal"/>
+
+        <item
+                android:id="@+id/navDiscover"
+                android:title="@string/title_discover"
+                android:icon="@drawable/home_tab_dapp_normal"/>
+
+        <item
+                android:id="@+id/navMe"
+                android:title="@string/title_notifications"
+                android:icon="@drawable/home_tab_me_normal"/>
+
+
+</menu>

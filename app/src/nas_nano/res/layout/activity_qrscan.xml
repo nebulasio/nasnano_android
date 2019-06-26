@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="io.nebulas.wallet.android.module.qrscan.QRScanActivity">
+
+        <android.support.design.widget.AppBarLayout
+                android:id="@+id/toolbar_layout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@android:color/transparent"
+                android:fitsSystemWindows="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fitsSystemWindows="true"
+                        app:contentInsetStart="0dp"
+                        app:layout_scrollFlags="scroll|enterAlways">
+
+                        <TextView
+                                android:id="@+id/titleTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/toolbar_height"
+                                android:layout_gravity="center|top"
+                                android:gravity="center"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/toolebar_title_size"
+                                android:textStyle="bold" />
+
+                </android.support.v7.widget.Toolbar>
+
+                <android.support.design.widget.TabLayout
+                        android:id="@+id/tabLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimaryDark"
+                        android:visibility="gone"
+                        app:tabGravity="fill"
+                        app:tabIndicatorColor="@color/colorAccent_FF4081"
+                        app:tabMode="fixed"
+                        app:tabSelectedTextColor="@color/colorAccent_FF4081"
+                        app:tabTextColor="@color/light_white" />
+
+        </android.support.design.widget.AppBarLayout>
+
+        <SurfaceView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/surfaceView"/>
+
+        <io.nebulas.wallet.android.view.ScannerAnimView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:id="@+id/scannerView"
+                android:fitsSystemWindows="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <LinearLayout
+                android:id="@+id/fromAlbumLayout"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:background="@color/black"
+                android:alpha="0.4"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/album" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:text="@string/from_album"
+                        android:textColor="@color/color_16B2FF"
+                        android:textSize="16sp" />
+
+        </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

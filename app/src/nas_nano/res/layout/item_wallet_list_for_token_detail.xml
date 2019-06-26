@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ripple_white_f2f2f2"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        android:paddingTop="18dp">
+
+        <ImageView
+                android:id="@+id/ivIcon"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@mipmap/ic_launcher" />
+
+        <io.nebulas.wallet.android.view.AutoFitTextView
+                android:id="@+id/tvWalletName"
+                android:layout_width="300dp"
+                android:singleLine="true"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:textColor="@color/color_202020"
+                android:textSize="17sp"
+                app:layout_constraintStart_toEndOf="@+id/ivIcon"
+                app:layout_constraintTop_toTopOf="@+id/ivIcon"
+                tools:text="Channel's wallet" />
+
+        <io.nebulas.wallet.android.view.AutoFitTextView
+                android:id="@+id/tvValue"
+                android:layout_width="300dp"
+                android:singleLine="true"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:layout_marginTop="3dp"
+                android:textColor="@color/color_8F8F8F"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvWalletName"
+                app:layout_constraintTop_toBottomOf="@+id/tvWalletName"
+                tools:text="62.0000 ETH" />
+
+        <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/divider_line"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+</android.support.constraint.ConstraintLayout>

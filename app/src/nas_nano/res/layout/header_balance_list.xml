@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.constraint.ConstraintLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/common_mid_margin">
+
+        <ImageView
+                android:id="@+id/iconIV"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@mipmap/ic_launcher"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="@dimen/common_mid_margin"/>
+
+        <TextView
+                android:id="@+id/walletNameTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="钱包名称"
+                android:singleLine="true"
+                android:ellipsize="middle"
+                app:layout_constraintTop_toBottomOf="@+id/iconIV"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginLeft="@dimen/common_big_margin"
+                android:layout_marginRight="@dimen/common_big_margin"
+                android:layout_marginTop="@dimen/common_mid_margin"/>
+
+        <TextView
+                android:id="@+id/addressTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="0x3a3c0133...12ecc5ea5c"
+                android:singleLine="true"
+                android:ellipsize="middle"
+                app:layout_constraintTop_toBottomOf="@+id/walletNameTV"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="@dimen/common_mid_margin"/>
+
+        <TextView
+                android:id="@+id/approximateTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/approximate_text"
+                app:layout_constraintTop_toBottomOf="@+id/addressTV"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="20dp"/>
+
+        <TextView
+                android:id="@+id/balanceTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:hint="100.00"
+                app:layout_constraintTop_toBottomOf="@+id/addressTV"
+                app:layout_constraintLeft_toRightOf="@+id/approximateTV"
+                android:layout_marginTop="@dimen/common_mid_margin"/>
+
+        <TextView
+                android:id="@+id/balanceValueDesTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/total_balance_des"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/balanceTV"
+                android:layout_marginTop="@dimen/common_mid_margin"/>
+
+        <ImageView
+                android:id="@+id/addCoinCateIV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_launcher"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/balanceValueDesTV"/>
+
+
+        </android.support.constraint.ConstraintLayout>
+
+</LinearLayout>

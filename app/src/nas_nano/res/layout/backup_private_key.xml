@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content">
+
+
+        <io.nebulas.wallet.android.view.DrawableTextView
+                android:id="@+id/privateKeyShowOrHide"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/shape_round_corner_8dp_ffffff_ff8f00"
+                android:drawableLeft="@drawable/ic_eye_open_ff8f00"
+                android:drawablePadding="9dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/color_FF8F00"
+                android:textSize="17sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:id="@+id/private_tips1_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="78dp"
+                android:text="@string/wallet_backup_detail_tips1"
+                android:visibility="gone"
+                android:textColor="@color/color_202020"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="@+id/privateKeyShowOrHide"
+                app:layout_constraintTop_toBottomOf="@+id/privateKeyShowOrHide" />
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                android:text="@string/wallet_backup_detail_tips2"
+                android:textColor="@color/color_8F8F8F"
+                android:textSize="13sp"
+                app:layout_constraintLeft_toLeftOf="@+id/privateKeyShowOrHide"
+                app:layout_constraintRight_toRightOf="@+id/privateKeyShowOrHide"
+                app:layout_constraintTop_toBottomOf="@+id/private_tips1_tv" />
+
+</android.support.constraint.ConstraintLayout>

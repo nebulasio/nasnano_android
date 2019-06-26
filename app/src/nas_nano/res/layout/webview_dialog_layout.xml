@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_rect_corner"
+        android:paddingBottom="17dp">
+
+        <TextView
+                android:id="@+id/titleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="25dp"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingTop="22dp"
+                android:textColor="@color/color_202020"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <WebView
+                android:id="@+id/webView"
+                android:layout_width="0dp"
+                android:layout_height="310dp"
+                android:paddingLeft="23dp"
+                android:paddingRight="24dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleTV"
+                tools:ignore="WebViewLayout" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/agreeCB"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="24dp"
+                android:gravity="top"
+                android:paddingTop="4dp"
+                android:text="@string/protocol_des"
+                android:textColor="@color/color_8F8F8F"
+                android:textSize="15sp"
+                android:theme="@style/CheckboxStyle"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/webView"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"/>
+
+        <TextView
+                android:id="@+id/negtiveTv"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/white_rect_stroke_corner"
+                android:gravity="center"
+                android:textColor="@color/color_8F8F8F"
+                android:textSize="@dimen/size_17_sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/positiveTV"
+                app:layout_constraintTop_toBottomOf="@+id/agreeCB" />
+
+        <TextView
+                android:id="@+id/positiveTV"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="18dp"
+                android:background="@drawable/positive_btn_bg"
+                android:clickable="false"
+                android:enabled="false"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size_17_sp"
+                app:layout_constraintBottom_toBottomOf="@id/negtiveTv"
+                app:layout_constraintLeft_toRightOf="@+id/negtiveTv"
+                app:layout_constraintRight_toRightOf="parent" />
+</android.support.constraint.ConstraintLayout>

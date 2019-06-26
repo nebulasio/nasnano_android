@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="io.nebulas.wallet.android.module.setting.NotificationSettingActivity">
+
+        <include
+                android:id="@+id/toolbar_layout"
+                layout="@layout/app_bar_main"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="66dp"
+                android:id="@+id/layout_transaction_notification"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar_layout">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/text_transaction_notification"
+                        android:textSize="17sp"
+                        android:textColor="@color/color_202020"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginEnd="18dp"/>
+
+                <Switch
+                        android:id="@+id/switch_transaction_notification"
+                        android:layout_width="50dp"
+                        android:layout_height="25dp"
+                        android:layout_marginEnd="18dp"
+                        android:thumb="@drawable/shape_switch_thumb"
+                        android:track="@drawable/selector_switch_track"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"/>
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/divider_line"
+                        android:layout_alignParentBottom="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="66dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_transaction_notification">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/text_information_notification"
+                        android:textSize="17sp"
+                        android:textColor="@color/color_202020"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginEnd="18dp"/>
+
+                <Switch
+                        android:id="@+id/switch_news_notification"
+                        android:layout_width="50dp"
+                        android:layout_height="25dp"
+                        android:layout_marginEnd="18dp"
+                        android:thumb="@drawable/shape_switch_thumb"
+                        android:track="@drawable/selector_switch_track"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"/>
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/divider_line"
+                        android:layout_alignParentBottom="true"/>
+        </RelativeLayout>
+        <include layout="@layout/loading_view"
+                android:id="@+id/layout_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+</android.support.constraint.ConstraintLayout>

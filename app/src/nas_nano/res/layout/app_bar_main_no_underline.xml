@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.AppBarLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:fitsSystemWindows="true"
+        app:elevation="0dp"
+        app:layout_behavior="io.nebulas.wallet.android.view.research.FixAppBarLayoutBehavior"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                android:background="@color/white"
+                app:layout_scrollFlags="scroll|enterAlways">
+
+                <android.support.v7.widget.ActionMenuView
+                        android:id="@+id/actionMenuView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="44dp"
+                        style="@style/ActionMenuBtnStyle"
+                        android:visibility="gone"/>
+
+                <TextView
+                        android:id="@+id/titleTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/toolbar_height"
+                        android:textSize="@dimen/size_21_sp"
+                        android:textColor="@color/color_202020"
+                        android:textStyle="bold"
+                        android:singleLine="true"
+                        android:ellipsize="marquee"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:scrollHorizontally="true"
+                        android:layout_gravity="center|top"
+                        android:gravity="center"/>
+
+
+        </android.support.v7.widget.Toolbar>
+
+</android.support.design.widget.AppBarLayout>
+

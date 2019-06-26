@@ -1,0 +1,120 @@
+<resources>
+
+        <!--use Base Theme to fix the "Rendering Problems The following classes could not be instantiated: - android.support.v7.widget.AppCompatTextView" problem-->
+        <style name="AppTheme" parent="Base.Theme.AppCompat.Light">
+                <item name="colorPrimary">@color/colorPrimary</item>
+                <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+                <item name="colorAccent">@color/colorAccent</item>
+
+                <item name="windowActionBar">false</item>
+                <item name="windowNoTitle">true</item>
+                <item name="android:screenOrientation">portrait</item>
+                <!--全局背景色-->
+                <item name="android:windowBackground">@color/window_background</item>
+
+                <!--适配全面屏的顶部黑边，如果有黑边，就空出来，需要build tools api28，谁有兴趣可以深入研究一下获取黑边的高度，做更完美的适配-->
+            <!--<item name="android:windowLayoutInDisplayCutoutMode">never</item>-->
+                
+                <!--toolbar style-->
+                <item name="toolbarStyle">@style/CustomToolbar</item>
+                <item name="android:actionButtonStyle">@style/ActionMenuBtnStyle</item>
+
+                <!-- AppCompatEditText选择的底线颜色 -->
+                <!--<item name="colorControlActivated">#c6174e</item>-->
+                <!--AppCompatEditText默认状态底线颜色-->
+                <item name="colorControlNormal">@color/color_585F6F</item>
+
+                <!--按钮文字不强制大写-->
+                <item name="android:textAllCaps">false</item>
+
+                <!--<item name="buttonStyle">@style/button_style</item>-->
+
+                <item name="android:textCursorDrawable">@drawable/text_cursor_drawable</item>
+
+                <!--禁用多点触控-->
+                <!--<item name="android:windowEnableSplitTouch">false</item>-->
+                <!--<item name="android:splitMotionEvents">false</item>-->
+        </style>
+
+        <style name="CustomToolbar" parent="Base.Widget.AppCompat.ActionBar">
+
+                <item name="android:textStyle">bold</item>
+                <item name="subtitleTextStyle">@style/ExpandedTitleTextAppearance</item>
+                <item name="titleTextStyle">@style/CollapsedTitleTextAppearance</item>
+
+                <item name="contentInsetStart">0dp</item><!-- 设置该属性解决空白部分-->
+                <item name="contentInsetEnd">10dp</item>
+                <item name="android:actionBarSize">@dimen/toolbar_height</item>
+                <item name="android:minHeight">@dimen/toolbar_height</item>
+
+                <item name="android:windowActionBar">false</item>
+                <item name="windowNoTitle">true</item>
+
+        </style>
+        <!--toolbar按钮样式-->
+        <style name="ActionMenuBtnStyle" parent="Widget.AppCompat.Light.ActionButton">
+                <item name="android:minWidth">56dp</item>
+                <item name="android:paddingStart">0dp</item>
+                <item name="android:textColor">@color/color_202020</item>
+                <item name="android:textSize">@dimen/size_17_sp</item>
+        </style>
+
+        <style name="ExpandedTitleTextAppearance" parent="TextAppearance.AppCompat.Title">
+                <item name="android:textSize">34sp</item>
+                <item name="android:textStyle">bold</item>
+                <item name="android:textColor">@color/color_202020</item>
+        </style>
+        <!--CollapsingToolbarLayout折叠时标题文字样式-->
+        <style name="CollapsedTitleTextAppearance" parent="TextAppearance.AppCompat.Title">
+                <item name="android:textSize">21sp</item>
+                <item name="android:textStyle">bold</item>
+                <item name="android:textColor">@color/color_202020</item>
+        </style>
+
+
+        <style name="button_style" parent="Base.Widget.AppCompat.Button">
+                <item name="android:padding">0dp</item>
+                <item name="android:minWidth">10dp</item>
+                <item name="android:minHeight">30dp</item>
+                <item name="android:colorActivatedHighlight">@color/color_2691B2</item>
+        </style>
+
+        <style name="switch_style" parent="Theme.AppCompat.Light">
+                <!-- Active thumb color & Active track color(30% transparency)
+                    switch 打开时的拇指按钮的颜色 轨迹颜色默认为30%这个颜色 -->
+                <item name="colorControlActivated">@color/white</item>
+                <!-- Inactive thumb color switch关闭时的拇指按钮的颜色 -->
+                <item name="colorSwitchThumbNormal">@color/white</item>
+                <!-- Inactive track color(30% transparency) switch关闭时的轨迹的颜色  30%这个颜色 -->
+                <item name="android:colorForeground">@color/color_038AFB</item>
+                <!--使用方法：
+                在布局文件中给需要自定义控件中增加app:theme="@style/switch_style"-->
+        </style>
+
+        <style name="checkBoxStyleOne" parent="Widget.AppCompat.CompoundButton.CheckBox"></style>
+
+
+        <style name="DialogStyle" parent="Base.Theme.AppCompat.Light.Dialog">
+                <item name="colorPrimary">@color/colorPrimary</item>
+                <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+                <item name="colorAccent">@color/colorAccent</item>
+
+
+                <item name="android:windowBackground">@android:color/transparent</item>
+                <item name="android:windowFrame">@null</item>
+                <item name="android:windowNoTitle">true</item>
+                <item name="android:windowIsFloating">true</item>
+                <item name="android:windowIsTranslucent">true</item>
+                <item name="android:windowContentOverlay">@null</item>
+                <!-- 对话框是否有遮盖 -->
+                <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+                <item name="android:backgroundDimEnabled">true</item>
+        </style>
+
+        <style name="AutoCompleteStyle" parent="@android:style/Widget.AutoCompleteTextView">
+                <item name="android:popupBackground">@drawable/mnemonic_text_bg</item>
+                <item name="android:dropDownVerticalOffset">6dp</item>
+        </style>
+
+
+</resources>

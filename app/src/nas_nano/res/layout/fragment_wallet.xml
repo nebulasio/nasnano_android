@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/walletRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="18dp"
+                app:fastScrollEnabled="false"
+                android:clipToPadding="false"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:paddingTop="45dp"
+                android:paddingBottom="24dp"
+                android:id="@+id/layoutEmpty"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/empty_wallet"/>
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/create_wallet_des_tv"
+                        android:textSize="15sp"
+                        android:textColor="@color/color_4A4A4A"
+                        android:gravity="center"
+                        android:layout_marginTop="18dp"/>
+
+                <!--添加钱包-->
+                <TextView
+                        android:id="@+id/emptyAddWalletBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:text="@string/add_wallet_btn"
+                        android:textSize="17sp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:background="@drawable/custom_corner_button_bg"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginEnd="18dp"/>
+
+        </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <data>
+
+                <import type="android.view.View"/>
+
+                <variable
+                        name="item"
+                        type="io.nebulas.wallet.android.module.me.model.MeTokenListModel"/>
+        </data>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:paddingBottom="18dp"
+                android:clipToPadding="false"
+                android:orientation="vertical">
+
+                <!--token-->
+                <android.support.constraint.ConstraintLayout
+                        android:id="@+id/tokenLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="84dp"
+                        android:clipChildren="false"
+                        android:elevation="7dp"
+                        android:background="@drawable/white_rect_corner"
+                        android:visibility='@{null != item.coin ? View.VISIBLE : View.GONE}'>
+
+                        <ImageView
+                                android:id="@+id/walletIconTV"
+                                android:layout_width="52dp"
+                                android:layout_height="52dp"
+                                app:imageUrl='@{null != item.coin.logo? item.coin.logo : ""}'
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                android:layout_marginStart="12dp"/>
+
+
+                        <TextView
+                                android:id="@+id/coinNameTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text='@{item.coin.symbol}'
+                                android:textSize="17sp"
+                                android:textColor="@color/color_202020"
+                                app:layout_constraintTop_toTopOf="@+id/walletIconTV"
+                                app:layout_constraintBottom_toBottomOf="@+id/walletIconTV"
+                                app:layout_constraintLeft_toRightOf="@+id/walletIconTV"
+                                android:layout_marginStart="12dp"/>
+
+                        <TextView
+                                android:id="@+id/balanceTV"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text='@{item.showBalanceDetail?item.coin.balanceString:"****"}'
+                                android:textSize="20sp"
+                                android:textColor="@color/color_202020"
+                                android:gravity="end"
+                                android:ellipsize="end"
+                                android:lines="1"
+                                android:textStyle="bold"
+                                app:layout_constraintLeft_toRightOf="@+id/coinNameTV"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/walletIconTV"
+                                app:layout_constraintBottom_toTopOf="@+id/balanceValueTV"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="12dp"/>
+
+                        <TextView
+                                android:id="@+id/balanceValueTV"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text='@{item.showBalanceDetail ? (item.coin.noCurrencyPrice ? "-" : item.getBalanceValueString()) : "****"}'
+                                android:textSize="15sp"
+                                android:ellipsize="end"
+                                android:textColor="@color/color_8F8F8F"
+                                android:gravity="end"
+                                app:layout_constraintLeft_toRightOf="@+id/coinNameTV"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/balanceTV"
+                                app:layout_constraintBottom_toBottomOf="@+id/walletIconTV"
+                                android:layout_marginEnd="12dp"/>
+
+                </android.support.constraint.ConstraintLayout>
+
+                <!--被隐藏的资产-->
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+                        <!--android:visibility='@{item.hasHideAssets ? View.VISIBLE : View.GONE}'>-->
+
+                        <android.support.constraint.ConstraintLayout
+                                android:id="@+id/walletLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/white_rect_corner"
+                                android:paddingBottom="18dp">
+
+                                <TextView
+                                        android:id="@+id/hideAssetsTitleTV"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/hide_assets_title"
+                                        android:textSize="17sp"
+                                        android:textColor="@color/color_202020"
+                                        android:layout_marginStart="84dp"
+                                        android:layout_marginTop="10dp"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:layout_constraintLeft_toLeftOf="parent"/>
+
+                                <View
+                                        android:id="@+id/divider1_view"
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:background="@color/divider_line"
+                                        android:layout_marginTop="10dp"
+                                        app:layout_constraintTop_toBottomOf="@+id/hideAssetsTitleTV"
+                                        app:layout_constraintLeft_toLeftOf="@+id/hideAssetsTitleTV"
+                                        app:layout_constraintRight_toRightOf="parent"/>
+
+                                <TextView
+                                        android:id="@+id/hide_value_title_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/me_value"
+                                        android:textSize="15sp"
+                                        android:textColor="@color/color_8F8F8F"
+                                        android:layout_marginTop="15dp"
+                                        app:layout_constraintTop_toBottomOf="@+id/divider1_view"
+                                        app:layout_constraintLeft_toLeftOf="@+id/hideAssetsTitleTV"/>
+
+                                <io.nebulas.wallet.android.view.AutoFitTextView
+                                        android:id="@+id/wallet_total_value_tv"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:text='@{item.currencySymbol + item.getHideAssetsValue()}'
+                                        android:textSize="15sp"
+                                        android:textColor="@color/color_202020"
+                                        android:gravity="end"
+                                        android:layout_marginStart="10dp"
+                                        android:layout_marginEnd="10dp"
+                                        app:layout_constraintTop_toTopOf="@+id/hide_value_title_tv"
+                                        app:layout_constraintBottom_toBottomOf="@+id/hide_value_title_tv"
+                                        app:layout_constraintLeft_toRightOf="@+id/hide_value_title_tv"
+                                        app:layout_constraintRight_toRightOf="parent"/>
+
+                                <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="30dp"
+                                        android:orientation="horizontal"
+                                        android:layout_marginTop="15dp"
+                                        android:layout_marginBottom="18dp"
+                                        app:loadTokenIcons='@{item.getTokenIcons()}'
+                                        app:layout_constraintRight_toRightOf="@+id/wallet_total_value_tv"
+                                        app:layout_constraintTop_toBottomOf="@+id/wallet_total_value_tv"/>
+
+
+                        </android.support.constraint.ConstraintLayout>
+
+                        <ImageView
+                                android:layout_width="90dp"
+                                android:layout_height="90dp"
+                                android:src="@drawable/me_icon_token_hideassets"
+                                android:layout_marginTop="-10dp"
+                                android:layout_marginStart="-15dp"/>
+
+                </RelativeLayout>
+
+
+                <!--管理资产-->
+                <TextView
+                        android:id="@+id/manageAssetsBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:text="@string/manage_assets_btn"
+                        android:textSize="17sp"
+                        android:textColor="@color/color_666666"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:background="@drawable/stroke_038afb_rect_corner"
+                        android:visibility="gone"/>
+                <!--android:visibility='@{item.hasManageAssetsBtn ? View.VISIBLE : View.GONE}'/>-->
+
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="45dp"
+                        android:paddingBottom="24dp"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        android:visibility='@{item.emptyView ? View.VISIBLE : View.GONE}'>
+
+                        <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/empty_wallet"/>
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/create_wallet_des_tv"
+                                android:textSize="15sp"
+                                android:textColor="@color/color_4A4A4A"
+                                android:gravity="center"
+                                android:layout_marginTop="18dp"/>
+
+                        <!--添加钱包-->
+                        <TextView
+                                android:id="@+id/emptyAddWalletBtn"
+                                android:layout_width="match_parent"
+                                android:layout_height="54dp"
+                                android:text="@string/add_wallet_btn"
+                                android:textSize="17sp"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:gravity="center"
+                                android:background="@drawable/custom_corner_button_bg"
+                                android:layout_marginTop="24dp"/>
+
+                </LinearLayout>
+
+
+        </LinearLayout>
+
+
+</layout>

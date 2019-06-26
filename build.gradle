@@ -1,0 +1,51 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+
+buildscript {
+    apply from: "config.gradle"
+
+    repositories {
+
+        mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        jcenter()
+        maven {
+            url 'https://maven.fabric.io/public'
+        }
+//        google()
+    }
+
+    dependencies {
+//        classpath 'com.android.tools.build:gradle:3.1.0'
+        classpath deps.gradle_dependency
+        classpath deps.kotlin_plugin
+
+        classpath deps.kotlin_extensions
+
+        classpath deps.google_service
+        classpath deps.fabric_tools
+
+        classpath deps.vas_dolly_plugin
+//        classpath deps.share_sdk
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+
+        mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://jitpack.io' }
+        jcenter()
+//        google()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

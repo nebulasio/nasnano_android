@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusableInTouchMode="true"
+                tools:context=".module.transaction.transfer.TransferActivity">
+
+        <include
+                android:id="@+id/toolbar_layout"
+                layout="@layout/app_bar_main_no_underline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/toolbar_layout"
+                android:scrollbars="vertical">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="18dp">
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="56dp"
+                                android:gravity="center_vertical">
+                                <io.nebulas.wallet.android.view.AutoFitTextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="2"
+                                        android:gravity="center_vertical"
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="17sp"
+                                        android:text="@string/text_address"/>
+                                <EditText
+                                        android:id="@+id/toAddressET"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:background="@null"
+                                        android:layout_marginStart="10dp"
+                                        android:hint="@string/hint_transfer_to"
+                                        android:imeOptions="actionNext"
+                                        android:inputType="textMultiLine"
+                                        android:paddingLeft="1dp"
+                                        android:paddingRight="1dp"
+                                        android:layout_weight="8"
+                                        android:textColor="@color/color_202020"
+                                        android:textColorHint="@color/color_40P_202020"
+                                        android:textSize="15sp" />
+                        </LinearLayout>
+
+                        <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/divider_line"/>
+
+                        <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="56dp"
+                                android:id="@+id/layout_coin_info">
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/amountType"
+                                        android:layout_centerVertical="true"
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="17sp"
+                                        tools:text="NAS"/>
+
+                                <ImageView
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:id="@+id/ivTokenIcon"
+                                        android:layout_centerVertical="true"
+                                        tools:src="@drawable/about_nasnano_logo"
+                                        android:layout_marginEnd="10dp"
+                                        android:layout_toStartOf="@+id/iv_arrow"/>
+
+                                <ImageView
+                                        android:layout_width="8dp"
+                                        android:layout_height="13dp"
+                                        android:id="@+id/iv_arrow"
+                                        android:src="@drawable/arrow"
+                                        android:layout_marginEnd="5dp"
+                                        android:layout_centerVertical="true"
+                                        android:layout_alignParentEnd="true"/>
+
+                        </RelativeLayout>
+
+                        <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/divider_line"/>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="56dp"
+                                android:gravity="center_vertical">
+                                <io.nebulas.wallet.android.view.AutoFitTextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="2"
+                                        android:gravity="center_vertical"
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="17sp"
+                                        android:text="@string/transfer_amount_title"/>
+
+                                <EditText
+                                        android:id="@+id/amountET"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="10dp"
+                                        android:layout_weight="8"
+                                        android:background="@null"
+                                        android:hint="@string/transfer_input_amount"
+                                        android:imeOptions="actionDone"
+                                        android:inputType="numberDecimal"
+                                        android:textColor="@color/color_FF8F00"
+                                        android:textColorHint="@color/color_40P_202020"
+                                        android:textSize="15sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="18dp">
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/color_999999"
+                                        android:text="@string/text_max_amount"/>
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/tvMaxBalance"
+                                        android:textColor="@color/color_999999"
+                                        tools:text="66666.998778"/>
+
+                        </LinearLayout>
+
+                        <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/divider_line"/>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="56dp"
+                                android:gravity="center_vertical">
+                                <io.nebulas.wallet.android.view.AutoFitTextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="2"
+                                        android:gravity="center_vertical"
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="17sp"
+                                        android:text="@string/remarks_title"/>
+                                <EditText
+                                        android:id="@+id/remarksET"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="10dp"
+                                        android:layout_weight="8"
+                                        android:background="@null"
+                                        android:hint="@string/remarks"
+                                        android:inputType="text"
+                                        android:lines="1"
+                                        android:maxLength="20"
+                                        android:textColor="@color/color_202020"
+                                        android:textColorHint="@color/color_40P_202020"
+                                        android:textSize="15sp" />
+                        </LinearLayout>
+
+                        <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/divider_line"/>
+
+                        <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="56dp">
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="17sp"
+                                        android:text="@string/gas"/>
+
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:id="@+id/adjustGasTV"
+                                        android:gravity="center_vertical"
+                                        android:textSize="15sp"
+                                        android:textColor="@color/color_038AFB"
+                                        android:text="@string/transfer_adjust_gas"
+                                        android:layout_centerVertical="true"
+                                        android:layout_alignParentEnd="true"/>
+
+                        </RelativeLayout>
+
+                        <io.nebulas.wallet.android.view.AutoFitTextView
+                                android:id="@+id/gasFeeET"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                tools:text="0.0000132(≈$0.0000009)"
+                                android:textColor="@color/color_202020"
+                                android:textSize="15sp" />
+
+                        <TextView
+                                android:id="@+id/gas_note_tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="@string/transfer_gas_note"
+                                android:textColor="@color/color_8F8F8F"
+                                android:textSize="13sp" />
+
+                        <TextView
+                                android:id="@+id/nextStepBtn"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:gravity="center"
+                                android:layout_marginTop="36dp"
+                                android:background="@drawable/btn_import_disable_bg"
+                                android:clickable="false"
+                                android:text="@string/confirm_transfer"
+                                android:textColor="@color/white"
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
+
+
+                </LinearLayout>
+        </ScrollView>
+
+
+        <include
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                layout="@layout/loading_view"
+                android:visibility="gone"
+                android:layout_centerInParent="true" />
+
+</RelativeLayout>

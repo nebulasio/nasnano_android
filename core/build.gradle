@@ -1,0 +1,66 @@
+apply plugin: 'com.android.library'
+
+apply from: "config.gradle"
+
+android {
+    compileSdkVersion versions.compileSdkVersion
+    buildToolsVersion versions.buildToolsVersion
+
+    defaultConfig {
+
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.targetSdkVersion
+        versionCode versions.versionCode
+        versionName versions.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+
+    mavenCentral()
+
+    maven { url 'https://maven.google.com' }
+
+    flatDir {
+        dir 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    implementation deps.supportAppcompat
+    testImplementation 'junit:junit:4.12'
+
+
+    implementation deps.kotlin_stdlib
+//    compile deps.retrofit
+//    compile deps.retrofit_gson
+//    compile deps.retrofit_rxjava
+//    compile deps.rxjava_rxandroid
+//    compile deps.rxjava
+//    compile deps.rxjava_kotlin
+
+
+//    compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+//    compile 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+
+    //room
+//    compile deps.room_runtime
+//    annotationProcessor deps.room_compiler
+
+//    compile deps.glide
+//    annotationProcessor deps.glide_compiler
+}

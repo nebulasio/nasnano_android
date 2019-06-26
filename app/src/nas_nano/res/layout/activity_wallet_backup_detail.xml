@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="io.nebulas.wallet.android.module.wallet.manage.WalletBackupDetailActivity">
+
+        <include
+                android:id="@+id/toolbar_layout"
+                layout="@layout/app_bar_main"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <ScrollView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar_layout"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <TextView
+                                android:id="@+id/desTV"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="18dp"
+                                android:layout_marginStart="18dp"
+                                android:layout_marginTop="24dp"
+                                android:gravity="center_horizontal"
+                                android:textColor="@color/color_202020"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"/>
+
+                        <TextView
+                                android:id="@+id/subDesTV"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="18dp"
+                                android:layout_marginStart="18dp"
+                                android:layout_marginTop="6dp"
+                                android:gravity="start"
+                                android:textColor="@color/color_8F8F8F"
+                                android:textSize="15sp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/desTV"/>
+
+                        <TextView
+                                android:id="@+id/contentET"
+                                android:layout_width="0dp"
+                                android:layout_height="200dp"
+                                android:layout_marginEnd="18dp"
+                                android:layout_marginStart="18dp"
+                                android:layout_marginTop="24dp"
+                                android:background="@drawable/shape_round_corner_8dp_eef1f4"
+                                android:gravity="start|top"
+                                android:padding="18dp"
+                                android:textColor="@color/color_323232"
+                                android:textSize="14sp"
+                                android:scrollbars="vertical"
+                                android:scrollbarStyle="outsideOverlay"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/subDesTV"/>
+
+                        <LinearLayout
+                                android:id="@+id/mnemonicWordsContainer"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:background="@drawable/shape_round_corner_8dp_eef1f4"
+                                android:divider="@drawable/divider_9dp_for_linear_layout"
+                                android:orientation="vertical"
+                                android:showDividers="middle|end|beginning"
+                                android:visibility="gone"
+                                app:layout_constraintBottom_toBottomOf="@+id/contentET"
+                                app:layout_constraintLeft_toLeftOf="@+id/contentET"
+                                app:layout_constraintRight_toRightOf="@+id/contentET"
+                                app:layout_constraintTop_toTopOf="@+id/contentET">
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:id="@+id/safeTipsLayout"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:background="@drawable/shape_round_corner_8dp_eef1f4"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                app:layout_constraintBottom_toBottomOf="@+id/contentET"
+                                app:layout_constraintLeft_toLeftOf="@+id/contentET"
+                                app:layout_constraintRight_toRightOf="@+id/contentET"
+                                app:layout_constraintTop_toTopOf="@+id/contentET">
+
+                                <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/img_be_care_of_peeper"/>
+
+                        </LinearLayout>
+
+                        <include
+                                android:id="@+id/mnemonicLayout"
+                                layout="@layout/backup_mnemonic_words"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/contentET"/>
+
+                        <include
+                                android:id="@+id/keystoreLayout"
+                                layout="@layout/backup_keystore"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/contentET"/>
+
+                        <include
+                                android:id="@+id/privateKeyLayout"
+                                layout="@layout/backup_private_key"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/contentET"/>
+
+                </android.support.constraint.ConstraintLayout>
+
+        </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

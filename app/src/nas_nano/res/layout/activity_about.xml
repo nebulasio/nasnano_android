@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="io.nebulas.wallet.android.module.me.AboutActivity">
+
+
+        <include
+                android:id="@+id/toolbar_layout"
+                layout="@layout/app_bar_about"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+                android:id="@+id/title_iv"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_marginTop="111dp"
+                android:src="@mipmap/about_title_img"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+                android:id="@+id/logo_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:src="@mipmap/nasno_log"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title_iv" />
+
+        <TextView
+                android:id="@+id/about_des"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:paddingLeft="18dp"
+                android:paddingRight="18dp"
+                android:gravity="center"
+                android:text="@string/about_describe"
+                android:textColor="@color/color_8F8F8F"
+                android:textSize="15sp"
+                android:lineSpacingExtra="5dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/logo_iv" />
+
+        <View
+                android:id="@+id/view"
+                android:layout_width="0dp"
+                android:layout_height="9dp"
+                android:layout_marginTop="24dp"
+                android:background="@color/color_EEF1F4"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/about_des" />
+
+        <ScrollView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scrollbars="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view">
+
+                <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                                android:id="@+id/customer_service"
+                                android:layout_width="wrap_content"
+                                android:layout_height="66dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="18dp"
+                                android:text="@string/about_contact_us"
+                                android:textColor="@color/color_202020"
+                                android:textSize="17sp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                                android:id="@+id/email"
+                                android:layout_width="wrap_content"
+                                android:layout_height="66dp"
+                                android:gravity="center_vertical"
+                                android:paddingRight="18dp"
+                                android:text="@string/email_content"
+                                android:textColor="@color/color_038AFB"
+                                android:textSize="17sp"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_marginLeft="18dp"
+                                android:layout_marginRight="18dp"
+                                android:background="@color/color_DFE2E5"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/customer_service" />
+
+                        <TextView
+                                android:id="@+id/version_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="66dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="18dp"
+                                android:text="@string/version_name"
+                                android:textColor="@color/color_202020"
+                                android:textSize="17sp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/customer_service" />
+
+                        <TextView
+                                android:id="@+id/versionTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="66dp"
+                                android:gravity="center_vertical"
+                                android:paddingRight="18dp"
+                                android:textColor="@color/color_8F8F8F"
+                                android:textSize="17sp"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/version_title" />
+
+                        <View
+                                android:id="@+id/view_version"
+                                android:layout_width="0dp"
+                                android:layout_height="9dp"
+                                android:background="@color/color_EEF1F4"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/version_title" />
+
+                        <TextView
+                                android:id="@+id/userProtocol"
+                                android:layout_width="0dp"
+                                android:layout_height="66dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="18dp"
+                                android:text="@string/user_protocol"
+                                android:textColor="@color/color_202020"
+                                android:textSize="17sp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/view_version" />
+
+                        <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp"
+                                android:paddingRight="18dp"
+                                android:src="@mipmap/arrow_common"
+                                app:layout_constraintBottom_toBottomOf="@+id/userProtocol"
+                                app:layout_constraintRight_toRightOf="@+id/userProtocol"
+                                app:layout_constraintTop_toTopOf="@+id/userProtocol" />
+
+                        <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_marginLeft="18dp"
+                                android:layout_marginRight="18dp"
+                                android:background="@color/color_DFE2E5"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/userProtocol" />
+                        <TextView
+                                android:id="@+id/terms"
+                                android:layout_width="0dp"
+                                android:layout_height="66dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="18dp"
+                                android:text="@string/terms"
+                                android:textColor="@color/color_202020"
+                                android:textSize="17sp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/userProtocol" />
+
+                        <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp"
+                                android:paddingRight="18dp"
+                                android:src="@mipmap/arrow_common"
+                                app:layout_constraintBottom_toBottomOf="@+id/terms"
+                                app:layout_constraintRight_toRightOf="@+id/terms"
+                                app:layout_constraintTop_toTopOf="@+id/terms" />
+
+                        <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_marginLeft="18dp"
+                                android:layout_marginRight="18dp"
+                                android:background="@color/color_DFE2E5"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/terms" />
+
+                </android.support.constraint.ConstraintLayout>
+        </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        package="io.nebulas.wallet.android">
+
+        <uses-permission android:name="android.permission.INTERNET" />
+        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        <uses-permission android:name="android.permission.CAMERA" />
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+        <uses-permission android:name="android.permission.VIBRATE" />
+
+        <!-- Get permission for reliable local dispatching on non-Google Play devices. -->
+        <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+        <uses-feature android:name="android.hardware.camera" />
+        <uses-feature android:name="android.hardware.camera.autofocus" />
+
+        <!-- 针对8.0，处理未知应用来源的权限 -->
+        <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+        <!-- MI-PUSH Start -->
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+        <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+        <uses-permission android:name="android.permission.GET_TASKS" />
+        <uses-permission android:name="android.permission.VIBRATE" />
+        <uses-permission android:name="${package}.permission.MIPUSH_RECEIVE" /> <!-- 这里com.xiaomi.mipushdemo改成app的包名 -->
+        <permission
+                android:name="${package}.permission.MIPUSH_RECEIVE"
+                android:protectionLevel="signature" />
+
+        <!-- 这里com.xiaomi.mipushdemo改成app的包名 -->
+        <!-- MI-PUSH End -->
+        <application
+                android:name=".app.WalletApplication"
+                android:allowBackup="false"
+                android:icon="${app_icon}"
+                android:label="@string/app_name"
+                android:roundIcon="${app_icon_round}"
+                android:supportsRtl="true"
+                android:theme="@style/AppTheme"
+                tools:ignore="GoogleAppIndexingWarning"
+                tools:replace="android:name,android:allowBackup">
+                <meta-data
+                        android:name="com.young.adaptive.designWidth"
+                        android:value="720" />
+                <meta-data
+                        android:name="com.young.adaptive.designHeight"
+                        android:value="1280" />
+
+                <!-- <meta-data android:name="firebase_messaging_auto_init_enabled" -->
+                <!-- android:value="false" /> -->
+
+                <activity
+                        android:name=".module.launch.LaunchActivity"
+                        android:screenOrientation="portrait">
+                        <intent-filter>
+                                <action android:name="android.intent.action.MAIN" />
+
+                                <category android:name="android.intent.category.LAUNCHER" />
+                        </intent-filter>
+                </activity>
+                <activity
+                        android:name=".module.main.MainActivity"
+                        android:configChanges="locale|layoutDirection"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.balance.AddNewCoinActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.qrscan.QRScanActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.detail.BalanceDetailActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.wallet.create.ImportWalletActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.transaction.transfer.TransferActivity"
+                        android:screenOrientation="portrait"
+                        android:windowSoftInputMode="adjustPan" />
+                <activity
+                        android:name=".module.transaction.ReceivablesActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.wallet.create.CreateWalletActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.wallet.create.CoinListActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.wallet.create.SetPassPhraseActivity"
+                        android:screenOrientation="portrait"
+                        android:windowSoftInputMode="stateAlwaysVisible" />
+                <activity
+                        android:name=".module.wallet.create.ImportFromKeyStoreActivity"
+                        android:screenOrientation="portrait"
+                        android:windowSoftInputMode="adjustPan" />
+                <activity
+                        android:name=".module.wallet.create.KeyStoreCoinListActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.wallet.create.ImportFromMnemonicActivity"
+                        android:screenOrientation="portrait"
+                        android:windowSoftInputMode="adjustPan" />
+                <activity
+                        android:name=".module.wallet.create.ImportFromPlainPrivActivity"
+                        android:screenOrientation="portrait"
+                        android:windowSoftInputMode="adjustPan" />
+                <activity
+                        android:name=".module.wallet.manage.ManageWalletHomeActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.wallet.manage.WalletSettingActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.wallet.manage.WalletBackupActivity"
+                        android:screenOrientation="portrait"
+                        android:windowSoftInputMode="adjustPan" />
+                <activity
+                        android:name=".module.me.SingleInputActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.me.AboutActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.transaction.TxDetailActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.wallet.manage.ChangePwdTypeActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.wallet.manage.ResetPwdActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.wallet.manage.WalletBackupDetailActivity"
+                        android:screenOrientation="portrait"
+                        android:windowSoftInputMode="adjustPan" />
+                <activity
+                        android:name=".module.wallet.manage.MnemonicBackupCheckActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.html.HtmlActivity"
+                        android:screenOrientation="portrait"
+                        android:windowSoftInputMode="adjustPan" />
+                <activity
+                        android:name=".module.me.ListSelectActivity"
+                        android:configChanges="locale|layoutDirection"
+                        android:screenOrientation="portrait" />
+                <activity android:name=".module.token.ManageTokenActivity" />
+                <activity android:name=".module.wallet.create.BlockChainTypeActivity" />
+                <activity
+                        android:name=".module.setting.SettingActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.setting.DefaultWalletActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.wallet.create.ReImportWalletActivity"
+                        android:screenOrientation="portrait" />
+                <activity android:name=".module.detail.HideAssetsActivity" />
+                <activity
+                        android:name=".module.detail.WalletDetailActivity"
+                        android:screenOrientation="portrait" />
+
+                <provider
+                        android:name="android.support.v4.content.FileProvider"
+                        android:authorities="${applicationId}.update.FileProvider"
+                        android:exported="false"
+                        android:grantUriPermissions="true">
+
+                        <!-- android:authorities="${applicationId}.update.FileProvider" 防止不同的buildType provider冲突 -->
+                        <!-- 元数据 -->
+                        <meta-data
+                                android:name="android.support.FILE_PROVIDER_PATHS"
+                                android:resource="@xml/file_path" />
+                </provider>
+
+                <activity
+                        android:name=".module.auth.AuthActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.wallet.create.CreateSuccessActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.swap.detail.ExchangeRecordsActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.swap.detail.ExchangeDetailActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.swap.introduction.SwapIntroductionActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.swap.step.SwapStepActivity"
+                        android:screenOrientation="portrait"
+                        android:windowSoftInputMode="adjustPan" />
+                <activity
+                        android:name=".module.swap.step.step1.SwapAddressGuideActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.swap.step.step1.SwapAddressCreateActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.swap.step.step1.SwapWalletCreateSuccessActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.swap.step.step1.BackupAgainActivity"
+                        android:screenOrientation="portrait" />
+
+                <service
+                        android:name=".module.swap.SwapHashUploadIntentService"
+                        android:exported="false" />
+
+                <activity
+                        android:name=".module.feedback.FeedBackActivity"
+                        android:screenOrientation="portrait"
+                        android:windowSoftInputMode="adjustPan" />
+                <activity
+                        android:name=".module.verification.WalletPasswordVerificationActivity"
+                        android:screenOrientation="portrait"
+                        android:windowSoftInputMode="adjustPan" />
+                <activity
+                        android:name=".module.verification.LaunchWalletPasswordVerifyActivity"
+                        android:screenOrientation="portrait" />
+
+                <!-- MI-PUSH Start -->
+                <activity
+                        android:name=".push.message.channel.mi.PermissionActivity"
+                        android:screenOrientation="portrait" />
+
+                <service
+                        android:name="com.xiaomi.push.service.XMPushService"
+                        android:enabled="true"
+                        android:process=":pushservice_1" />
+                <service
+                        android:name="com.xiaomi.push.service.XMJobService"
+                        android:enabled="true"
+                        android:exported="false"
+                        android:permission="android.permission.BIND_JOB_SERVICE"
+                        android:process=":pushservice_1" /> <!-- 注：此service必须在3.0.1版本以后（包括3.0.1版本）加入 -->
+
+                <service
+                        android:name="com.xiaomi.mipush.sdk.PushMessageHandler"
+                        android:enabled="true"
+                        android:exported="true" />
+                <service
+                        android:name="com.xiaomi.mipush.sdk.MessageHandleService"
+                        android:enabled="true" /> <!-- 注：此service必须在2.2.5版本以后（包括2.2.5版本）加入 -->
+                <receiver
+                        android:name="com.xiaomi.push.service.receivers.NetworkStatusReceiver"
+                        android:exported="true">
+                        <intent-filter>
+                                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+
+                                <category android:name="android.intent.category.DEFAULT" />
+                        </intent-filter>
+                </receiver>
+                <receiver
+                        android:name="com.xiaomi.push.service.receivers.PingReceiver"
+                        android:exported="false"
+                        android:process=":pushservice_1">
+                        <intent-filter>
+                                <action android:name="com.xiaomi.push.PING_TIMER" />
+                        </intent-filter>
+                </receiver>
+                <receiver
+                        android:name=".push.message.channel.mi.MiPushReceiver"
+                        android:exported="true">
+
+                        <!-- 这里com.xiaomi.mipushdemo.DemoMessageRreceiver改成app中定义的完整类名 -->
+                        <intent-filter>
+                                <action android:name="com.xiaomi.mipush.RECEIVE_MESSAGE" />
+                        </intent-filter>
+                        <intent-filter>
+                                <action android:name="com.xiaomi.mipush.MESSAGE_ARRIVED" />
+                        </intent-filter>
+                        <intent-filter>
+                                <action android:name="com.xiaomi.mipush.ERROR" />
+                        </intent-filter>
+                </receiver>
+                <!-- MI-PUSH End -->
+                <service
+                        android:name=".service.IntentServiceUpdateDeviceInfo"
+                        android:exported="false" />
+
+                <activity android:name=".module.setting.NotificationSettingActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.vote.VoteActivity"
+                        android:screenOrientation="portrait"
+                        android:windowSoftInputMode="adjustPan" />
+                <activity
+                        android:name=".module.qrscan.ScannerActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.qrscan.NormalScannerResultActivity"
+                        android:screenOrientation="portrait" />
+        </application>
+
+</manifest>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="340dp"
+        android:layout_height="480dp"
+        android:padding="20dp"
+        android:background="@drawable/white_rect_corner"
+        android:elevation="3dp">
+
+        <ImageView
+                android:id="@+id/walletIconTV"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <TextView
+                android:id="@+id/coinNameTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/color_333333"
+                app:layout_constraintTop_toTopOf="@+id/walletIconTV"
+                app:layout_constraintBottom_toBottomOf="@+id/walletIconTV"
+                app:layout_constraintLeft_toRightOf="@+id/walletIconTV"
+                android:layout_marginLeft="@dimen/common_small_margin"
+                android:layout_marginStart="@dimen/common_small_margin"/>
+
+        <ImageView
+                android:id="@+id/shareIV"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/share_btn"
+                app:layout_constraintTop_toTopOf="@+id/walletIconTV"
+                app:layout_constraintBottom_toBottomOf="@+id/walletIconTV"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+        <TextView
+                android:id="@+id/walletNameTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="@color/color_333333"
+                app:layout_constraintTop_toBottomOf="@+id/walletIconTV"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="@dimen/common_big_margin"/>
+
+        <ImageView
+                android:id="@+id/qrCodeIV"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toBottomOf="@+id/walletNameTV"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="20dp"/>
+
+        <TextView
+                android:id="@+id/addressTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="@color/color_999999"
+                app:layout_constraintTop_toBottomOf="@+id/qrCodeIV"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="20dp"/>
+
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
+
+                <Button
+                        android:id="@+id/copyBtn"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:text="@string/copy_address_btn"
+                        android:textSize="15sp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/custom_corner_rect_button_bg"
+                        android:layout_weight="1"/>
+
+                <Button
+                        android:id="@+id/savePicBtn"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:text="@string/save_pic_btn"
+                        android:textSize="15sp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/custom_corner_rect_button_bg"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="@dimen/common_big_margin"
+                        android:layout_marginStart="@dimen/common_big_margin"/>
+        </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

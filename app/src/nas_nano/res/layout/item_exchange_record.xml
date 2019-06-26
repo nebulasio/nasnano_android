@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <data>
+
+                <import type="android.view.View" />
+                <variable
+                        name="item"
+                        type="io.nebulas.wallet.android.module.swap.model.ExchangeRecordModel" />
+        </data>
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="10dp"
+                android:orientation="vertical">
+
+                <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:background="@drawable/white_rect_corner"
+                        android:paddingLeft="12dp"
+                        android:visibility='@{item.emptyView?View.GONE:View.VISIBLE}'
+                        android:paddingRight="12dp"
+                        android:paddingTop="18dp"
+                        android:paddingBottom="18dp">
+
+                        <io.nebulas.wallet.android.view.AutoFitTextView
+                                android:id="@+id/timeTV"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/color_202020"
+                                android:textSize="@dimen/size_17_sp"
+                                android:text='@{item.time}'
+                                android:textStyle="bold"
+                                app:layout_constraintBaseline_toBaselineOf="@+id/tv_record_status"
+                                android:layout_marginEnd="12dp"
+                                app:layout_constraintEnd_toStartOf="@+id/tv_record_status"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text='@{item.getStatusDes}'
+                                android:textColor='@{item.exchangeStateColor}'
+                                android:textSize="@dimen/size_17_sp"
+                                android:id="@+id/tv_record_status"
+                                android:textStyle="bold"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/timeTV" />
+
+                        <android.support.constraint.ConstraintLayout
+                                android:id="@+id/amountLayout"
+                                android:layout_width="0dp"
+                                android:layout_height="90dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/grey_rect_corner"
+                                android:paddingLeft="12dp"
+                                android:paddingRight="12dp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/timeTV">
+
+                                <View
+                                        android:id="@+id/view"
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:background="@color/color_DFE2E5"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/swap_amount"
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="15sp"
+                                        android:id="@+id/tv_swap_amount_desc"
+                                        app:layout_constraintBottom_toBottomOf="@+id/view"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                <io.nebulas.wallet.android.view.AutoFitTextView
+                                        android:id="@+id/swapAmount"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="end"
+                                        android:layout_marginStart="12dp"
+                                        android:text='@{item.amount}'
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="15sp"
+                                        app:layout_constraintStart_toEndOf="@+id/tv_swap_amount_desc"
+                                        app:layout_constraintBottom_toBottomOf="@+id/view"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/swap_gas"
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="15sp"
+                                        android:id="@+id/tv_gas_fee_desc"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+                                <io.nebulas.wallet.android.view.AutoFitTextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="end"
+                                        android:text='@{item.gasFee+"ETH"}'
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="15sp"
+                                        android:layout_marginStart="12dp"
+                                        app:layout_constraintStart_toEndOf="@+id/tv_gas_fee_desc"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+                        </android.support.constraint.ConstraintLayout>
+
+                        <TextView
+                                android:id="@+id/swapAddessDes"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="13dp"
+                                android:text="@string/swap_addess_des"
+                                android:textStyle="bold"
+                                android:textColor="@color/color_202020"
+                                android:textSize="15sp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/amountLayout" />
+
+                        <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:text='@{item.address}'
+                                android:textColor="@color/color_8F8F8F"
+                                android:textSize="13sp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/swapAddessDes" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility='@{item.emptyView?View.VISIBLE:View.GONE}'>
+
+                        <ImageView
+                                android:id="@+id/null_img"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="164dp"
+                                android:src="@drawable/wallet_detail_null"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/exchange_record_null_des"
+                                android:textColor="@color/color_8F8F8F"
+                                android:textSize="15sp"
+                                android:layout_marginTop="18dp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/null_img" />
+                </android.support.constraint.ConstraintLayout>
+
+                <include
+                        android:id="@+id/loadingView"
+                        layout="@layout/loading_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:visibility='@{item.hasMore ? View.VISIBLE : View.GONE}'/>
+        </FrameLayout>
+</layout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+        <style name="checkBoxStyleOne"
+               parent="Base.Widget.AppCompat.Button">
+                <item name="android:color">@color/color_2691B2</item>
+                <item name="android:colorBackground">@color/color_2691B2</item>
+                <item name="android:colorControlActivated">@color/color_2691B2</item>
+        </style>
+</resources>

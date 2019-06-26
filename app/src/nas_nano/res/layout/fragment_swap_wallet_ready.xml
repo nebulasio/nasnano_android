@@ -1,0 +1,171 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="io.nebulas.wallet.android.module.swap.step.step1.SwapWalletReadyFragment">
+
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="18dp"
+                android:background="@drawable/shape_round_corner_8dp_ffffff"
+                android:elevation="6dp">
+
+                <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/text_view_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="18dp"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginTop="18dp"
+                        android:maxLines="1"
+                        android:text="@string/swap_text_choose_nas_wallet"
+                        android:textColor="@color/color_202020"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:autoSizeMaxTextSize="24sp"
+                        app:autoSizeMinTextSize="10sp"
+                        app:autoSizeTextType="uniform"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                        android:id="@+id/layout_nas_wallet_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="18dp"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginTop="18dp"
+                        android:background="@drawable/shape_round_corner_6dp_eef1f4"
+                        android:padding="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/text_view_1">
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/swap_text_main_net_wallet"
+                                android:textColor="@color/color_202020"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                        <TextView
+                                android:id="@+id/tv_nas_wallet_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:gravity="end"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:textColor="@color/color_202020"
+                                android:textSize="13sp"
+                                android:textStyle="bold"
+                                tools:text="Wallet 1" />
+
+                </LinearLayout>
+
+                <TextView
+                        android:id="@+id/text_view_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="26dp"
+                        android:layout_marginTop="18dp"
+                        android:text="@string/swap_text_erc20_address_desc"
+                        android:textColor="@color/color_202020"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/layout_nas_wallet_info" />
+
+                <TextView
+                        android:id="@+id/tv_swap_address"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginEnd="26dp"
+                        android:layout_marginStart="26dp"
+                        android:layout_marginTop="6dp"
+                        android:breakStrategy="simple"
+                        android:textColor="@color/color_666666"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/text_view_2"
+                        tools:text="0x040Cb3A50ae48a76A095757F1be68D41808cCBEe" />
+
+
+                <LinearLayout
+                        android:id="@+id/layout_backup_tip"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical"
+                        android:padding="18dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="@string/swap_text_erc20_address_backup_tip"
+                                android:textColor="@color/color_8F8F8F"
+                                android:textSize="13sp" />
+
+                        <TextView
+                                android:id="@+id/tv_backup_now"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:layout_marginTop="18dp"
+                                android:background="@drawable/ripple_00cb91"
+                                android:gravity="center"
+                                android:text="@string/swap_text_erc20_address_backup"
+                                android:textColor="@color/white"
+                                android:textSize="17sp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                        android:id="@+id/layout_operations"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical"
+                        android:padding="18dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <TextView
+                                android:id="@+id/tv_backup_again"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:background="@drawable/ripple_white_solid_with_border"
+                                android:gravity="center"
+                                android:text="@string/swap_action_backup_again"
+                                android:textColor="@color/color_8F8F8F"
+                                android:textSize="17sp" />
+
+                        <TextView
+                                android:id="@+id/iv_next"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:layout_marginTop="18dp"
+                                android:background="@drawable/ripple_bottom_button_with_corner"
+                                android:gravity="center"
+                                android:text="@string/swap_action_next"
+                                android:textColor="@color/white"
+                                android:textSize="17sp" />
+
+                </LinearLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+</FrameLayout>

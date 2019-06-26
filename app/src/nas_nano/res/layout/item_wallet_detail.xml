@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+        <data>
+
+                <import type="android.view.View" />
+
+                <variable
+                        name="item"
+                        type="io.nebulas.wallet.android.module.detail.model.WalletDetailModel" />
+        </data>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="87dp"
+                        android:paddingLeft="18dp"
+                        android:paddingRight="18dp"
+                        android:visibility='@{item.transaction == null ? (item.coin == null ? View.GONE : View.VISIBLE) : View.VISIBLE}'>
+
+                        <ImageView
+                                android:id="@+id/img"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                app:imageUrl='@{item.coin!=null?item.coin.logo : item.getLogo}'
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:src="@mipmap/ic_launcher"/>
+
+                        <TextView
+                                android:id="@+id/tokenName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="12dp"
+                                android:text='@{item.coin.symbol}'
+                                android:textColor="@color/color_202020"
+                                android:textSize="@dimen/size_17_sp"
+                                android:visibility='@{item.coin!=null ? View.VISIBLE : View.GONE}'
+                                app:layout_constraintBottom_toTopOf="@+id/price"
+                                app:layout_constraintLeft_toRightOf="@+id/img"
+                                app:layout_constraintTop_toTopOf="@+id/img"
+                                tools:text="NAS"/>
+
+                        <TextView
+                                android:id="@+id/price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text='@{item.coin.noCurrencyPrice ? "-" : (item.getCurrencySymble + item.coin.currencyPriceString)}'
+                                android:textSize="15sp"
+                                android:visibility='@{item.coin!=null ? View.VISIBLE : View.GONE}'
+                                app:layout_constraintBottom_toBottomOf="@+id/img"
+                                app:layout_constraintLeft_toLeftOf="@+id/tokenName"
+                                app:layout_constraintTop_toBottomOf="@+id/tokenName"
+                                android:layout_marginTop="3dp"
+                                tools:text="$10.0000"/>
+
+                        <io.nebulas.wallet.android.view.AutoFitTextView
+                                android:id="@+id/balance_tv"
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:text='@{item.coin.balanceString}'
+                                android:textColor="@color/color_202020"
+                                android:textSize="@dimen/size_17_sp"
+                                android:visibility='@{item.coin!=null ? View.VISIBLE : View.GONE}'
+                                app:layout_constraintBottom_toTopOf="@+id/balance_value_tv"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/img"
+                                tools:text="1738.349285093"/>
+
+                        <io.nebulas.wallet.android.view.AutoFitTextView
+                                android:id="@+id/balance_value_tv"
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:text='@{item.coin.noCurrencyPrice ? "-" :(@string/approximate_text + item.getCurrencySymble + item.coin.formattedBalanceValueString)}'
+                                android:textColor="@color/color_8F8F8F"
+                                android:textSize="15sp"
+                                android:visibility='@{item.coin!=null ? View.VISIBLE : View.GONE}'
+                                app:layout_constraintBottom_toBottomOf="@+id/img"
+                                app:layout_constraintRight_toRightOf="@+id/balance_tv"
+                                app:layout_constraintTop_toBottomOf="@+id/balance_tv"
+                                android:layout_marginTop="3dp"
+                                tools:text="≈$17383.49"/>
+
+                        <TextView
+                                android:id="@+id/address_tv"
+                                android:layout_width="122dp"
+                                android:layout_height="wrap_content"
+                                android:singleLine="true"
+                                android:layout_marginLeft="12dp"
+                                android:text='@{item.getTxAddress()}'
+                                android:textColor='@{item.transaction != null &amp;&amp; item.transaction.status.equals("fail") ? @color/color_FF5552 : @color/color_202020}'
+                                android:ellipsize="middle"
+                                android:textSize="15sp"
+                                android:visibility='@{item.coin!=null ? View.GONE : View.VISIBLE}'
+                                app:layout_constraintBottom_toTopOf="@+id/time_tv"
+                                app:layout_constraintLeft_toRightOf="@+id/img"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:text="n1dkfjeksldkjfnsdjhfsldkjfsfff"/>
+
+                        <TextView
+                                android:id="@+id/time_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/color_8F8F8F"
+                                android:textSize="15sp"
+                                android:visibility='@{item.coin!=null ? View.GONE : View.VISIBLE}'
+                                app:dateMMddTime='@{item.transaction.sendTimestamp}'
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="@+id/address_tv"
+                                app:layout_constraintTop_toBottomOf="@+id/address_tv"
+                                tools:text="11月13日 16:09"/>
+
+                        <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintLeft_toRightOf="@+id/address_tv">
+                                <io.nebulas.wallet.android.view.AutoFitTextView
+                                        android:id="@+id/amount_tv"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="end"
+                                        android:text='@{item.transaction.isSend?"-"+item.transaction.amountString : "+"+item.transaction.amountString}'
+                                        android:textSize="@dimen/size_17_sp"
+                                        android:textColor='@{item.getTxAmountColor()}'
+                                        android:visibility='@{item.coin!=null ? View.GONE : View.VISIBLE}'
+                                        android:layout_marginStart="10dp"
+                                        tools:text="1.0000"/>
+
+                                <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:id="@+id/ivVote"
+                                        android:layout_gravity="end"
+                                        android:visibility="gone"
+                                        android:src="@drawable/ic_nat_vote"/>
+                        </LinearLayout>
+
+
+                        <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/ivAtpAds"
+                                android:visibility="gone"
+                                android:src="@drawable/ic_atp_ads_logo"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"/>
+
+                        <View
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/divider_height"
+                                android:background="@color/color_DFE2E5"
+                                app:layout_constraintBottom_toBottomOf="parent" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility='@{item.emptyView?View.VISIBLE:View.GONE}'>
+
+                        <ImageView
+                                android:id="@+id/null_img"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="72dp"
+                                android:src="@drawable/wallet_detail_null"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/wallet_detail_nothing"
+                                android:textColor="@color/color_8F8F8F"
+                                android:textSize="15sp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/null_img" />
+                </android.support.constraint.ConstraintLayout>
+
+                <include
+                        android:id="@+id/loadingView"
+                        layout="@layout/loading_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:visibility='@{item.hasLoadingMore ? View.VISIBLE : View.GONE}'/>
+        </LinearLayout>
+</layout>

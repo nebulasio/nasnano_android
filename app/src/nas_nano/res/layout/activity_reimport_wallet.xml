@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="io.nebulas.wallet.android.module.wallet.create.ImportWalletActivity">
+
+        <include
+                android:id="@+id/toolbar_layout"
+                layout="@layout/app_bar_main"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ScrollView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar_layout">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                                android:id="@+id/descriptionTop"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/re_import_des_bg"
+                                android:gravity="center_horizontal"
+                                android:paddingBottom="10dp"
+                                android:paddingLeft="18dp"
+                                android:paddingRight="18dp"
+                                android:paddingTop="10dp"
+                                android:text="@string/reimport_des"
+                                android:textColor="@color/white"
+                                android:visibility="gone"
+                                android:textSize="15sp" />
+
+                        <android.support.constraint.ConstraintLayout
+                                android:id="@+id/importFromMnemonicLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="65dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="18dp">
+
+                                <TextView
+                                        android:id="@+id/mnemonic_tv"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/import_from_mnemonic"
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="17sp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                                <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="23dp"
+                                        android:src="@drawable/arrow"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="@dimen/divider_height"
+                                        android:layout_marginEnd="18dp"
+                                        android:background="@color/divider_line"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintRight_toRightOf="parent" />
+
+                        </android.support.constraint.ConstraintLayout>
+
+                        <android.support.constraint.ConstraintLayout
+                                android:id="@+id/importFromKeyORPriLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="18dp">
+
+                                <TextView
+                                        android:id="@+id/keystoreTv"
+                                        android:layout_width="0dp"
+                                        android:layout_height="65dp"
+                                        android:gravity="center_vertical"
+                                        android:text="@string/import_from_keystore"
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="17sp"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                                <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="23dp"
+                                        android:src="@drawable/arrow"
+                                        app:layout_constraintBottom_toBottomOf="@id/keystoreTv"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintTop_toTopOf="@id/keystoreTv" />
+
+                                <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="@dimen/divider_height"
+                                        android:layout_marginEnd="18dp"
+                                        android:background="@color/divider_line"
+                                        app:layout_constraintBottom_toBottomOf="@id/keystoreTv"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintRight_toRightOf="parent" />
+
+                                <TextView
+                                        android:id="@+id/plainPrivTv"
+                                        android:layout_width="0dp"
+                                        android:layout_height="65dp"
+                                        android:gravity="center_vertical"
+                                        android:text="@string/re_import_from_plain_priv"
+                                        android:textColor="@color/color_202020"
+                                        android:textSize="17sp"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/keystoreTv" />
+
+
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingRight="13dp"
+                                        android:text="@string/not_save"
+                                        android:textColor="@color/color_FF5552"
+                                        android:textSize="17sp"
+                                        app:layout_constraintBottom_toBottomOf="@+id/plainPrivTv"
+                                        app:layout_constraintRight_toLeftOf="@+id/arrow_img"
+                                        app:layout_constraintTop_toTopOf="@+id/plainPrivTv" />
+
+                                <ImageView
+                                        android:id="@+id/arrow_img"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="23dp"
+                                        android:src="@drawable/arrow"
+                                        app:layout_constraintBottom_toBottomOf="@id/plainPrivTv"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintTop_toTopOf="@id/plainPrivTv" />
+
+                                <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="@dimen/divider_height"
+                                        android:layout_marginEnd="18dp"
+                                        android:background="@color/divider_line"
+                                        app:layout_constraintBottom_toBottomOf="@id/plainPrivTv"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintRight_toRightOf="parent" />
+
+                        </android.support.constraint.ConstraintLayout>
+
+                </LinearLayout>
+
+        </ScrollView>
+
+</android.support.constraint.ConstraintLayout>
