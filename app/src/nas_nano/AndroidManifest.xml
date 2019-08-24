@@ -287,7 +287,8 @@
                         android:name=".service.IntentServiceUpdateDeviceInfo"
                         android:exported="false" />
 
-                <activity android:name=".module.setting.NotificationSettingActivity"
+                <activity
+                        android:name=".module.setting.NotificationSettingActivity"
                         android:screenOrientation="portrait" />
                 <activity
                         android:name=".module.vote.VoteActivity"
@@ -298,6 +299,9 @@
                         android:screenOrientation="portrait" />
                 <activity
                         android:name=".module.qrscan.NormalScannerResultActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.stacking.StackingActivity"
                         android:screenOrientation="portrait" />
         </application>
 

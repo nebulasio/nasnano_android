@@ -24,7 +24,8 @@ data class BalanceListModel(
         var categoryName: String? = null,
         var feedItem: HomeFeedItem? = null,
         var tx: Transaction? = null,
-        var emptyWallet: Boolean = false
+        var emptyWallet: Boolean = false,
+        var isStacking: Boolean = false
 
 ) : BaseEntity() {
     fun getTimeStamp(): Long {
@@ -91,7 +92,7 @@ class SwapItem(
         var status: Int = 3
 ) {
     fun getSwapStatus(): String {
-        val realStatus = if (status==1) {
+        val realStatus = if (status == 1) {
             status
         } else {
             SwapHelper.getCurrentSwapStatus(WalletApplication.INSTANCE)

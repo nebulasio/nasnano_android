@@ -394,6 +394,9 @@ class BalanceFragment : BaseFragment() {
 
     @Synchronized
     private fun refreshAdapterItems(items: MutableList<BalanceListModel>) {
+
+        items.add(0, BalanceListModel(isStacking = true))
+
         /**
          * 检查钱包备份情况
          */

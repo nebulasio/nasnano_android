@@ -27,6 +27,7 @@ import io.nebulas.wallet.android.dialog.NasBottomListDialog
 import io.nebulas.wallet.android.module.balance.BalanceFragment
 import io.nebulas.wallet.android.module.balance.ScreeningItemHelper
 import io.nebulas.wallet.android.module.balance.model.BalanceListModel
+import io.nebulas.wallet.android.module.stacking.StackingActivity
 import io.nebulas.wallet.android.module.wallet.create.CreateWalletActivity
 import io.nebulas.wallet.android.module.wallet.create.model.Wallet
 import io.nebulas.wallet.android.module.wallet.manage.WalletBackupActivity
@@ -60,6 +61,7 @@ class BalanceRecyclerViewAdapter(context: Context) : BaseBindingAdapter<BalanceL
         val txCloseIV = itemView.find<ImageView>(R.id.txCloseIV)
         val iv_atp_ads = itemView.find<ImageView>(R.id.iv_atp_ads)
         val tv_transaction_time = itemView.find<TextView>(R.id.tv_transaction_time)
+        val iv_stacking = itemView.find<ImageView>(R.id.iv_stacking)
 
     }
 
@@ -123,6 +125,10 @@ class BalanceRecyclerViewAdapter(context: Context) : BaseBindingAdapter<BalanceL
                     }
                 }
 
+            }
+
+            holder.iv_stacking.setOnClickListener {
+                StackingActivity.launch(context)
             }
 
             holder.backupLayout.setOnClickListener {

@@ -23,6 +23,14 @@
                 android:paddingEnd="18dp"
                 android:paddingBottom="18dp">
 
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitXY"
+                        android:id="@+id/iv_stacking"
+                        android:src="@mipmap/ic_launcher_round"
+                        android:visibility='@{item.stacking ? View.VISIBLE : View.GONE}'/>
+
                 <!--换币入口-->
                 <android.support.constraint.ConstraintLayout
                         android:layout_width="match_parent"

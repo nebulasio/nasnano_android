@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardUseCompatPadding="true"
+                android:background="@color/white">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="29dp"
+                                android:text="累计质押收益(NAX)"
+                                android:textColor="@color/color_999999"
+                                android:textSize="12sp" />
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text="100,666,888"
+                                android:textColor="@color/black"
+                                android:textSize="32sp" />
+
+                        <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp">
+
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="昨日收益"
+                                        android:textColor="@color/color_666666"
+                                        android:textSize="14sp" />
+
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingStart="3dp"
+                                        android:paddingEnd="3dp"
+                                        android:text="300,22"
+                                        android:textColor="#ff9d25"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="NAX"
+                                        android:textColor="@color/color_666666"
+                                        android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="73dp"
+                                android:layout_marginTop="17dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="@drawable/shape_round_corner_top_8dp_fafaff">
+
+                                <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="全网质押率"
+                                                android:textColor="@color/color_999999"
+                                                android:textSize="11sp" />
+
+                                        <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="45%"
+                                                android:textColor="@color/black"
+                                                android:textSize="14sp" />
+                                </LinearLayout>
+
+                                <View
+                                        android:layout_width="1px"
+                                        android:layout_marginTop="14dp"
+                                        android:layout_marginBottom="14dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/divider_line"/>
+
+                                <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="今日预发行量"
+                                                android:textColor="@color/color_999999"
+                                                android:textSize="11sp" />
+
+                                        <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="9,999,888"
+                                                android:textColor="@color/black"
+                                                android:textSize="14sp" />
+                                </LinearLayout>
+                        </LinearLayout>
+                        <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1px"
+                                android:background="@color/divider_line"/>
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="73dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="#fafaff">
+
+                                <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="昨日销毁量"
+                                                android:textColor="@color/color_999999"
+                                                android:textSize="11sp" />
+
+                                        <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="6,000,000"
+                                                android:textColor="@color/black"
+                                                android:textSize="14sp" />
+                                </LinearLayout>
+
+                                <View
+                                        android:layout_width="1px"
+                                        android:layout_marginTop="14dp"
+                                        android:layout_marginBottom="14dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/divider_line"/>
+
+                                <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="昨日发行量"
+                                                android:textColor="@color/color_999999"
+                                                android:textSize="11sp" />
+
+                                        <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="6,000,000"
+                                                android:textColor="@color/black"
+                                                android:textSize="14sp" />
+                                </LinearLayout>
+                        </LinearLayout>
+                </LinearLayout>
+        </android.support.v7.widget.CardView>
+</LinearLayout>
