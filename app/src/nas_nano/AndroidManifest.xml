@@ -301,7 +301,13 @@
                         android:name=".module.qrscan.NormalScannerResultActivity"
                         android:screenOrientation="portrait" />
                 <activity
-                        android:name=".module.stacking.StackingActivity"
+                        android:name=".module.staking.dashboard.StakingDashboardActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.staking.detail.WalletStakingDetailActivity"
+                        android:screenOrientation="portrait" />
+                <activity
+                        android:name=".module.staking.pledge.PledgeActivity"
                         android:screenOrientation="portrait" />
         </application>
 

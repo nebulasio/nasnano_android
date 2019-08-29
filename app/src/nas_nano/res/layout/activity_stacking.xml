@@ -5,42 +5,41 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="io.nebulas.wallet.android.module.stacking.StackingActivity">
+        tools:context="io.nebulas.wallet.android.module.staking.dashboard.StakingDashboardActivity">
 
-        <android.support.design.widget.AppBarLayout
-                android:layout_height="wrap_content"
+        <android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:fitsSystemWindows="true"
                 app:elevation="0dp"
-                app:layout_behavior="io.nebulas.wallet.android.view.research.FixAppBarLayoutBehavior"
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto">
+                app:layout_behavior="io.nebulas.wallet.android.view.research.FixAppBarLayoutBehavior">
 
                 <android.support.v7.widget.Toolbar
                         android:id="@+id/toolbar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fitsSystemWindows="true"
                         android:background="#fff14d12"
+                        android:fitsSystemWindows="true"
                         app:layout_scrollFlags="scroll|enterAlways">
 
                         <android.support.v7.widget.ActionMenuView
                                 android:id="@+id/actionMenuView"
+                                style="@style/ActionMenuBtnStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="44dp"
-                                style="@style/ActionMenuBtnStyle"
-                                android:visibility="gone"/>
+                                android:visibility="gone" />
 
                         <TextView
                                 android:id="@+id/tvTitle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/toolbar_height"
-                                android:textSize="18sp"
-                                android:textColor="@color/white"
-                                android:textStyle="bold"
-                                android:singleLine="true"
                                 android:layout_gravity="center|top"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                android:singleLine="true"
+                                android:textColor="@color/white"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
 
 
                 </android.support.v7.widget.Toolbar>
@@ -51,14 +50,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#f3f2f7">
+
                 <View
                         android:layout_width="match_parent"
                         android:layout_height="300dp"
-                        android:background="@drawable/bg_gradient_stacking"/>
+                        android:background="@drawable/bg_gradient_stacking" />
 
-                <android.support.v7.widget.RecyclerView
+                <android.support.v4.widget.SwipeRefreshLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/recyclerView"/>
+                        android:id="@+id/swipeRefreshLayout">
+
+                        <android.support.v7.widget.RecyclerView
+                                android:id="@+id/recyclerView"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                </android.support.v4.widget.SwipeRefreshLayout>
         </RelativeLayout>
 </LinearLayout>

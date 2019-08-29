@@ -1,17 +1,17 @@
 package io.nebulas.wallet.android.module.balance
 
 import android.app.Activity
-import android.app.Fragment
 import android.arch.lifecycle.Observer
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.text.TextPaint
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import io.nebulas.wallet.android.R
 import io.nebulas.wallet.android.atp.AtpHolder
 import io.nebulas.wallet.android.base.BaseActivity
@@ -19,10 +19,10 @@ import io.nebulas.wallet.android.base.BaseBindingAdapter
 import io.nebulas.wallet.android.base.BaseFragment
 import io.nebulas.wallet.android.common.Constants
 import io.nebulas.wallet.android.common.DataCenter
-import io.nebulas.wallet.android.common.PreferenceConstants
 import io.nebulas.wallet.android.common.firebaseAnalytics
+import io.nebulas.wallet.android.common.mainHandler
 import io.nebulas.wallet.android.db.DBUtil
-import io.nebulas.wallet.android.extensions.Preference
+import io.nebulas.wallet.android.extensions.errorToast
 import io.nebulas.wallet.android.module.balance.adapter.BalanceRecyclerViewAdapter
 import io.nebulas.wallet.android.module.balance.model.BalanceListModel
 import io.nebulas.wallet.android.module.balance.model.Coin
@@ -30,9 +30,10 @@ import io.nebulas.wallet.android.module.detail.BalanceDetailActivity
 import io.nebulas.wallet.android.module.detail.WalletDetailActivity
 import io.nebulas.wallet.android.module.html.HtmlActivity
 import io.nebulas.wallet.android.module.main.MainActivity
-import io.nebulas.wallet.android.module.qrscan.QRScanActivity
 import io.nebulas.wallet.android.module.qrscan.ScannerActivity
 import io.nebulas.wallet.android.module.qrscan.ScannerDispatcher
+import io.nebulas.wallet.android.module.staking.dashboard.StakingDashboardActivity
+import io.nebulas.wallet.android.module.staking.StakingContractHolder
 import io.nebulas.wallet.android.module.swap.SwapRouter
 import io.nebulas.wallet.android.module.transaction.ReceivablesActivity
 import io.nebulas.wallet.android.module.transaction.TxDetailActivity
@@ -40,17 +41,13 @@ import io.nebulas.wallet.android.module.transaction.model.Transaction
 import io.nebulas.wallet.android.module.transaction.transfer.TransferActivity
 import io.nebulas.wallet.android.module.wallet.create.CreateWalletActivity
 import io.nebulas.wallet.android.module.wallet.create.model.Wallet
-import io.nebulas.wallet.android.network.callback.OnResultCallBack
 import io.nebulas.wallet.android.network.server.HttpManager
-import io.nebulas.wallet.android.network.server.model.VersionResp
-import io.nebulas.wallet.android.network.subscriber.HttpSubscriber
 import io.nebulas.wallet.android.util.Formatter
 import io.nebulas.wallet.android.util.Util
 import kotlinx.android.synthetic.nas_nano.app_bar_balance.*
 import kotlinx.android.synthetic.nas_nano.fragment_balance.*
 import org.jetbrains.anko.dip
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.uiThread
 import java.math.BigDecimal
 
@@ -204,6 +201,10 @@ class BalanceFragment : BaseFragment() {
                 lastClickedTime = now
 
                 val item = adapter.items[position]
+                if (item.isStacking) {
+                    toStaking()
+                    return
+                }
                 if (null != item.swapItem) {
                     SwapRouter.route(requireActivity(), item.swapItem!!.status)
                     (activity as BaseActivity).firebaseAnalytics?.logEvent(Constants.Exchange_Entrance_Click, Bundle())
@@ -225,12 +226,12 @@ class BalanceFragment : BaseFragment() {
                     (context as BaseActivity).firebaseAnalytics?.logEvent(Constants.kAHomeFeedClick, bundle)
 
                 } else if (null != item.tx) {
-                    val transaction = item.tx?:return
+                    val transaction = item.tx ?: return
                     if (AtpHolder.isRenderable(transaction.txData)) {
                         val address = if (transaction.isSend) {
-                            transaction.sender?:""
+                            transaction.sender ?: ""
                         } else {
-                            transaction.receiver?:""
+                            transaction.receiver ?: ""
                         }
                         firebaseAnalytics.logEvent(Constants.Home_ATPAds_Click, Bundle())
                         AtpHolder.route(requireActivity(), transaction.txData, address)
@@ -395,7 +396,14 @@ class BalanceFragment : BaseFragment() {
     @Synchronized
     private fun refreshAdapterItems(items: MutableList<BalanceListModel>) {
 
-        items.add(0, BalanceListModel(isStacking = true))
+        if (items.isNotEmpty()) {
+            val first = items[0]
+            if (!first.isStacking) {
+                items.add(0, BalanceListModel(isStacking = true))
+            }
+        } else {
+            items.add(0, BalanceListModel(isStacking = true))
+        }
 
         /**
          * 检查钱包备份情况
@@ -505,7 +513,7 @@ class BalanceFragment : BaseFragment() {
                 }
             }
             REQUEST_CODE_SCANNER -> {
-                if (resultCode==Activity.RESULT_OK) {
+                if (resultCode == Activity.RESULT_OK) {
                     val result = data?.getStringExtra("result") ?: ""
                     activity?.apply {
                         ScannerDispatcher.dispatch(this, result)
@@ -516,5 +524,8 @@ class BalanceFragment : BaseFragment() {
 
     }
 
+    private fun toStaking() {
+        StakingDashboardActivity.launch(requireContext())
+    }
 
 }

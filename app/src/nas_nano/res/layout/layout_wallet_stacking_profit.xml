@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:elevation="5dp"
+                android:layout_margin="18dp"
+                android:padding="18dp"
+                android:background="@drawable/bg_wallet_stacking_profits">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ccffffff"
+                        android:textSize="12sp"
+                        android:text="累计质押收益(NAX)"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvAddressTotalProfits"
+                        android:textColor="#ffffff"
+                        android:textStyle="bold"
+                        android:layout_marginTop="12dp"
+                        android:textSize="32sp"
+                        android:text="100,666,888.22"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvCancelPledge"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:layout_marginTop="24dp"
+                        android:paddingTop="9dp"
+                        android:paddingBottom="9dp"
+                        android:paddingStart="23dp"
+                        android:paddingEnd="23dp"
+                        android:background="@drawable/shape_round_corner_8dp_transparent_ffffff"
+                        android:text="取消质押"/>
+        </LinearLayout>
+</RelativeLayout>

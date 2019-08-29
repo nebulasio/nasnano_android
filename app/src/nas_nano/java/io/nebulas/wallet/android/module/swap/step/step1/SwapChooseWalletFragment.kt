@@ -118,7 +118,7 @@ class SwapChooseWalletFragment : Fragment() {
             val position: Int = v.tag as Int
             val wallet = dataSource[position]
             when (v.id) {
-                R.id.layout_wallet_info -> {
+                R.id.layoutWalletInfo -> {
                     selectedWallet = if (selectedWallet == wallet) {
                         null
                     } else {
@@ -190,7 +190,7 @@ class SwapChooseWalletFragment : Fragment() {
         val tv_wallet_name = itemView.tv_wallet_name
         val tv_wallet_address = itemView.tv_wallet_address
         val layout_backup_tip = itemView.layout_backup_tip
-        val layout_wallet_info = itemView.layout_wallet_info
+        val layout_wallet_info = itemView.layoutWalletInfo
         val iv_selected_status = itemView.iv_selected_status
     }
 }

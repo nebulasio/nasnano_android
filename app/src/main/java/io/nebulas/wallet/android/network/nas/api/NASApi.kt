@@ -20,6 +20,9 @@ interface NASApi {
     @POST(URLConstants.NAS_SEND_RAW_TRANSACTION)
     fun sendRawTransaction(@Body body: Map<String, String>): Observable<NASResponse<NASTransactionModel>>
 
+    @POST(URLConstants.NAS_SEND_RAW_TRANSACTION)
+    fun syncSendRawTransaction(@Body body: Map<String, String>): Call<NASResponse<NASTransactionModel>>
+
     @POST(URLConstants.NAS_ESTIMATE_GAS)
     fun getEstimateGas(@Body body: EstimateGasRequest): Call<NASResponse<NasEstimateGas>>
 
@@ -34,4 +37,24 @@ interface NASApi {
 
     @GET(URLConstants.NAS_GET_GAS_PRICE)
     fun getGasPrice(): Call<NASResponse<NasGasPrice>>
+
+    @POST(URLConstants.NAS_GET_TRANSACTION_RECEIPT)
+    fun getTransactionReceipt(@Body body: Map<String, String>): Call<NASResponse<NasTransactionReceipt>>
+
+
+    data class CallParam(
+            val from:String,
+            val to:String,
+            val value:String,
+            val nonce:String,
+            val gasPrice:String,
+            val gasLimit:String,
+            val contract:Map<String, String>
+    )
+
+    class CallResponse{
+        var result:String?=null
+    }
+    @POST(URLConstants.NAS_CALL)
+    fun call(@Body body: CallParam): Call<NASResponse<CallResponse>>
 }

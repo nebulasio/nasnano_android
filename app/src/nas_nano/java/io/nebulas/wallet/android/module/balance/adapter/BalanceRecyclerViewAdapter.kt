@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView
 import android.util.Base64
 import android.view.Gravity
 import android.view.View
-import android.view.animation.Animation
 import android.widget.ImageView
 import android.widget.TextView
 import com.airbnb.lottie.LottieAnimationView
@@ -27,13 +26,11 @@ import io.nebulas.wallet.android.dialog.NasBottomListDialog
 import io.nebulas.wallet.android.module.balance.BalanceFragment
 import io.nebulas.wallet.android.module.balance.ScreeningItemHelper
 import io.nebulas.wallet.android.module.balance.model.BalanceListModel
-import io.nebulas.wallet.android.module.stacking.StackingActivity
 import io.nebulas.wallet.android.module.wallet.create.CreateWalletActivity
 import io.nebulas.wallet.android.module.wallet.create.model.Wallet
 import io.nebulas.wallet.android.module.wallet.manage.WalletBackupActivity
 import org.jetbrains.anko.find
 import java.lang.Exception
-import java.util.*
 
 /**
  * Created by Heinoc on 2018/2/26.
@@ -127,9 +124,9 @@ class BalanceRecyclerViewAdapter(context: Context) : BaseBindingAdapter<BalanceL
 
             }
 
-            holder.iv_stacking.setOnClickListener {
-                StackingActivity.launch(context)
-            }
+//            holder.iv_stacking.setOnClickListener {
+//                StakingDashboardActivity.launch(context)
+//            }
 
             holder.backupLayout.setOnClickListener {
 

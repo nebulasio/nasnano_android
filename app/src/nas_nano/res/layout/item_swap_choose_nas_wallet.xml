@@ -15,7 +15,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/layout_backup_tip"
-                android:layout_below="@id/layout_wallet_info"
+                android:layout_below="@id/layoutWalletInfo"
                 android:layout_marginTop="-8dp"
                 android:padding="12dp"
                 android:orientation="vertical">
@@ -40,7 +40,7 @@
 
 
         <RelativeLayout
-                android:id="@+id/layout_wallet_info"
+                android:id="@+id/layoutWalletInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_round_corner_8dp_ffffff"

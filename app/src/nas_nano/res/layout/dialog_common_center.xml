@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/shape_round_corner_8dp_ffffff"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvTitle"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:textColor="#030303"
+                android:textSize="17sp"
+                android:layout_marginTop="30dp"
+                tools:text="提醒"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvContent"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:textColor="#616161"
+                android:textSize="13sp"
+                android:lineSpacingMultiplier="1.2"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="9dp"
+                tools:text="当前已质押20天\n取消质押后将不再获得NAX\n预计消耗0.0004NAS矿工费"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="23dp"
+                android:background="@color/divider_line"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/tvLeftButton"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:text="@string/cancel"/>
+                <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/viewDividerLine"
+                        android:background="@color/divider_line"/>
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/tvRightButton"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/color_00ABFF"
+                        android:textSize="17sp"
+                        android:text="@string/confirm_btn"/>
+        </LinearLayout>
+</LinearLayout>

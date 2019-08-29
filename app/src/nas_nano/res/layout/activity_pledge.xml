@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="io.nebulas.wallet.android.module.staking.pledge.PledgeActivity">
+
+        <include
+                android:id="@+id/toolbar_layout"
+                layout="@layout/app_bar_main_no_underline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar_layout">
+
+                <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_round_corner_8dp_ffffff_ebecf0"
+                        app:cardCornerRadius="8dp"
+                        android:layout_marginStart="-4dp"
+                        android:layout_marginEnd="-4dp"
+                        app:cardUseCompatPadding="true">
+
+                        <android.support.constraint.ConstraintLayout
+                                android:id="@+id/layoutWalletInfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="90dp">
+
+                                <ImageView
+                                        android:id="@+id/ivWalletIcon"
+                                        android:layout_width="45dp"
+                                        android:layout_height="45dp"
+                                        android:layout_marginStart="15dp"
+                                        android:layout_marginTop="8dp"
+                                        android:layout_marginBottom="8dp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:srcCompat="@mipmap/ic_launcher_round" />
+
+                                <TextView
+                                        android:id="@+id/tvWalletName"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="10dp"
+                                        android:text="钱包名称"
+                                        android:textColor="@color/black"
+                                        android:textSize="17sp"
+                                        app:layout_constraintStart_toEndOf="@id/ivWalletIcon"
+                                        app:layout_constraintTop_toTopOf="@id/ivWalletIcon" />
+
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/tvBalance"
+                                        android:layout_marginTop="2dp"
+                                        android:text="余额：48,666,098.00053 NAS"
+                                        android:textColor="#5C6176"
+                                        android:textSize="12sp"
+                                        app:layout_constraintStart_toStartOf="@id/tvWalletName"
+                                        app:layout_constraintTop_toBottomOf="@id/tvWalletName" />
+
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:id="@+id/tvChangeWallet"
+                                        android:gravity="center"
+                                        android:padding="18dp"
+                                        android:text="其他钱包 >"
+                                        android:textColor="@color/color_999999"
+                                        android:textSize="12sp"
+                                        app:layout_constraintEnd_toEndOf="parent" />
+
+                        </android.support.constraint.ConstraintLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/layoutPledgedInfo"
+                        android:layout_marginTop="50dp"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/layoutWalletInfo">
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="已质押数量"
+                                android:textColor="@color/color_999999"
+                                android:textSize="15sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                                android:id="@+id/tvPledgedNas"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginEnd="5dp"
+                                android:text="666,666"
+                                android:textColor="@color/color_999999"
+                                android:textSize="15sp"
+                                app:layout_constraintEnd_toStartOf="@id/tvUnit"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                                android:id="@+id/tvUnit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="NAS"
+                                android:textColor="@color/color_999999"
+                                android:textSize="15sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1px"
+                                android:layout_marginTop="20dp"
+                                android:background="@color/divider_line"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tvUnit" />
+
+                </android.support.constraint.ConstraintLayout>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:text="质押数量"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <EditText
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:id="@+id/etPledgeValue"
+                                android:layout_weight="1"
+                                android:background="@color/transparent"
+                                android:hint="最小质押额5NAS"
+                                android:inputType="number"
+                                android:textColor="#FF9D25"
+                                android:textSize="15sp" />
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="NAS"
+                                android:textColor="@color/color_333333"
+                                android:textSize="15sp" />
+                </LinearLayout>
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/divider_line" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvErrorTip"
+                        android:visibility="gone"
+                        android:layout_marginTop="12dp"
+                        android:text="NAS数量不足"
+                        android:textColor="#f21f33"
+                        android:textSize="15sp" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvGasFee"
+                        android:layout_marginTop="20dp"
+                        tools:text="0.0004 NAS 矿工费"
+                        android:textColor="@color/color_999999"
+                        android:textSize="11sp" />
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:id="@+id/tvConfirmPledge"
+                        android:layout_marginTop="50dp"
+                        android:background="#D4D9DE"
+                        android:elevation="5dp"
+                        android:gravity="center"
+                        android:text="确认质押"
+                        android:textColor="@color/white"
+                        android:textSize="17sp" />
+        </LinearLayout>
+
+        <include
+                android:id="@+id/loadingView"
+                layout="@layout/loading_view_with_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"/>
+
+</android.support.constraint.ConstraintLayout>

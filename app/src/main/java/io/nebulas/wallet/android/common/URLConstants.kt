@@ -105,6 +105,18 @@ object URLConstants {
      * 推送通知开关（目前只处理交易推送）
      */
     const val URL_NOTIFICATION_SWITCH = "api/v1/device/switch"
+    /**
+     * 获取staking相关合约地址
+     */
+    const val URL_GET_STAKING_CONTRACTS = "api/v1/nax/contract"
+    /**
+     * 获取NAX汇总信息
+     */
+    const val URL_GET_STAKING_SUMMARY = "api/v1/nax/summary"
+    /**
+     * 获取单钱包NAX收益信息
+     */
+    const val URL_GET_NAX_PROFITS = "api/v1/nax/profit/list"
 
     /******************************** NAS ********************************/
     /**
@@ -137,9 +149,19 @@ object URLConstants {
     const val NAS_GET_GAS_PRICE = "getGasPrice"
 
     /**
+     * Call contract.
+     */
+    const val NAS_CALL = "call"
+
+    /**
      * Return the estimate gas of transaction.
      */
     const val NAS_ESTIMATE_GAS = "estimateGas"
+
+    /**
+     * Return the transaction receipt
+     */
+    const val NAS_GET_TRANSACTION_RECEIPT = "getTransactionReceipt"
 
 
     /******************************** NAS ********************************/

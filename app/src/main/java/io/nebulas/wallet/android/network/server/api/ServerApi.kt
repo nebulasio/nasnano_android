@@ -2,6 +2,8 @@ package io.nebulas.wallet.android.network.server.api
 
 import io.nebulas.wallet.android.base.BaseEntity
 import io.nebulas.wallet.android.common.URLConstants
+import io.nebulas.wallet.android.module.staking.AddressProfits
+import io.nebulas.wallet.android.module.staking.StakingSummary
 import io.nebulas.wallet.android.module.transaction.model.Transaction
 import io.nebulas.wallet.android.network.server.model.*
 import io.reactivex.Observable
@@ -66,7 +68,7 @@ interface ServerApi {
      */
     @GET(URLConstants.CURRENCY_PRICE)
     fun getCurrencyPriceWithoutRX(@HeaderMap headers: Map<String, String>,
-                         @Query("currencyId") currencyIds: List<String>): Call<ApiResponse<CurrencyPriceResp>>
+                                  @Query("currencyId") currencyIds: List<String>): Call<ApiResponse<CurrencyPriceResp>>
 
 
     /**
@@ -111,7 +113,7 @@ interface ServerApi {
      */
     @POST(URLConstants.TX_WALLET)
     fun getTxRecordsByWallet(@HeaderMap headers: Map<String, String>,
-                             @Body walletReq: WalletReq) : Observable<ApiResponse<MutableList<Transaction>>>
+                             @Body walletReq: WalletReq): Observable<ApiResponse<MutableList<Transaction>>>
 
     /**
      * 获取gas price
@@ -122,15 +124,16 @@ interface ServerApi {
                     @Query("address") address: String,
                     @Query("type") type: Int,
                     @Query("contract") contractJsonString: String): Observable<ApiResponse<GasPriceResp>>
+
     /**
      * 获取gas price
      */
     @GET(URLConstants.GAS_PRICE)
     fun getGasPriceWithoutRX(@HeaderMap headers: Map<String, String>,
-                    @Query("currencyId") currencyId: String,
-                    @Query("address") address: String,
-                    @Query("type") type: Int,
-                    @Query("contract") contractJsonString: String): Call<ApiResponse<GasPriceResp>>
+                             @Query("currencyId") currencyId: String,
+                             @Query("address") address: String,
+                             @Query("type") type: Int,
+                             @Query("contract") contractJsonString: String): Call<ApiResponse<GasPriceResp>>
 
 
     /**
@@ -147,7 +150,7 @@ interface ServerApi {
     fun getTxRecordList(@QueryMap params: Map<String, String>): Observable<ApiResponse<Transaction>>
 
     @POST(URLConstants.BIND_SWAP_ADDRESS)
-    fun bindSwapAddressWithoutRX(@HeaderMap headers: Map<String, String>, @Body body:BindSwapAddressRequest): Call<ApiResponse<String>>
+    fun bindSwapAddressWithoutRX(@HeaderMap headers: Map<String, String>, @Body body: BindSwapAddressRequest): Call<ApiResponse<String>>
 
     /**
      * 获取换币详情
@@ -190,4 +193,25 @@ interface ServerApi {
      */
     @POST(URLConstants.URL_NOTIFICATION_SWITCH)
     fun notificationSwitch(@HeaderMap headers: Map<String, String>, @Body notificationSwitchRequest: NotificationSwitchRequest): Call<ApiResponse<BaseEntity>>
+
+    /**
+     * 获取质押相关的合约地址等信息(NAX)
+     */
+    @GET(URLConstants.URL_GET_STAKING_CONTRACTS)
+    fun getStakingContracts(@HeaderMap headers: Map<String, String>): Call<ApiResponse<StakingContractsResponse>>
+
+    /**
+     * 获取质押相关汇总信息(NAX)
+     */
+    @GET(URLConstants.URL_GET_STAKING_SUMMARY)
+    fun getStakingSummaryInfo(@HeaderMap headers: Map<String, String>, @Query("addresses") addresses: String): Call<ApiResponse<StakingSummary>>
+
+    /**
+     * 获取但钱包质押收益列表(NAX)
+     */
+    @GET(URLConstants.URL_GET_NAX_PROFITS)
+    fun getProfitsInfo(@HeaderMap headers: Map<String, String>,
+                       @Query("address") address: String,
+                       @Query("page") page: Int,
+                       @Query("pageSize") pageSize: Int = 10): Call<ApiResponse<AddressProfits>>
 }

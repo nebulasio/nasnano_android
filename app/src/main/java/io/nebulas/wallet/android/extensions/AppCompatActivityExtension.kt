@@ -28,43 +28,55 @@ fun AppCompatActivity.showFragment(fragment: Fragment) {
 }
 
 fun Activity.errorToast(message: String) {
-    CurtainResearch.create(this)
-            .withContent(message)
-            .withLevel(CurtainResearch.CurtainLevel.ERROR)
-            .show()
+    runOnUiThread {
+        CurtainResearch.create(this)
+                .withContent(message)
+                .withLevel(CurtainResearch.CurtainLevel.ERROR)
+                .show()
+    }
 }
 
 fun Activity.errorToast(@StringRes stringResId: Int) {
-    CurtainResearch.create(this)
-            .withContentRes(stringResId)
-            .withLevel(CurtainResearch.CurtainLevel.ERROR)
-            .show()
+    runOnUiThread {
+        CurtainResearch.create(this)
+                .withContentRes(stringResId)
+                .withLevel(CurtainResearch.CurtainLevel.ERROR)
+                .show()
+    }
 }
 
 fun Activity.successToast(message: String) {
-    CurtainResearch.create(this)
-            .withContent(message)
-            .withLevel(CurtainResearch.CurtainLevel.SUCCESS)
-            .show()
+    runOnUiThread {
+        CurtainResearch.create(this)
+                .withContent(message)
+                .withLevel(CurtainResearch.CurtainLevel.SUCCESS)
+                .show()
+    }
 }
 
 fun Activity.successToast(@StringRes stringResId: Int) {
-    CurtainResearch.create(this)
-            .withContentRes(stringResId)
-            .withLevel(CurtainResearch.CurtainLevel.SUCCESS)
-            .show()
+    runOnUiThread {
+        CurtainResearch.create(this)
+                .withContentRes(stringResId)
+                .withLevel(CurtainResearch.CurtainLevel.SUCCESS)
+                .show()
+    }
 }
 
 fun Activity.normalToast(message: String) {
-    CurtainResearch.create(this)
-            .withContent(message)
-            .withLevel(CurtainResearch.CurtainLevel.NORMAL)
-            .show()
+    runOnUiThread {
+        CurtainResearch.create(this)
+                .withContent(message)
+                .withLevel(CurtainResearch.CurtainLevel.NORMAL)
+                .show()
+    }
 }
 
 fun Activity.normalToast(@StringRes stringResId: Int) {
-    CurtainResearch.create(this)
-            .withContentRes(stringResId)
-            .withLevel(CurtainResearch.CurtainLevel.NORMAL)
-            .show()
+    runOnUiThread {
+        CurtainResearch.create(this)
+                .withContentRes(stringResId)
+                .withLevel(CurtainResearch.CurtainLevel.NORMAL)
+                .show()
+    }
 }

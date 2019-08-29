@@ -4,7 +4,7 @@
         android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
-        android:padding="15dp">
+        android:padding="14dp">
 
         <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
@@ -31,6 +31,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
+                                android:id="@+id/tvTotalProfits"
                                 android:text="100,666,888"
                                 android:textColor="@color/black"
                                 android:textSize="32sp" />
@@ -50,6 +51,7 @@
                                 <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:id="@+id/tvLastProfit"
                                         android:paddingStart="3dp"
                                         android:paddingEnd="3dp"
                                         android:text="300,22"
@@ -89,6 +91,7 @@
                                         <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
+                                                android:id="@+id/tvPledgeRate"
                                                 android:text="45%"
                                                 android:textColor="@color/black"
                                                 android:textSize="14sp" />
@@ -118,6 +121,7 @@
                                         <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
+                                                android:id="@+id/tvEstimateNax"
                                                 android:text="9,999,888"
                                                 android:textColor="@color/black"
                                                 android:textSize="14sp" />
@@ -150,6 +154,7 @@
                                         <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
+                                                android:id="@+id/tvLastDestroyedNax"
                                                 android:text="6,000,000"
                                                 android:textColor="@color/black"
                                                 android:textSize="14sp" />
@@ -179,6 +184,7 @@
                                         <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
+                                                android:id="@+id/tvLastDistributedNax"
                                                 android:text="6,000,000"
                                                 android:textColor="@color/black"
                                                 android:textSize="14sp" />
