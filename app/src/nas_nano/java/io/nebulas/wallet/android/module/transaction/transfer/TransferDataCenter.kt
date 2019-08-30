@@ -247,6 +247,9 @@ class TransferDataCenter : AbstractDataCenter() {
         )
         if (null != raiseUpPayload)
             transaction?.payload = raiseUpPayload
+        coin?.apply {
+            transaction?.payload?.nasType = if (this.type==1) Walletcore.TxPayloadBinaryType else Walletcore.TxPayloadCallType
+        }
         transaction?.tokenDecimals = finalCoin.tokenDecimals
         transaction?.nonce = gasPriceResp?.nonce ?: "0"
     }
