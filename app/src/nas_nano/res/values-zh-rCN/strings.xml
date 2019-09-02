@@ -620,4 +620,6 @@
 	<string name="text_information_notification">资讯提醒</string>
         <string name="title_vote">投票</string>
         <string name="text_max_amount">最大金额</string>
+
+	<string name="text_pledge">质押</string>
 </resources>

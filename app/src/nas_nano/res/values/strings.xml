@@ -631,4 +631,6 @@
         <string name="text_information_notification">Information Notice</string>
         <string name="title_vote">Vote</string>
         <string name="text_max_amount">Max Amount</string>
+
+        <string name="text_pledge">Pledge</string>
 </resources>

@@ -24,17 +24,17 @@ class StakingDashboardController(lifecycleOwner: LifecycleOwner,
                                  val context: Context,
                                  val dataCenter: StakingDashboardDataCenter) : LifecycleController(lifecycleOwner, context) {
 
-    private var future:Future<Unit>?=null
-    private var syncFuture:Future<Unit>?=null
+    private var future: Future<Unit>? = null
+    private var syncFuture: Future<Unit>? = null
 
     override fun onDestroyed() {
         future?.apply {
-            if (!isCancelled && !isDone){
+            if (!isCancelled && !isDone) {
                 cancel(true)
             }
         }
         syncFuture?.apply {
-            if (!isCancelled && !isDone){
+            if (!isCancelled && !isDone) {
                 cancel(true)
             }
         }
@@ -42,7 +42,7 @@ class StakingDashboardController(lifecycleOwner: LifecycleOwner,
 
     fun loadData() {
         future?.apply {
-            if (!isCancelled && !isDone){
+            if (!isCancelled && !isDone) {
                 cancel(true)
             }
         }
@@ -97,7 +97,7 @@ class StakingDashboardController(lifecycleOwner: LifecycleOwner,
 
     fun sync() {
         syncFuture?.apply {
-            if (!isCancelled && !isDone){
+            if (!isCancelled && !isDone) {
                 cancel(true)
             }
         }
@@ -109,7 +109,7 @@ class StakingDashboardController(lifecycleOwner: LifecycleOwner,
                 if (anyChanges) {
                     loadData()
                 }
-                if(dataCenter.inOperationWallets.isEmpty()){
+                if (dataCenter.inOperationWallets.isEmpty()) {
                     break
                 }
             }
@@ -117,30 +117,33 @@ class StakingDashboardController(lifecycleOwner: LifecycleOwner,
     }
 
     @WorkerThread
-    private fun doSync(pledgingWallets:List<StakingConfiguration.PledgingWalletWrapper?>):Boolean{
+    private fun doSync(pledgingWallets: List<StakingConfiguration.PledgingWalletWrapper?>): Boolean {
         var anyChanges = false
         pledgingWallets.forEach {
-            it?:return@forEach
-            val transactionReceipt = checkPledgeTransactionStatus(it.txHash)?:return@forEach
+            it ?: return@forEach
+            val transactionReceipt = checkPledgeTransactionStatus(it.txHash) ?: return@forEach
             val status = transactionReceipt.status
-            if (status!=2){
+            if (status != 2) {
                 anyChanges = true
                 StakingConfiguration.pledgeComplete(context, it.txHash)
+            }
+            if (status == 0) {
+                dataCenter.stakingFailed.value = true
             }
         }
         return anyChanges
     }
 
     @WorkerThread
-    private fun checkPledgeTransactionStatus(hash:String): NasTransactionReceipt?{
+    private fun checkPledgeTransactionStatus(hash: String): NasTransactionReceipt? {
         val api = NASHttpManager.getApi()
-        var transactionReceipt: NasTransactionReceipt?=null
+        var transactionReceipt: NasTransactionReceipt? = null
         var retryCount = 0
-        while (transactionReceipt==null && retryCount<3) {
+        while (transactionReceipt == null && retryCount < 3) {
             val response = api.getTransactionReceipt(mapOf("hash" to hash)).execute()
             val errorBody = response.errorBody()
             val errorString = errorBody?.string()
-            if (errorString?.contains("transaction not found", true)==true){
+            if (errorString?.contains("transaction not found", true) == true) {
                 return NasTransactionReceipt().apply {
                     this.hash = hash
                     this.status = 0
@@ -189,12 +192,12 @@ class StakingDashboardController(lifecycleOwner: LifecycleOwner,
     private fun getStakingSummaryInfo(): StakingSummary? {
         val builder = StringBuilder()
         DataCenter.addresses.forEach {
-            if (it.platform==Walletcore.NAS){
+            if (it.platform == Walletcore.NAS) {
                 builder.append(it.address).append(",")
             }
         }
-        if (builder.isNotEmpty()){
-            builder.deleteCharAt(builder.length-1)
+        if (builder.isNotEmpty()) {
+            builder.deleteCharAt(builder.length - 1)
         }
         val addresses = builder.toString()
         val api = HttpManager.getServerApi()

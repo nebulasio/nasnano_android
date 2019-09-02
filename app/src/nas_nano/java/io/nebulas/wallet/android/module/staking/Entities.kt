@@ -1,17 +1,19 @@
 package io.nebulas.wallet.android.module.staking
 
-class Info {
+import io.nebulas.wallet.android.base.BaseEntity
+
+class Info: BaseEntity() {
     var value: String? = null
     var t: String? = null
 }
 
-class PledgeDetail {
+class PledgeDetail: BaseEntity() {
     var address: String? = null
     var info: Info? = null
 }
 
 
-class StageInfo {
+class StageInfo: BaseEntity() {
     var pledged_nas: String? = null
     var total_nas: String? = null
     var estimate_nax: String? = null
@@ -19,25 +21,25 @@ class StageInfo {
     var last_distributed_nax: String? = null
 }
 
-class ProfitsInfo {
+class ProfitsInfo: BaseEntity() {
     var last_profits: Map<String, String>? = null
     var total_profits: String? = null
     var last_total_profits: String? = null
 }
 
-class StakingSummary {
+class StakingSummary: BaseEntity() {
     var stage: StageInfo? = null
     var profits: ProfitsInfo? = null
 }
 
 
-class ProfitRecord {
+class ProfitRecord: BaseEntity() {
     var profit: String? = null
     var stage: Int = -1
     var timestamp: Long = 0
 }
 
-class AddressProfits {
+class AddressProfits: BaseEntity() {
     var total_profits: String? = null
     var total_count: Int = 0
     var total_page: Int = 0

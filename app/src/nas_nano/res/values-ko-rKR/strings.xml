@@ -620,4 +620,6 @@
 	<string name="text_information_notification">소식 알림</string>
         <string name="title_vote">투표</string>
 	<string name="text_max_amount">최대 금액</string>
+
+	<string name="text_pledge">서약</string>
 </resources>

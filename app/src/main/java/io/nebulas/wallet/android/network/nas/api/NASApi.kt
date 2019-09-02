@@ -1,5 +1,6 @@
 package io.nebulas.wallet.android.network.nas.api
 
+import io.nebulas.wallet.android.base.BaseEntity
 import io.nebulas.wallet.android.common.URLConstants
 import io.nebulas.wallet.android.module.transaction.model.BlockStateModel
 import io.nebulas.wallet.android.network.nas.model.*
@@ -50,9 +51,9 @@ interface NASApi {
             val gasPrice:String,
             val gasLimit:String,
             val contract:Map<String, String>
-    )
+    ):BaseEntity()
 
-    class CallResponse{
+    class CallResponse:BaseEntity(){
         var result:String?=null
     }
     @POST(URLConstants.NAS_CALL)

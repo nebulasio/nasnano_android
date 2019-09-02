@@ -21,6 +21,7 @@ import io.nebulas.wallet.android.module.staking.StakingConfiguration
 import io.nebulas.wallet.android.module.staking.detail.WalletStakingDetailActivity
 import io.nebulas.wallet.android.module.wallet.create.model.Wallet
 import kotlinx.android.synthetic.nas_nano.activity_stacking.*
+import org.jetbrains.anko.toast
 import walletcore.Walletcore
 import java.math.BigDecimal
 
@@ -97,6 +98,11 @@ class StakingDashboardActivity : BaseActivity(), StakingDashboardAdapter.ActionL
     private fun bind() {
         dataCenter.isLoading.observe(this) {
             swipeRefreshLayout.isRefreshing = it ?: false
+        }
+        dataCenter.stakingFailed.observe(this) {
+            if (it==true) {
+                toast("质押失败")
+            }
         }
         dataCenter.error.observe(this) {
             it ?: return@observe

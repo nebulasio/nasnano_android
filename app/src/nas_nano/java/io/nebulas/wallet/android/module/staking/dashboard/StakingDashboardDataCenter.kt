@@ -7,17 +7,17 @@ import io.nebulas.wallet.android.module.staking.PledgeDetail
 import io.nebulas.wallet.android.module.staking.StakingConfiguration
 import io.nebulas.wallet.android.module.staking.StakingSummary
 
-class StakingDashboardDataCenter: DataCenterViewModel() {
+class StakingDashboardDataCenter : DataCenterViewModel() {
 
     companion object {
         const val EVENT_DATA_SOURCE_CHANGED = "event_data_source_changed"
     }
 
-    val error:Data<String> = Data("")
+    val error: Data<String> = Data("")
 
-    val isLoading:Data<Boolean> = Data(true)
+    val isLoading: Data<Boolean> = Data(true)
 
-    var pledgeDetailList:List<PledgeDetail> = emptyList()
+    var pledgeDetailList: List<PledgeDetail> = emptyList()
         set(value) {
             field = value
             notifyDataChanged(EVENT_DATA_SOURCE_CHANGED)
@@ -25,7 +25,9 @@ class StakingDashboardDataCenter: DataCenterViewModel() {
 
     val stakingSummary: Data<StakingSummary> = Data(null)
 
-    var inOperationWallets:List<StakingConfiguration.PledgingWalletWrapper> = emptyList()
+    val stakingFailed: Data<Boolean> = Data(false)
+
+    var inOperationWallets: List<StakingConfiguration.PledgingWalletWrapper> = emptyList()
         set(value) {
             field = value
             logD("XXXXXXX: $value")
