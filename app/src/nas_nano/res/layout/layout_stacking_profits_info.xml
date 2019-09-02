@@ -3,6 +3,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:orientation="vertical"
         android:padding="14dp">
 
@@ -23,7 +24,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="29dp"
-                                android:text="累计质押收益(NAX)"
+                                android:text="@string/text_total_pledge_profits"
                                 android:textColor="@color/color_999999"
                                 android:textSize="12sp" />
 
@@ -32,7 +33,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:id="@+id/tvTotalProfits"
-                                android:text="100,666,888"
+                                tools:text="100,666,888"
                                 android:textColor="@color/black"
                                 android:textSize="32sp" />
 
@@ -44,7 +45,7 @@
                                 <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="昨日收益"
+                                        android:text="@string/text_last_profit"
                                         android:textColor="@color/color_666666"
                                         android:textSize="14sp" />
 
@@ -54,7 +55,7 @@
                                         android:id="@+id/tvLastProfit"
                                         android:paddingStart="3dp"
                                         android:paddingEnd="3dp"
-                                        android:text="300,22"
+                                        tools:text="300,22"
                                         android:textColor="#ff9d25"
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
@@ -84,7 +85,7 @@
                                         <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:text="全网质押率"
+                                                android:text="@string/text_overall_pledged_rate"
                                                 android:textColor="@color/color_999999"
                                                 android:textSize="11sp" />
 
@@ -92,7 +93,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:id="@+id/tvPledgeRate"
-                                                android:text="45%"
+                                                tools:text="45%"
                                                 android:textColor="@color/black"
                                                 android:textSize="14sp" />
                                 </LinearLayout>
@@ -114,7 +115,7 @@
                                         <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:text="今日预发行量"
+                                                android:text="@string/text_estimate_distribute"
                                                 android:textColor="@color/color_999999"
                                                 android:textSize="11sp" />
 
@@ -122,7 +123,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:id="@+id/tvEstimateNax"
-                                                android:text="9,999,888"
+                                                tools:text="9,999,888"
                                                 android:textColor="@color/black"
                                                 android:textSize="14sp" />
                                 </LinearLayout>
@@ -147,7 +148,7 @@
                                         <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:text="昨日销毁量"
+                                                android:text="@string/text_last_destroyed"
                                                 android:textColor="@color/color_999999"
                                                 android:textSize="11sp" />
 
@@ -155,7 +156,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:id="@+id/tvLastDestroyedNax"
-                                                android:text="6,000,000"
+                                                tools:text="6,000,000"
                                                 android:textColor="@color/black"
                                                 android:textSize="14sp" />
                                 </LinearLayout>
@@ -177,7 +178,7 @@
                                         <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:text="昨日发行量"
+                                                android:text="@string/text_last_distribute"
                                                 android:textColor="@color/color_999999"
                                                 android:textSize="11sp" />
 
@@ -185,7 +186,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:id="@+id/tvLastDistributedNax"
-                                                android:text="6,000,000"
+                                                tools:text="6,000,000"
                                                 android:textColor="@color/black"
                                                 android:textSize="14sp" />
                                 </LinearLayout>

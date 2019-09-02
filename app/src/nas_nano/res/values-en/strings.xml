@@ -622,4 +622,12 @@
 	<string name="text_max_amount">Max Amount</string>
 
 	<string name="text_pledge">Pledge</string>
+	<string name="text_start_pledge">Start Pledge</string>
+	<string name="text_total_pledge_profits">Accumulated Pledge Income(NAX)</string>
+	<string name="text_last_profit">Previous-Period Income</string>
+	<string name="text_overall_pledged_rate">Overall NAS Pledge Rate</string>
+	<string name="text_estimate_distribute">Current-Period Issuable</string>
+	<string name="text_last_destroyed">Previous-Period Burnt</string>
+	<string name="text_last_distribute">Previous-Period Issuance</string>
+	<string name="text_pledged_wallets">Pledged Wallets</string>
 </resources>

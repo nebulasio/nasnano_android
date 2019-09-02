@@ -64,7 +64,7 @@ class PledgeActivity : BaseActivity() {
     override fun initView() {
         showBackBtn(true, toolbar)
         titleTV.textSize = 18f
-        titleTV.text = "NAS 质押"
+        titleTV.text = getString(R.string.text_start_pledge)
         tvChangeWallet.setOnClickListener {
             changeWallet()
         }

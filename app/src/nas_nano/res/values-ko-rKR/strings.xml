@@ -622,4 +622,12 @@
 	<string name="text_max_amount">최대 금액</string>
 
 	<string name="text_pledge">서약</string>
+	<string name="text_start_pledge">서약 시작</string>
+	<string name="text_total_pledge_profits">누적 스테이킹 소득(NAX)</string>
+	<string name="text_last_profit">이전 배포량</string>
+	<string name="text_overall_pledged_rate">전체 네트워크의 스테이킹 서약율</string>
+	<string name="text_estimate_distribute">이전 사이클에 발행된 토큰들</string>
+	<string name="text_last_destroyed">이전 사이클에 소멸된 금액</string>
+	<string name="text_last_distribute">이전 발행 토큰 물량</string>
+	<string name="text_pledged_wallets">스테이킹 서약 주소</string>
 </resources>

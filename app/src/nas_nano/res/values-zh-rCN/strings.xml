@@ -622,4 +622,12 @@
         <string name="text_max_amount">最大金额</string>
 
 	<string name="text_pledge">质押</string>
+	<string name="text_start_pledge">开始质押</string>
+	<string name="text_total_pledge_profits">累计质押收益(NAX)</string>
+	<string name="text_last_profit">上一期收益</string>
+	<string name="text_overall_pledged_rate">全网质押率</string>
+	<string name="text_estimate_distribute">本期预发行量</string>
+	<string name="text_last_destroyed">上一期销毁量</string>
+	<string name="text_last_distribute">上一期发行量</string>
+	<string name="text_pledged_wallets">已质押钱包</string>
 </resources>
