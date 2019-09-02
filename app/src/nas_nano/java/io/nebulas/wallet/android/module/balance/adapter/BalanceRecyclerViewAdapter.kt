@@ -21,16 +21,21 @@ import io.nebulas.wallet.android.common.Constants
 import io.nebulas.wallet.android.common.Constants.voteContracts
 import io.nebulas.wallet.android.common.DataCenter
 import io.nebulas.wallet.android.common.firebaseAnalytics
+import io.nebulas.wallet.android.configuration.Configuration
 import io.nebulas.wallet.android.databinding.ItemBalanceRecyclerviewBinding
 import io.nebulas.wallet.android.dialog.NasBottomListDialog
+import io.nebulas.wallet.android.image.ImageUtil
 import io.nebulas.wallet.android.module.balance.BalanceFragment
 import io.nebulas.wallet.android.module.balance.ScreeningItemHelper
 import io.nebulas.wallet.android.module.balance.model.BalanceListModel
 import io.nebulas.wallet.android.module.wallet.create.CreateWalletActivity
 import io.nebulas.wallet.android.module.wallet.create.model.Wallet
 import io.nebulas.wallet.android.module.wallet.manage.WalletBackupActivity
+import io.nebulas.wallet.android.util.Util
+import org.jetbrains.anko.dip
 import org.jetbrains.anko.find
 import java.lang.Exception
+import kotlin.math.roundToInt
 
 /**
  * Created by Heinoc on 2018/2/26.
@@ -80,6 +85,21 @@ class BalanceRecyclerViewAdapter(context: Context) : BaseBindingAdapter<BalanceL
         super.onBindViewHolder(holder, position)
 
         if (holder is BalanceViewHolder) {
+            val isStaking = items[position].isStacking
+            if (isStaking) {
+                val lang = Util.getCurLanguage()
+//                holder.iv_stacking.setImageResource(when(lang) {
+//                    "cn"->R.drawable.banner_nax_cn
+//                    "en"->R.drawable.banner_nax_en
+//                    "kr"->R.drawable.banner_nax_kr
+//                    else->R.drawable.banner_nax_en
+//                })
+                val url = Configuration.getStakingBannerUrl(lang)
+                val sWidth = Util.screenWidth(context) - context.dip(18+18)
+                val height = (sWidth/3.57).roundToInt()
+                holder.iv_stacking.layoutParams.height = height
+                ImageUtil.load(context, holder.iv_stacking, url, R.drawable.banner_default_for_loading, R.drawable.banner_default_for_loading)
+            }
             /**
              * 动画效果
              */
@@ -123,10 +143,6 @@ class BalanceRecyclerViewAdapter(context: Context) : BaseBindingAdapter<BalanceL
                 }
 
             }
-
-//            holder.iv_stacking.setOnClickListener {
-//                StakingDashboardActivity.launch(context)
-//            }
 
             holder.backupLayout.setOnClickListener {
 

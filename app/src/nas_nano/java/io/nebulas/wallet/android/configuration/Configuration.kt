@@ -9,14 +9,17 @@ object Configuration {
     private const val KEY_TRANSACTION_NOTIFICATION_ENABLED = "key_transaction_notification_enabled"
     private const val KEY_NOTICE_NOTIFICATION_ENABLED = "key_notice_notification_enabled"
 
+    private val configurationsFromServer = mutableMapOf<String, String>()
+
     fun enableFingerprint(context: Context) {
         setFingerprintEnabled(context, true)
     }
+
     fun disableFingerprint(context: Context) {
         setFingerprintEnabled(context, false)
     }
 
-    fun isFingerprintEnabled(context: Context):Boolean {
+    fun isFingerprintEnabled(context: Context): Boolean {
         val preferences = context.getSharedPreferences(FILE_CONFIGURATION, Context.MODE_PRIVATE or Context.MODE_MULTI_PROCESS)
         return preferences.getBoolean(KEY_FINGERPRINT_ENABLED, false)
     }
@@ -61,11 +64,33 @@ object Configuration {
                 .apply()
     }
 
-    private fun setFingerprintEnabled(context:Context, isEnabled:Boolean){
+    private fun setFingerprintEnabled(context: Context, isEnabled: Boolean) {
         val preferences = context.getSharedPreferences(FILE_CONFIGURATION, Context.MODE_PRIVATE or Context.MODE_MULTI_PROCESS)
         preferences.edit()
                 .putBoolean(KEY_FINGERPRINT_ENABLED, isEnabled)
                 .apply()
+    }
+
+    private const val KEY_STAKING_STATUS = "staking_status"
+    private const val KEY_STAKING_BANNER_URL = "staking_banner_url"
+
+    fun resetConfigurationsFromServer(newConfigurations: Map<String, String>?) {
+        newConfigurations ?: return
+        for ((k, v) in newConfigurations) {
+            configurationsFromServer[k] = v
+        }
+    }
+
+    fun isStakingOpened(): Boolean {
+        val status = configurationsFromServer[KEY_STAKING_STATUS] ?: return true
+        return status == "1"
+    }
+
+    /**
+     * @param lang 当前App语言(en/cn/kr)
+     */
+    fun getStakingBannerUrl(lang:String): String {
+        return configurationsFromServer["${KEY_STAKING_BANNER_URL}_$lang"] ?: return ""
     }
 
 }

@@ -7,6 +7,7 @@ import com.alibaba.fastjson.JSON
 import com.young.binder.lifecycle.LifecycleController
 import io.nebulas.wallet.android.R
 import io.nebulas.wallet.android.common.DataCenter
+import io.nebulas.wallet.android.extensions.logD
 import io.nebulas.wallet.android.module.staking.PledgeDetail
 import io.nebulas.wallet.android.module.staking.StakingConfiguration
 import io.nebulas.wallet.android.module.staking.StakingContractHolder
@@ -137,7 +138,16 @@ class StakingDashboardController(lifecycleOwner: LifecycleOwner,
         var retryCount = 0
         while (transactionReceipt==null && retryCount<3) {
             val response = api.getTransactionReceipt(mapOf("hash" to hash)).execute()
-            transactionReceipt = response.body()?.result
+            val errorBody = response.errorBody()
+            val errorString = errorBody?.string()
+            if (errorString?.contains("transaction not found", true)==true){
+                return NasTransactionReceipt().apply {
+                    this.hash = hash
+                    this.status = 0
+                }
+            }
+            val nasResponse = response.body()
+            transactionReceipt = nasResponse?.result
             retryCount++
         }
         return transactionReceipt

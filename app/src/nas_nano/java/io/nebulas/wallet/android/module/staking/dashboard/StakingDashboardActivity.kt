@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.young.binder.whenEvent
 import com.young.polling.SyncManager
 import io.nebulas.wallet.android.R
@@ -37,6 +38,10 @@ class StakingDashboardActivity : BaseActivity(), StakingDashboardAdapter.ActionL
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (window.decorView.systemUiVisibility != View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE) {
+            //状态栏图标和文字颜色为浅色
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        }
         dataCenter = ViewModelProviders.of(this).get(StakingDashboardDataCenter::class.java)
         controller = StakingDashboardController(this, this, dataCenter)
         adapter = StakingDashboardAdapter(this, this, dataCenter)
@@ -44,15 +49,18 @@ class StakingDashboardActivity : BaseActivity(), StakingDashboardAdapter.ActionL
     }
 
     override fun initView() {
-        showBackBtn(toolbar = toolbar)
-        tvTitle.text = "质押"
+        ibGoBack.setOnClickListener {
+            finish()
+        }
+        ibHelp.setOnClickListener {
+            showHelpDialog()
+        }
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
         swipeRefreshLayout.setOnRefreshListener {
             controller.loadData()
         }
         bind()
-//        controller.loadData()
     }
 
     override fun onStart() {
@@ -60,35 +68,6 @@ class StakingDashboardActivity : BaseActivity(), StakingDashboardAdapter.ActionL
         dataCenter.isLoading.value = true
         controller.loadData()
         controller.sync()
-    }
-
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        when(requestCode) {
-//            RequestCodes.CODE_PLEDGE_ACTIVITY -> {
-////                if (resultCode== Activity.RESULT_OK){
-//                    dataCenter.isLoading.value = true
-//                    controller.loadData()
-////                } else {
-////                    dataCenter.inOperationWallets = StakingConfiguration.getPledgingWallets(this)
-////                }
-//            }
-//        }
-//    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_help, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        item ?: return false
-        when (item.itemId) {
-            R.id.actionHelp -> {
-                showHelpDialog()
-            }
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     override fun actionPledge() {

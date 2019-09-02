@@ -21,6 +21,7 @@ import io.nebulas.wallet.android.common.Constants
 import io.nebulas.wallet.android.common.DataCenter
 import io.nebulas.wallet.android.common.firebaseAnalytics
 import io.nebulas.wallet.android.common.mainHandler
+import io.nebulas.wallet.android.configuration.Configuration
 import io.nebulas.wallet.android.db.DBUtil
 import io.nebulas.wallet.android.extensions.errorToast
 import io.nebulas.wallet.android.module.balance.adapter.BalanceRecyclerViewAdapter
@@ -396,13 +397,22 @@ class BalanceFragment : BaseFragment() {
     @Synchronized
     private fun refreshAdapterItems(items: MutableList<BalanceListModel>) {
 
-        if (items.isNotEmpty()) {
-            val first = items[0]
-            if (!first.isStacking) {
+        if (Configuration.isStakingOpened()) {
+            if (items.isNotEmpty()) {
+                val first = items[0]
+                if (!first.isStacking) {
+                    items.add(0, BalanceListModel(isStacking = true))
+                }
+            } else {
                 items.add(0, BalanceListModel(isStacking = true))
             }
         } else {
-            items.add(0, BalanceListModel(isStacking = true))
+            if (items.isNotEmpty()) {
+                val first = items[0]
+                if (first.isStacking) {
+                    items.removeAt(0)
+                }
+            }
         }
 
         /**

@@ -34,6 +34,11 @@ object URLConstants {
     const val VERSION = "api/v1/config/version"
 
     /**
+     * 获取所有配置信息
+     */
+    const val CONFIGURATION = "api/v1/config"
+
+    /**
      * 首页feed流
      */
     const val FEED_FLOW = "api/v1/feedflow/active"

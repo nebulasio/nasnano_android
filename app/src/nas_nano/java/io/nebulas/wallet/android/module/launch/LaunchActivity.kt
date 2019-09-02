@@ -25,6 +25,7 @@ import io.nebulas.wallet.android.module.main.MainActivity
 import io.nebulas.wallet.android.module.verification.LaunchWalletPasswordVerifyActivity
 import io.nebulas.wallet.android.module.vote.VoteActivity
 import io.nebulas.wallet.android.module.wallet.create.viewmodel.WalletViewModel
+import io.nebulas.wallet.android.network.server.HttpManager
 import io.nebulas.wallet.android.push.message.KEY_PUSH_MESSAGE
 import io.nebulas.wallet.android.push.message.Message
 import io.nebulas.wallet.android.push.message.PushManager
@@ -67,6 +68,8 @@ class LaunchActivity : BaseActivity(), FingerprintVerifyDialog.ActionListener {
 
     private lateinit var viewModel: WalletViewModel
     private var hasVerified = false
+    private var animationFinished = false
+    private var configurationsLoaded = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -147,6 +150,7 @@ class LaunchActivity : BaseActivity(), FingerprintVerifyDialog.ActionListener {
             }
             uiThread {
                 startAnim()
+                getConfigurations()
             }
         }
     }
@@ -213,7 +217,8 @@ class LaunchActivity : BaseActivity(), FingerprintVerifyDialog.ActionListener {
                 .delay(1200L)
                 .withInterpolator(AccelerateDecelerateInterpolator())
                 .doOnEnd {
-                    dispatch()
+                    animationFinished = true
+                    goNext()
                 }
                 .start()
     }
@@ -224,8 +229,35 @@ class LaunchActivity : BaseActivity(), FingerprintVerifyDialog.ActionListener {
         verifyWalletPassword()
     }
 
+    private fun getConfigurations(){
+        doAsync {
+            try {
+                val api = HttpManager.getServerApi()
+                var configurations: Map<String, String>? = null
+                var retryCount = 0
+                while (configurations == null && retryCount < 3) {
+                    val response = api.getConfigurations(HttpManager.getHeaderMap()).execute()
+                    configurations = response.body()?.data
+                    retryCount++
+                }
+                Configuration.resetConfigurationsFromServer(configurations)
+            }catch (e:Exception){
+
+            }finally {
+                configurationsLoaded = true
+                goNext()
+            }
+        }
+    }
+
     private fun verifyWalletPassword() {
         LaunchWalletPasswordVerifyActivity.launch(this, REQUEST_CODE_PASSWORD_VERIFICATION)
+    }
+
+    private fun goNext(){
+        if (animationFinished && configurationsLoaded) {
+            dispatch()
+        }
     }
 
     private var fingerprintVerifyDialog: FingerprintVerifyDialog? = null

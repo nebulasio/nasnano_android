@@ -53,7 +53,6 @@ class PledgeActivity : BaseActivity() {
         setContentView(R.layout.activity_pledge)
         bind()
         initData()
-//        controller.loadData()
     }
 
     private fun initData() {
@@ -64,11 +63,12 @@ class PledgeActivity : BaseActivity() {
 
     override fun initView() {
         showBackBtn(true, toolbar)
+        titleTV.textSize = 18f
         titleTV.text = "NAS 质押"
         tvChangeWallet.setOnClickListener {
             changeWallet()
         }
-        tvConfirmPledge.setOnClickListener {
+        layoutConfirmPledge.setOnClickListener {
             val nas = etPledgeValue.text.toString()
             controller.pledge(nas, "000000")
         }
@@ -120,7 +120,7 @@ class PledgeActivity : BaseActivity() {
         dataCenter.walletData.observe(this, true) {
             it ?: return@observe
             ivWalletIcon.setImageDrawable(getWalletColorCircleDrawable(this@PledgeActivity,
-                    it.id, it.walletName[0]))
+                    it.id, it.walletName[0], 20))
             tvWalletName.text = it.walletName
             tvBalance.text = "余额：${getBalance(it)} NAS"
             if (it.isNeedBackup()) {
@@ -163,21 +163,24 @@ class PledgeActivity : BaseActivity() {
             val status = it ?: PledgeDataCenter.ButtonStatus.Disabled
             when (status) {
                 PledgeDataCenter.ButtonStatus.Disabled -> {
-                    tvConfirmPledge.isEnabled = false
+                    layoutConfirmPledge.isEnabled = false
                     tvConfirmPledge.text = "确认质押"
+                    progressBarOnButton.visibility = View.GONE
                     etPledgeValue.isEnabled = true
                     tvChangeWallet.isClickable = true
                 }
                 PledgeDataCenter.ButtonStatus.Enabled -> {
-                    tvConfirmPledge.isEnabled = true
+                    layoutConfirmPledge.isEnabled = true
                     tvConfirmPledge.text = "确认质押"
+                    progressBarOnButton.visibility = View.GONE
                     etPledgeValue.isEnabled = true
                     tvChangeWallet.isClickable = true
                 }
                 PledgeDataCenter.ButtonStatus.UploadingToChain -> {
-                    tvConfirmPledge.isEnabled = true
-                    tvConfirmPledge.isClickable = false
+                    layoutConfirmPledge.isEnabled = true
+                    layoutConfirmPledge.isClickable = false
                     tvConfirmPledge.text = "上链中"
+                    progressBarOnButton.visibility = View.VISIBLE
                     etPledgeValue.isEnabled = false
                     tvChangeWallet.isClickable = false
                 }

@@ -214,4 +214,10 @@ interface ServerApi {
                        @Query("address") address: String,
                        @Query("page") page: Int,
                        @Query("pageSize") pageSize: Int = 10): Call<ApiResponse<AddressProfits>>
+
+    /**
+     * 获取配置信息
+     */
+    @GET(URLConstants.CONFIGURATION)
+    fun getConfigurations(@HeaderMap headers: Map<String, String>): Call<ApiResponse<Map<String, String>>>
 }

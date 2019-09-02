@@ -174,7 +174,7 @@ class StakingDashboardAdapter(private val context: Context,
             } else {
                 wallet.walletName[0]
             }
-            ivWalletIcon.setImageDrawable(getWalletColorCircleDrawable(context, wallet.id, c))
+            ivWalletIcon.setImageDrawable(getWalletColorCircleDrawable(context, wallet.id, c, 20))
             tvWalletName.text = wallet.walletName
             val address = DataCenter.addresses.find { it.walletId == wallet.id && it.platform == Walletcore.NAS }
             address ?: return

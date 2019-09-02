@@ -25,10 +25,10 @@
 
                 <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="95dp"
                         android:scaleType="fitXY"
                         android:id="@+id/iv_stacking"
-                        android:src="@mipmap/ic_launcher_round"
+                        android:src="@drawable/banner_default_for_loading"
                         android:visibility='@{item.stacking ? View.VISIBLE : View.GONE}'/>
 
                 <!--换币入口-->

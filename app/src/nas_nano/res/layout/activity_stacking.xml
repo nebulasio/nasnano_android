@@ -1,60 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:fitsSystemWindows="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:background="#f3f2f7"
         tools:context="io.nebulas.wallet.android.module.staking.dashboard.StakingDashboardActivity">
 
-        <android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
+        <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fitsSystemWindows="true"
-                app:elevation="0dp"
-                app:layout_behavior="io.nebulas.wallet.android.view.research.FixAppBarLayoutBehavior">
+                android:layout_marginTop="-5dp"
+                android:fitsSystemWindows="false"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_staking_home"/>
 
-                <android.support.v7.widget.Toolbar
-                        android:id="@+id/toolbar"
-                        android:layout_width="match_parent"
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/toolbar_height"
+                android:layout_marginTop="20dp"
+                android:id="@+id/layoutHeader">
+
+                <ImageButton
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="#fff14d12"
-                        android:fitsSystemWindows="true"
-                        app:layout_scrollFlags="scroll|enterAlways">
+                        android:id="@+id/ibGoBack"
+                        android:layout_marginStart="10dp"
+                        android:padding="8dp"
+                        android:background="@color/transparent"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/backarrow_white"/>
 
-                        <android.support.v7.widget.ActionMenuView
-                                android:id="@+id/actionMenuView"
-                                style="@style/ActionMenuBtnStyle"
-                                android:layout_width="wrap_content"
-                                android:layout_height="44dp"
-                                android:visibility="gone" />
+                <TextView
+                        android:id="@+id/tvTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text="质押"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-                        <TextView
-                                android:id="@+id/tvTitle"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/toolbar_height"
-                                android:layout_gravity="center|top"
-                                android:gravity="center"
-                                android:singleLine="true"
-                                android:textColor="@color/white"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
+                <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ibHelp"
+                        android:padding="8dp"
+                        android:background="@color/transparent"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="18dp"
+                        android:src="@drawable/ic_help"/>
+        </RelativeLayout>
 
-
-                </android.support.v7.widget.Toolbar>
-
-        </android.support.design.widget.AppBarLayout>
 
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#f3f2f7">
-
-                <View
-                        android:layout_width="match_parent"
-                        android:layout_height="300dp"
-                        android:background="@drawable/bg_gradient_stacking" />
+                android:layout_below="@id/layoutHeader">
 
                 <android.support.v4.widget.SwipeRefreshLayout
                         android:layout_width="match_parent"
@@ -67,4 +73,4 @@
                                 android:layout_height="match_parent" />
                 </android.support.v4.widget.SwipeRefreshLayout>
         </RelativeLayout>
-</LinearLayout>
+</RelativeLayout>
