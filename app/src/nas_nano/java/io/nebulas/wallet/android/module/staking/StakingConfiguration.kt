@@ -59,7 +59,6 @@ object StakingConfiguration {
     fun pledgeComplete(context: Context, txHash: String) {
         val pref = getConfigPreference(context)
         val pledgingWallets = pref.getStringSet(KEY_PLEDGING_WALLETS, mutableSetOf())
-        logD("XXXXXXX - pledgeComplete - 1: $pledgingWallets")
         val iterator = pledgingWallets.iterator()
         while (iterator.hasNext()) {
             val item = iterator.next()
@@ -72,7 +71,6 @@ object StakingConfiguration {
                 }
             }
         }
-        logD("XXXXXXX - pledgeComplete - 2: $pledgingWallets")
         pref.edit().remove(KEY_PLEDGING_WALLETS).apply()
         pref.edit().putStringSet(KEY_PLEDGING_WALLETS, pledgingWallets).apply()
     }

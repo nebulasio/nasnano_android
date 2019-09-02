@@ -24,7 +24,7 @@ data class StakingContractsResponse(var stakingProxy: String? = null,
         val content = builder.toString()
         val md5 = DigestUtils.md5Encode(content)
         logD("验证内容：$content")
-        logD("验证结果：$verification - $md5")
+        logD("验证结果：{Server: $verification} - {Local: $md5}")
         return verification == md5
     }
 }

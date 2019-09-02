@@ -82,18 +82,18 @@ object HttpManager {
     }
 
     fun getHeaderMap(): Map<String, String> {
-        this.headerMap["Content-Type"] = "application/json"
-        this.headerMap["Accept"] = "application/json;charset=UTF-8"
-        this.headerMap["x-neb-os"] = "android"
-        this.headerMap["x-neb-appid"] = "nasnano"
-        this.headerMap["x-neb-version"] = Util.appVersion(WalletApplication.INSTANCE)
-        this.headerMap["x-neb-cunit"] = Constants.CURRENCY_SYMBOL_NAME
-        this.headerMap["x-neb-language"] = Util.getCurLanguage()
-        this.headerMap["x-neb-deviceid"] = WalletApplication.INSTANCE.uuid
-        this.headerMap["x-neb-channel"] = WalletApplication.INSTANCE.channel
-        this.headerMap["x-neb-model"] = Build.MODEL
-
-        return this.headerMap
+        val map = mutableMapOf<String, String>()
+        map["Content-Type"] = "application/json"
+        map["Accept"] = "application/json;charset=UTF-8"
+        map["x-neb-os"] = "android"
+        map["x-neb-appid"] = "nasnano"
+        map["x-neb-version"] = Util.appVersion(WalletApplication.INSTANCE)
+        map["x-neb-cunit"] = Constants.CURRENCY_SYMBOL_NAME
+        map["x-neb-language"] = Util.getCurLanguage()
+        map["x-neb-deviceid"] = WalletApplication.INSTANCE.uuid
+        map["x-neb-channel"] = WalletApplication.INSTANCE.channel
+        map["x-neb-model"] = Build.MODEL
+        return map
 
     }
 

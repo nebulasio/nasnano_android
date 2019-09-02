@@ -10,10 +10,15 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import io.nebulas.wallet.android.R
 import io.nebulas.wallet.android.base.BaseActivity
+import io.nebulas.wallet.android.common.DataCenter
+import io.nebulas.wallet.android.common.PASSWORD_TYPE_COMPLEX
+import io.nebulas.wallet.android.common.PASSWORD_TYPE_SIMPLE
 import io.nebulas.wallet.android.dialog.CommonCenterDialog
+import io.nebulas.wallet.android.dialog.VerifyPasswordDialog
 import kotlinx.android.synthetic.nas_nano.activity_wallet_stacking_detail.*
 import kotlinx.android.synthetic.nas_nano.app_bar_main_no_underline.*
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.doAsync
+import walletcore.Walletcore
 import java.util.*
 
 class WalletStakingDetailActivity : BaseActivity(), WalletStakingDetailAdapter.ActionListener {
@@ -136,6 +141,31 @@ class WalletStakingDetailActivity : BaseActivity(), WalletStakingDetailAdapter.A
     }
 
     private fun cancelPledge() {
-        controller.cancelPledge("000000")
+        showPasswordDialog()
+    }
+
+    private var verifyPasswordDialog: VerifyPasswordDialog? = null
+    private fun showPasswordDialog() {
+        val addressStr = dataCenter.address.value?:return
+        val address = DataCenter.addresses.find { it.platform==Walletcore.NAS && it.address==addressStr }?:return
+        val wallet = DataCenter.wallets.find { it.id==address.walletId }?:return
+        if (verifyPasswordDialog==null) {
+            verifyPasswordDialog = VerifyPasswordDialog(
+                    activity = this,
+                    title = getString(R.string.payment_password_text),
+                    passwordType = if (wallet.isComplexPwd) PASSWORD_TYPE_COMPLEX else PASSWORD_TYPE_SIMPLE,
+                    onNext = {
+                        verifyPasswordDialog?.dismiss()
+                        doAsync {
+                            controller.cancelPledge(it)
+                        }
+                    }
+            )
+        }
+        val dialog = verifyPasswordDialog?:return
+        if (dialog.isShowing){
+            return
+        }
+        dialog.show()
     }
 }

@@ -11,8 +11,11 @@ import android.view.View
 import io.nebulas.wallet.android.R
 import io.nebulas.wallet.android.base.BaseActivity
 import io.nebulas.wallet.android.common.DataCenter
+import io.nebulas.wallet.android.common.PASSWORD_TYPE_COMPLEX
+import io.nebulas.wallet.android.common.PASSWORD_TYPE_SIMPLE
 import io.nebulas.wallet.android.common.RequestCodes
 import io.nebulas.wallet.android.dialog.NasBottomListDialog
+import io.nebulas.wallet.android.dialog.VerifyPasswordDialog
 import io.nebulas.wallet.android.extensions.errorToast
 import io.nebulas.wallet.android.extensions.logD
 import io.nebulas.wallet.android.module.staking.StakingTools
@@ -22,6 +25,7 @@ import io.nebulas.wallet.android.util.Util
 import io.nebulas.wallet.android.util.getWalletColorCircleDrawable
 import kotlinx.android.synthetic.nas_nano.activity_pledge.*
 import kotlinx.android.synthetic.nas_nano.app_bar_main_no_underline.*
+import org.jetbrains.anko.doAsync
 import walletcore.Walletcore
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -69,8 +73,7 @@ class PledgeActivity : BaseActivity() {
             changeWallet()
         }
         layoutConfirmPledge.setOnClickListener {
-            val nas = etPledgeValue.text.toString()
-            controller.pledge(nas, "000000")
+            showPasswordDialog()
         }
         etPledgeValue.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -154,7 +157,7 @@ class PledgeActivity : BaseActivity() {
             tvGasFee.text = "${it ?: dataCenter.defaultEstimateGasFee} NAS 矿工费"
         }
         dataCenter.pledgeResult.observe(this) {
-            if (it==true) {
+            if (it == true) {
                 setResult(Activity.RESULT_OK)
                 finish()
             }
@@ -164,6 +167,7 @@ class PledgeActivity : BaseActivity() {
             when (status) {
                 PledgeDataCenter.ButtonStatus.Disabled -> {
                     layoutConfirmPledge.isEnabled = false
+                    layoutConfirmPledge.isClickable = false
                     tvConfirmPledge.text = "确认质押"
                     progressBarOnButton.visibility = View.GONE
                     etPledgeValue.isEnabled = true
@@ -171,6 +175,7 @@ class PledgeActivity : BaseActivity() {
                 }
                 PledgeDataCenter.ButtonStatus.Enabled -> {
                     layoutConfirmPledge.isEnabled = true
+                    layoutConfirmPledge.isClickable = true
                     tvConfirmPledge.text = "确认质押"
                     progressBarOnButton.visibility = View.GONE
                     etPledgeValue.isEnabled = true
@@ -229,5 +234,29 @@ class PledgeActivity : BaseActivity() {
                 },
                 onCustomBackPressed = {}
         )
+    }
+
+    private var verifyPasswordDialog: VerifyPasswordDialog? = null
+    private fun showPasswordDialog() {
+        val wallet = dataCenter.walletData.value ?: return
+        if (verifyPasswordDialog==null) {
+            verifyPasswordDialog = VerifyPasswordDialog(
+                    activity = this,
+                    title = getString(R.string.payment_password_text),
+                    passwordType = if (wallet.isComplexPwd) PASSWORD_TYPE_COMPLEX else PASSWORD_TYPE_SIMPLE,
+                    onNext = {
+                        verifyPasswordDialog?.dismiss()
+                        doAsync {
+                            val nas = etPledgeValue.text.toString()
+                            controller.pledge(nas, it)
+                        }
+                    }
+            )
+        }
+        val dialog = verifyPasswordDialog?:return
+        if (dialog.isShowing){
+            return
+        }
+        dialog.show()
     }
 }

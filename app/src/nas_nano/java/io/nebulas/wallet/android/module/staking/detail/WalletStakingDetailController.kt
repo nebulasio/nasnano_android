@@ -18,6 +18,7 @@ import io.nebulas.wallet.android.network.nas.model.ContractCall
 import io.nebulas.wallet.android.network.nas.model.EstimateGasRequest
 import io.nebulas.wallet.android.network.nas.model.NasAccountState
 import io.nebulas.wallet.android.network.server.HttpManager
+import io.nebulas.wallet.android.util.Formatter
 import org.jetbrains.anko.doAsync
 import walletcore.Payload
 import walletcore.Response
@@ -106,7 +107,7 @@ class WalletStakingDetailController(lifecycleOwner: LifecycleOwner,
                 return@doAsync
             }
             if (response.errorCode!=0L){
-                dataCenter.error.value = response.errorMsg
+                Formatter.formatWalletErrorMsg(context, response.errorMsg)
                 return@doAsync
             }
             val hash = sendTransaction(response.rawTransaction)

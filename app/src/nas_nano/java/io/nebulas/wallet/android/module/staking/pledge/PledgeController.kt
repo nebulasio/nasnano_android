@@ -21,6 +21,7 @@ import io.nebulas.wallet.android.network.nas.model.ContractCall
 import io.nebulas.wallet.android.network.nas.model.EstimateGasRequest
 import io.nebulas.wallet.android.network.nas.model.NasAccountState
 import io.nebulas.wallet.android.network.nas.model.NasTransactionReceipt
+import io.nebulas.wallet.android.util.Formatter
 import org.jetbrains.anko.doAsync
 import walletcore.Payload
 import walletcore.Response
@@ -99,7 +100,7 @@ class PledgeController(lifecycleOwner: LifecycleOwner,
                     return@doAsync
                 }
                 if (rawTransaction.errorCode!=0L){
-                    dataCenter.error.value = rawTransaction.errorMsg
+                    dataCenter.error.value = Formatter.formatWalletErrorMsg(context, rawTransaction.errorMsg)
                     dataCenter.buttonStatus.value = buttonStatusBackup
                     return@doAsync
                 }
