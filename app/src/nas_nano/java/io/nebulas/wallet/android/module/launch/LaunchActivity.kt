@@ -35,6 +35,8 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.uiThread
 import org.jetbrains.annotations.NotNull
+import walletcore.Payload
+import walletcore.Walletcore
 import kotlin.Boolean
 import kotlin.CharSequence
 import kotlin.Exception
@@ -381,6 +383,23 @@ class LaunchActivity : BaseActivity(), FingerprintVerifyDialog.ActionListener {
                 pushMessage= message)
 //        VoteActivity.launch(this)
         finish()
+
+
+//        val resp= Walletcore.getRawTransaction(Walletcore.NAS,
+//                "1",
+//                "n1PAC7rkWy478jZK2EgYbKAeu6vRwTArcfr",
+//                "860928",
+//                "{\"address\":\"n1PAC7rkWy478jZK2EgYbKAeu6vRwTArcfr\",\"crypto\":{\"cipher\":\"aes-128-ctr\",\"ciphertext\":\"fa0e805d6d5825b57cd013ce0bc11ac1c51118e24ff17b5ef07e9ae44b5db71d\",\"cipherparams\":{\"iv\":\"e9cf9771c8827622542a87fc97f639be\"},\"kdf\":\"scrypt\",\"kdfparams\":{\"dklen\":32,\"n\":4096,\"p\":1,\"r\":8,\"salt\":\"40016e24c9db569dbd6569c7aa91444425a84a1ea9e06b247d27b503d85813f6\"},\"mac\":\"b81a6d01422ab49159aff1e6f8eb6096f61a2621c1c49b0555d401f3aacf43a6\",\"machash\":\"sha3256\"},\"id\":\"f6a13f3a-db2d-4208-8a3e-3f76e851b29d\",\"version\":4}",
+//                "n1jv9xxNGejMFTxy6WCayhPgLC5uweroWnw",
+//                "5000000000000000000",
+//                "2",
+//                Payload(),
+//                "20000000000",
+//                "200000")
+//        println(resp.errorMsg)
+
+
+
     }
 
 }

@@ -9,5 +9,5 @@
         android:paddingEnd="18dp"
         android:textSize="15sp"
         android:textColor="@color/black"
-        android:text="收益记录"
+        android:text="@string/text_profits_record"
         android:background="@drawable/shape_round_corner_top_8dp_fafaff"/>

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="90dp"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_marginStart="18dp"
         android:layout_marginEnd="18dp"
         android:layout_marginTop="5dp"
@@ -18,14 +19,14 @@
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="质押NAS数量"
+                        android:text="@string/text_pledge_nas"
                         android:textSize="11sp"
                         android:textColor="@color/color_666666"/>
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tvPledgedNas"
-                        android:text="10K"
+                        tools:text="10K"
                         android:layout_marginTop="9dp"
                         android:textSize="17sp"
                         android:textColor="@color/black"/>
@@ -47,14 +48,14 @@
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="质押天数"
+                        android:text="@string/text_pledged_stage"
                         android:textSize="11sp"
                         android:textColor="@color/color_666666"/>
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tvPledgedAge"
-                        android:text="100"
+                        tools:text="100"
                         android:layout_marginTop="9dp"
                         android:textSize="17sp"
                         android:textColor="@color/black"/>
@@ -76,14 +77,14 @@
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="NAS总数量"
+                        android:text="@string/text_total_nas"
                         android:textSize="11sp"
                         android:textColor="@color/color_666666"/>
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tvTotalNas"
-                        android:text="102.6K"
+                        tools:text="102.6K"
                         android:layout_marginTop="9dp"
                         android:textSize="17sp"
                         android:textColor="@color/black"/>

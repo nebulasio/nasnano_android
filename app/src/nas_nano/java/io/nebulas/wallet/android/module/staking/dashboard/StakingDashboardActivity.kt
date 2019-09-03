@@ -1,24 +1,19 @@
 package io.nebulas.wallet.android.module.staking.dashboard
 
-import android.app.Activity
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import com.young.binder.whenEvent
-import com.young.polling.SyncManager
 import io.nebulas.wallet.android.R
 import io.nebulas.wallet.android.base.BaseActivity
 import io.nebulas.wallet.android.common.DataCenter
-import io.nebulas.wallet.android.common.RequestCodes
 import io.nebulas.wallet.android.extensions.errorToast
-import io.nebulas.wallet.android.module.staking.pledge.PledgeActivity
 import io.nebulas.wallet.android.module.staking.StakingConfiguration
 import io.nebulas.wallet.android.module.staking.detail.WalletStakingDetailActivity
+import io.nebulas.wallet.android.module.staking.pledge.PledgeActivity
 import io.nebulas.wallet.android.module.wallet.create.model.Wallet
 import kotlinx.android.synthetic.nas_nano.activity_stacking.*
 import org.jetbrains.anko.toast
@@ -85,14 +80,14 @@ class StakingDashboardActivity : BaseActivity(), StakingDashboardAdapter.ActionL
         val address = DataCenter.addresses.find { it.walletId == wallet.id && it.platform == Walletcore.NAS }
                 ?: return
         val pledgeDetailList = dataCenter.pledgeDetailList
-        val pledgeDetail = pledgeDetailList.find { it.address==address.address }?:return
-        val pledgedInfo = pledgeDetail.info?:return
+        val pledgeDetail = pledgeDetailList.find { it.address == address.address } ?: return
+        val pledgedInfo = pledgeDetail.info ?: return
 
         WalletStakingDetailActivity.launch(this,
                 wallet.walletName,
                 address.address,
-                pledgedInfo.value?:"0",
-                pledgedInfo.t?:"0")
+                pledgedInfo.value ?: "0",
+                pledgedInfo.t ?: "0")
     }
 
     private fun bind() {
@@ -100,8 +95,8 @@ class StakingDashboardActivity : BaseActivity(), StakingDashboardAdapter.ActionL
             swipeRefreshLayout.isRefreshing = it ?: false
         }
         dataCenter.stakingFailed.observe(this) {
-            if (it==true) {
-                toast("质押失败")
+            if (it == true) {
+                toast(R.string.text_fail_to_pledge)
             }
         }
         dataCenter.error.observe(this) {
@@ -110,7 +105,7 @@ class StakingDashboardActivity : BaseActivity(), StakingDashboardAdapter.ActionL
                 errorToast(it)
             }
         }
-        dataCenter.whenEvent(StakingDashboardDataCenter.EVENT_DATA_SOURCE_CHANGED){
+        dataCenter.whenEvent(StakingDashboardDataCenter.EVENT_DATA_SOURCE_CHANGED) {
             val pledgedWallets = mutableListOf<StakingDashboardAdapter.WalletWrapper>()
             dataCenter.pledgeDetailList.forEach { pledgeDetail ->
                 val info = pledgeDetail.info ?: return@forEach
@@ -128,14 +123,15 @@ class StakingDashboardActivity : BaseActivity(), StakingDashboardAdapter.ActionL
                 wallet ?: return@forEach
                 pledgedWallets.add(StakingDashboardAdapter.WalletWrapper(wallet, StakingDashboardAdapter.WalletStatusType.Normal))
             }
-            dataCenter.inOperationWallets.forEach {pledgingWalletWrapper->
-                val wallet = DataCenter.wallets.find { it.id== pledgingWalletWrapper.walletId}?:return@forEach
-                val existWallet = pledgedWallets.find { it.wallet.id==wallet.id }
-                val status = when(pledgingWalletWrapper.type){
+            dataCenter.inOperationWallets.forEach { pledgingWalletWrapper ->
+                val wallet = DataCenter.wallets.find { it.id == pledgingWalletWrapper.walletId }
+                        ?: return@forEach
+                val existWallet = pledgedWallets.find { it.wallet.id == wallet.id }
+                val status = when (pledgingWalletWrapper.type) {
                     StakingConfiguration.OperationType.Pledge -> StakingDashboardAdapter.WalletStatusType.InPledging
                     StakingConfiguration.OperationType.CancelPledge -> StakingDashboardAdapter.WalletStatusType.InCancel
                 }
-                if (existWallet==null){
+                if (existWallet == null) {
                     pledgedWallets.add(StakingDashboardAdapter.WalletWrapper(wallet, status))
                 } else {
                     existWallet.status = status
@@ -156,8 +152,10 @@ class StakingDashboardActivity : BaseActivity(), StakingDashboardAdapter.ActionL
     }
 
     private fun showHelpDialog(block: () -> Unit = {}) {
-        val msg = "用户参与质押的NAS依然存在用户的钱包中，NAX会根据NAS的质押数量动态发放，按天计算，用户所质押的连续天数越长获得NAX数量越多，取消质押后再次重新质押则恢复到初始状态，当用户钱包余额小于实际质押额则质押状态自动解除。"
-        showTipsDialog("质押规则", msg, "知道了") {
+        showTipsDialog(
+                getString(R.string.text_pledge_rules),
+                getString(R.string.text_pledge_rules_details),
+                getString(R.string.text_got_it)) {
             block()
         }
         if (!StakingConfiguration.hasReadStackingRule(this)) {

@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -17,7 +18,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="#ccffffff"
                         android:textSize="12sp"
-                        android:text="累计质押收益(NAX)"/>
+                        android:text="@string/text_total_pledge_profits"/>
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -26,7 +27,7 @@
                         android:textStyle="bold"
                         android:layout_marginTop="12dp"
                         android:textSize="32sp"
-                        android:text="100,666,888.22"/>
+                        tools:text="100,666,888.22"/>
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -39,6 +40,6 @@
                         android:paddingStart="23dp"
                         android:paddingEnd="23dp"
                         android:background="@drawable/shape_round_corner_8dp_transparent_ffffff"
-                        android:text="取消质押"/>
+                        android:text="@string/text_cancel_pledge"/>
         </LinearLayout>
 </RelativeLayout>

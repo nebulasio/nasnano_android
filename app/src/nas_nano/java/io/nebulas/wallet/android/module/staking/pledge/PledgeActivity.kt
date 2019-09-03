@@ -10,10 +10,8 @@ import android.text.TextWatcher
 import android.view.View
 import io.nebulas.wallet.android.R
 import io.nebulas.wallet.android.base.BaseActivity
-import io.nebulas.wallet.android.common.DataCenter
-import io.nebulas.wallet.android.common.PASSWORD_TYPE_COMPLEX
-import io.nebulas.wallet.android.common.PASSWORD_TYPE_SIMPLE
-import io.nebulas.wallet.android.common.RequestCodes
+import io.nebulas.wallet.android.common.*
+import io.nebulas.wallet.android.dialog.CommonCenterDialog
 import io.nebulas.wallet.android.dialog.NasBottomListDialog
 import io.nebulas.wallet.android.dialog.VerifyPasswordDialog
 import io.nebulas.wallet.android.extensions.errorToast
@@ -73,21 +71,62 @@ class PledgeActivity : BaseActivity() {
             changeWallet()
         }
         layoutConfirmPledge.setOnClickListener {
-            showPasswordDialog()
+            val amountString = etPledgeValue.text.toString()
+            val amount = try {
+                BigDecimal(amountString)
+            } catch (e: Exception) {
+                BigDecimal.ZERO
+            }
+            val pledgedNas = BigDecimal(dataCenter.pledgedInfo.value?.info?.value ?: "0")
+            if (amount.multiply(BigDecimal.TEN.pow(18)) < pledgedNas) {
+                showDecreaseAlertDialog()
+            } else {
+                showPasswordDialog()
+            }
         }
         etPledgeValue.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                val len = s?.length ?: 0
-                dataCenter.buttonStatus.value = if (len > 0) {
-                    PledgeDataCenter.ButtonStatus.Enabled
-                } else {
-                    PledgeDataCenter.ButtonStatus.Disabled
-                }
+                checkInputInfo()
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
+    }
+
+    private fun checkInputInfo() {
+        var content = etPledgeValue.text.toString()
+        if (content.isBlank()) {
+            content = "0"
+        }
+        val bd = try {
+            BigDecimal(content)
+        } catch (e: Exception) {
+            BigDecimal.ZERO
+        }
+
+        val pledgedNas = BigDecimal(dataCenter.pledgedInfo.value?.info?.value ?: "0")
+        if (pledgedNas.toDouble()>0 && bd.multiply(BigDecimal.TEN.pow(18)).toDouble()==pledgedNas.toDouble()){
+            dataCenter.buttonStatus.value = PledgeDataCenter.ButtonStatus.Disabled
+            return
+        }
+
+        val gasFeeStr = dataCenter.estimateGasFee.value ?: dataCenter.defaultEstimateGasFee
+        val estimateGasFee = BigDecimal(gasFeeStr)
+
+        if ((bd + estimateGasFee).multiply(BigDecimal.TEN.pow(18)) > (dataCenter.currentBalance.value ?: BigDecimal.ZERO)) {
+            dataCenter.buttonStatus.value = PledgeDataCenter.ButtonStatus.Disabled
+            dataCenter.insufficientBalance.value = true
+            return
+        } else {
+            dataCenter.insufficientBalance.value = false
+        }
+
+        dataCenter.buttonStatus.value = if (bd.toInt() >= 5) {
+            PledgeDataCenter.ButtonStatus.Enabled
+        } else {
+            PledgeDataCenter.ButtonStatus.Disabled
+        }
     }
 
     private fun changeWallet() {
@@ -125,12 +164,20 @@ class PledgeActivity : BaseActivity() {
             ivWalletIcon.setImageDrawable(getWalletColorCircleDrawable(this@PledgeActivity,
                     it.id, it.walletName[0], 20))
             tvWalletName.text = it.walletName
-            tvBalance.text = "余额：${getBalance(it)} NAS"
+            dataCenter.currentBalance.value = getBalance(it)
             if (it.isNeedBackup()) {
                 showWalletBackupDialog(it)
             } else {
                 controller.scheduleWalletStatus(it)
             }
+        }
+        dataCenter.insufficientBalance.observe(this) {
+            tvErrorTip.visibility = if (it == true) View.VISIBLE else View.GONE
+        }
+        dataCenter.currentBalance.observe(this) {
+            val balance = it ?: BigDecimal.ZERO
+            tvBalance.text = "${getString(R.string.text_balance)}：${formatBalance(balance)} NAS"
+            checkInputInfo()
         }
         dataCenter.pledgedInfo.observe(this) {
             layoutPledgedInfo.visibility = if (it == null) {
@@ -138,8 +185,10 @@ class PledgeActivity : BaseActivity() {
             } else {
                 val pledgedNas = StakingTools.nasFormat(dataCenter.pledgedInfo.value?.info?.value)
                 if (pledgedNas.toDouble() == 0.toDouble()) {
+                    tvTextToPledge.text = getString(R.string.text_to_pledged)
                     View.GONE
                 } else {
+                    tvTextToPledge.text = getString(R.string.text_adjust_to_pledge)
                     tvPledgedNas.text = pledgedNas.toPlainString()
                     View.VISIBLE
                 }
@@ -154,7 +203,9 @@ class PledgeActivity : BaseActivity() {
             loadingView.visibility = if (it == true) View.VISIBLE else View.GONE
         }
         dataCenter.estimateGasFee.observe(this) {
-            tvGasFee.text = "${it ?: dataCenter.defaultEstimateGasFee} NAS 矿工费"
+            tvGasFee.text = "${it
+                    ?: dataCenter.defaultEstimateGasFee} NAS ${getString(R.string.gas)}"
+            checkInputInfo()
         }
         dataCenter.pledgeResult.observe(this) {
             if (it == true) {
@@ -168,7 +219,7 @@ class PledgeActivity : BaseActivity() {
                 PledgeDataCenter.ButtonStatus.Disabled -> {
                     layoutConfirmPledge.isEnabled = false
                     layoutConfirmPledge.isClickable = false
-                    tvConfirmPledge.text = "确认质押"
+                    tvConfirmPledge.text = getString(R.string.text_confirm_to_pledge)
                     progressBarOnButton.visibility = View.GONE
                     etPledgeValue.isEnabled = true
                     tvChangeWallet.isClickable = true
@@ -176,7 +227,7 @@ class PledgeActivity : BaseActivity() {
                 PledgeDataCenter.ButtonStatus.Enabled -> {
                     layoutConfirmPledge.isEnabled = true
                     layoutConfirmPledge.isClickable = true
-                    tvConfirmPledge.text = "确认质押"
+                    tvConfirmPledge.text = getString(R.string.text_confirm_to_pledge)
                     progressBarOnButton.visibility = View.GONE
                     etPledgeValue.isEnabled = true
                     tvChangeWallet.isClickable = true
@@ -184,7 +235,7 @@ class PledgeActivity : BaseActivity() {
                 PledgeDataCenter.ButtonStatus.UploadingToChain -> {
                     layoutConfirmPledge.isEnabled = true
                     layoutConfirmPledge.isClickable = false
-                    tvConfirmPledge.text = "上链中"
+                    tvConfirmPledge.text = getString(R.string.text_pending_for_chain)
                     progressBarOnButton.visibility = View.VISIBLE
                     etPledgeValue.isEnabled = false
                     tvChangeWallet.isClickable = false
@@ -198,7 +249,11 @@ class PledgeActivity : BaseActivity() {
             it.walletId == wallet.id && it.platform == Walletcore.NAS && it.type == 1
         }
         coin ?: return BigDecimal.ZERO
-        return BigDecimal(coin.balance).divide(BigDecimal.TEN.pow(18), 2, RoundingMode.FLOOR)
+        return BigDecimal(coin.balance)
+    }
+
+    private fun formatBalance(balanceDecimal: BigDecimal): BigDecimal {
+        return balanceDecimal.divide(BigDecimal.TEN.pow(18), 2, RoundingMode.FLOOR)
     }
 
     private fun getDefaultPaymentWallet(): Wallet? {
@@ -215,6 +270,18 @@ class PledgeActivity : BaseActivity() {
             }
         }
         return null
+    }
+
+    private fun showDecreaseAlertDialog(){
+        CommonCenterDialog.Builder()
+                .withTitle(getString(R.string.text_alert))
+                .withContent(getString(R.string.text_decreased_pledge_tip))
+                .withLeftButton(getString(R.string.text_confirm_to_pledge)){
+                    showPasswordDialog()
+                }
+                .withRightButton(getString(R.string.cancel_btn)){}
+                .build(this)
+                .show()
     }
 
     private fun showWalletBackupDialog(targetWallet: Wallet) {
@@ -239,13 +306,15 @@ class PledgeActivity : BaseActivity() {
     private var verifyPasswordDialog: VerifyPasswordDialog? = null
     private fun showPasswordDialog() {
         val wallet = dataCenter.walletData.value ?: return
-        if (verifyPasswordDialog==null) {
+        if (verifyPasswordDialog == null) {
             verifyPasswordDialog = VerifyPasswordDialog(
                     activity = this,
                     title = getString(R.string.payment_password_text),
                     passwordType = if (wallet.isComplexPwd) PASSWORD_TYPE_COMPLEX else PASSWORD_TYPE_SIMPLE,
                     onNext = {
-                        verifyPasswordDialog?.dismiss()
+                        mainHandler.postDelayed({
+                            verifyPasswordDialog?.dismiss()
+                        }, 1000)
                         doAsync {
                             val nas = etPledgeValue.text.toString()
                             controller.pledge(nas, it)
@@ -253,8 +322,8 @@ class PledgeActivity : BaseActivity() {
                     }
             )
         }
-        val dialog = verifyPasswordDialog?:return
-        if (dialog.isShowing){
+        val dialog = verifyPasswordDialog ?: return
+        if (dialog.isShowing) {
             return
         }
         dialog.show()

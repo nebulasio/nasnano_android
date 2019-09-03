@@ -126,14 +126,15 @@ class WalletStakingDetailActivity : BaseActivity(), WalletStakingDetailAdapter.A
     }
 
     private fun showCancelPledgeTipDialog() {
+        val template = getString(R.string.text_cancel_pledge_tip)
         if (tipDialog == null) {
             tipDialog = CommonCenterDialog.Builder()
-                    .withTitle("提醒")
-                    .withContent("当前已质押20天 取消质押后将不再获得NAX 预计消耗${dataCenter.estimateGasFee}NAS矿工费")
-                    .withLeftButton("确认取消") {
+                    .withTitle(getString(R.string.text_alert))
+                    .withContent(String.format(template, dataCenter.pledgedAge, dataCenter.estimateGasFee))
+                    .withLeftButton(getString(R.string.text_action_cancel_pledge)) {
                         cancelPledge()
                     }
-                    .withRightButton("继续质押")
+                    .withRightButton(getString(R.string.text_action_keep_pledge))
                     .build(this)
         }
         val finalTipDialog = tipDialog ?: return

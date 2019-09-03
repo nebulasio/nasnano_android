@@ -187,7 +187,7 @@ class StakingDashboardAdapter(private val context: Context,
                     tvProfitDate.visibility = View.VISIBLE
                 }
                 else -> {
-                    tvLastProfit.text = "上链中"
+                    tvLastProfit.text = context.getString(R.string.text_pending_for_chain)
                 }
             }
 

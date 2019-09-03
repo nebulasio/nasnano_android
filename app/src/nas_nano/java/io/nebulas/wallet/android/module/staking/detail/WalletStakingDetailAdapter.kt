@@ -41,7 +41,7 @@ class WalletStakingDetailAdapter(val context: Context,
     }
 
     enum class ViewType {
-        WalletStackingProfits, WalletPledgeInfo, WalletProfitsHeader, WalletProfit, LoadMore
+        WalletStackingProfits, WalletPledgeInfo, WalletProfitsHeader, WalletProfit, NoProfits, LoadMore, None
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
@@ -55,6 +55,12 @@ class WalletStakingDetailAdapter(val context: Context,
             }
             ViewType.WalletProfitsHeader.ordinal -> {
                 WalletProfitsHeaderVH(inflater.inflate(R.layout.layout_profits_list_header, parent, false))
+            }
+            ViewType.NoProfits.ordinal -> {
+                NoProfitsVH(inflater.inflate(R.layout.layout_no_staking_profits, parent, false))
+            }
+            ViewType.None.ordinal -> {
+                VH(View(context))
             }
             ViewType.LoadMore.ordinal -> {
                 val layout = RelativeLayout(context)
@@ -90,7 +96,7 @@ class WalletStakingDetailAdapter(val context: Context,
                     return
                 }
                 val record = dataSource[realIdx]
-                holder.tvProfit.text = "$realIdx / +${StakingTools.naxFormat(record.profit)} NAX"
+                holder.tvProfit.text = "+${StakingTools.naxFormat(record.profit)} NAX"
                 holder.tvProfitDate.text = Formatter.timeFormat("MMddHHmm", record.timestamp)
             }
             is WalletStackingProfitsVH -> holder.tvAddressTotalProfits.text = StakingTools.naxFormat(dataCenter.addressProfits.value?.total_profits)
@@ -103,12 +109,18 @@ class WalletStakingDetailAdapter(val context: Context,
     }
 
     override fun getItemViewType(position: Int): Int {
+        val profitsInfo = dataCenter.addressProfits.value ?: return ViewType.None.ordinal
         return when (position) {
             0 -> ViewType.WalletStackingProfits.ordinal
             1 -> ViewType.WalletPledgeInfo.ordinal
-            2 -> ViewType.WalletProfitsHeader.ordinal
+            2 -> {
+                if (profitsInfo.total_count<=0){
+                    ViewType.NoProfits.ordinal
+                } else {
+                    ViewType.WalletProfitsHeader.ordinal
+                }
+            }
             else -> {
-                val profitsInfo = dataCenter.addressProfits.value ?: return 0
                 val footerCount = if (profitsInfo.total_page > profitsInfo.current_page) 1 else 0
                 if (position == itemCount - 1) {
                     if (footerCount > 0) {
@@ -152,6 +164,7 @@ class WalletStakingDetailAdapter(val context: Context,
 
     inner class WalletProfitsHeaderVH(itemView: View) : VH(itemView)
     inner class LoadMoreVH(itemView: View) : VH(itemView)
+    inner class NoProfitsVH(itemView: View) : VH(itemView)
 
     inner class WalletProfitVH(itemView: View) : VH(itemView) {
         val tvProfit = itemView.find<TextView>(R.id.tvProfit)
