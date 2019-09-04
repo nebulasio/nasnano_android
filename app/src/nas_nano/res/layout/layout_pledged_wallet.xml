@@ -35,6 +35,7 @@
                                 android:id="@+id/tvWalletName"
                                 android:textSize="17sp"
                                 android:maxWidth="120dp"
+                                android:singleLine="true"
                                 android:ellipsize="end"
                                 android:textColor="@color/black"
                                 tools:text="Wallet 1"/>

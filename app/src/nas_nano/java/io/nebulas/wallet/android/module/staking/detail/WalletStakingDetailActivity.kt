@@ -19,6 +19,8 @@ import kotlinx.android.synthetic.nas_nano.activity_wallet_stacking_detail.*
 import kotlinx.android.synthetic.nas_nano.app_bar_main_no_underline.*
 import org.jetbrains.anko.doAsync
 import walletcore.Walletcore
+import java.math.BigDecimal
+import java.math.RoundingMode
 import java.util.*
 
 class WalletStakingDetailActivity : BaseActivity(), WalletStakingDetailAdapter.ActionListener {
@@ -127,10 +129,15 @@ class WalletStakingDetailActivity : BaseActivity(), WalletStakingDetailAdapter.A
 
     private fun showCancelPledgeTipDialog() {
         val template = getString(R.string.text_cancel_pledge_tip)
+        val age = try {
+            BigDecimal(dataCenter.pledgedAge).divide(BigDecimal.ONE, 2, RoundingMode.FLOOR).toPlainString()
+        } catch (e: Exception) {
+            "0.00"
+        }
         if (tipDialog == null) {
             tipDialog = CommonCenterDialog.Builder()
                     .withTitle(getString(R.string.text_alert))
-                    .withContent(String.format(template, dataCenter.pledgedAge, dataCenter.estimateGasFee))
+                    .withContent(String.format(template, age, dataCenter.estimateGasFee))
                     .withLeftButton(getString(R.string.text_action_cancel_pledge)) {
                         cancelPledge()
                     }

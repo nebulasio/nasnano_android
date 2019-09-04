@@ -396,25 +396,6 @@ class BalanceFragment : BaseFragment() {
 
     @Synchronized
     private fun refreshAdapterItems(items: MutableList<BalanceListModel>) {
-
-        if (Configuration.isStakingOpened()) {
-            if (items.isNotEmpty()) {
-                val first = items[0]
-                if (!first.isStacking) {
-                    items.add(0, BalanceListModel(isStacking = true))
-                }
-            } else {
-                items.add(0, BalanceListModel(isStacking = true))
-            }
-        } else {
-            if (items.isNotEmpty()) {
-                val first = items[0]
-                if (first.isStacking) {
-                    items.removeAt(0)
-                }
-            }
-        }
-
         /**
          * 检查钱包备份情况
          */
@@ -451,6 +432,23 @@ class BalanceFragment : BaseFragment() {
             items.add(position, BalanceListModel(showBackUpTips = showBackUpTips))
         }
 
+        if (Configuration.isStakingOpened()) {
+            if (items.isNotEmpty()) {
+                val first = items[0]
+                if (!first.isStacking) {
+                    items.add(0, BalanceListModel(isStacking = true))
+                }
+            } else {
+                items.add(0, BalanceListModel(isStacking = true))
+            }
+        } else {
+            if (items.isNotEmpty()) {
+                val first = items[0]
+                if (first.isStacking) {
+                    items.removeAt(0)
+                }
+            }
+        }
 
         //判断是否有钱包
         if (DataCenter.wallets.isEmpty()) {
