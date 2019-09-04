@@ -245,10 +245,12 @@ class TransferDataCenter : AbstractDataCenter() {
                         ?: "0") + BigDecimal(10000)).stripTrailingZeros().toPlainString(),
                 isSend = true
         )
-        if (null != raiseUpPayload)
+        if (null != raiseUpPayload) {
             transaction?.payload = raiseUpPayload
-        coin?.apply {
-            transaction?.payload?.nasType = if (this.type==1) Walletcore.TxPayloadBinaryType else Walletcore.TxPayloadCallType
+        } else {
+            coin?.apply {
+                transaction?.payload?.nasType = if (this.type == 1) Walletcore.TxPayloadBinaryType else Walletcore.TxPayloadCallType
+            }
         }
         transaction?.tokenDecimals = finalCoin.tokenDecimals
         transaction?.nonce = gasPriceResp?.nonce ?: "0"
