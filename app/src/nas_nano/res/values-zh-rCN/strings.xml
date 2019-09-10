@@ -621,7 +621,7 @@
         <string name="title_vote">投票</string>
         <string name="text_max_amount">最大金额</string>
 
-	<string name="text_pledge">质押</string>
+	<string name="text_d_staking">质押</string>
 	<string name="text_start_pledge">开始质押</string>
 	<string name="text_total_pledge_profits">累计质押收益(NAX)</string>
 	<string name="text_last_profit">上一期收益</string>

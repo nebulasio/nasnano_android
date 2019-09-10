@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.text.TextUtils
 import android.view.View
 import io.nebulas.wallet.android.R
 import io.nebulas.wallet.android.base.BaseActivity
@@ -37,7 +38,7 @@ class WalletStakingDetailActivity : BaseActivity(), WalletStakingDetailAdapter.A
         fun launch(context: Context,
                    walletName: String,
                    address: String,
-                   pledgedNas:String,
+                   pledgedNas: String,
                    pledgedAge: String) {
             context.startActivity(
                     Intent(context, WalletStakingDetailActivity::class.java)
@@ -67,12 +68,12 @@ class WalletStakingDetailActivity : BaseActivity(), WalletStakingDetailAdapter.A
         setContentView(R.layout.activity_wallet_stacking_detail)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
-        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                recyclerView?:return
+                recyclerView ?: return
                 val lastVisiblePosition = (recyclerView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
-                if(lastVisiblePosition >= adapter.itemCount - 1) {
+                if (lastVisiblePosition >= adapter.itemCount - 1) {
                     if (dataCenter.hasMore() && !dataCenter.isSwipeLoadingMore) {
                         dataCenter.isSwipeLoadingMore = true
                         controller.loadData()
@@ -105,8 +106,15 @@ class WalletStakingDetailActivity : BaseActivity(), WalletStakingDetailAdapter.A
             val isLoading = it ?: false
             swipeRefreshLayout.isRefreshing = isLoading
         }
+        dataCenter.error.observe(this) {
+            if (TextUtils.isEmpty(it)) {
+                return@observe
+            }
+            it ?: return@observe
+            toastErrorMessage(it)
+        }
         dataCenter.isCenterLoading.observe(this) {
-            loadingView.visibility = if (it==true) View.VISIBLE else View.GONE
+            loadingView.visibility = if (it == true) View.VISIBLE else View.GONE
         }
         dataCenter.walletName.observe(this) {
             titleTV.text = it ?: ""
@@ -116,12 +124,12 @@ class WalletStakingDetailActivity : BaseActivity(), WalletStakingDetailAdapter.A
             adapter.updateDataSource(dataCenter.profitsRecords.value ?: Collections.emptyList())
         }
         dataCenter.showCancelPledgeTipDialog.observe(this) {
-            if (it==true) {
+            if (it == true) {
                 showCancelPledgeTipDialog()
             }
         }
         dataCenter.cancelPledgeComplete.observe(this) {
-            if (it==true){
+            if (it == true) {
                 finish()
             }
         }
@@ -154,10 +162,11 @@ class WalletStakingDetailActivity : BaseActivity(), WalletStakingDetailAdapter.A
 
     private var verifyPasswordDialog: VerifyPasswordDialog? = null
     private fun showPasswordDialog() {
-        val addressStr = dataCenter.address.value?:return
-        val address = DataCenter.addresses.find { it.platform==Walletcore.NAS && it.address==addressStr }?:return
-        val wallet = DataCenter.wallets.find { it.id==address.walletId }?:return
-        if (verifyPasswordDialog==null) {
+        val addressStr = dataCenter.address.value ?: return
+        val address = DataCenter.addresses.find { it.platform == Walletcore.NAS && it.address == addressStr }
+                ?: return
+        val wallet = DataCenter.wallets.find { it.id == address.walletId } ?: return
+        if (verifyPasswordDialog == null) {
             verifyPasswordDialog = VerifyPasswordDialog(
                     activity = this,
                     title = getString(R.string.payment_password_text),
@@ -170,8 +179,8 @@ class WalletStakingDetailActivity : BaseActivity(), WalletStakingDetailAdapter.A
                     }
             )
         }
-        val dialog = verifyPasswordDialog?:return
-        if (dialog.isShowing){
+        val dialog = verifyPasswordDialog ?: return
+        if (dialog.isShowing) {
             return
         }
         dialog.show()

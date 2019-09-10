@@ -621,7 +621,7 @@
         <string name="title_vote">Vote</string>
 	<string name="text_max_amount">Max Amount</string>
 
-	<string name="text_pledge">Pledge</string>
+	<string name="text_d_staking">dStaking</string>
 	<string name="text_start_pledge">Start Pledge</string>
 	<string name="text_total_pledge_profits">Accumulated Pledge Income(NAX)</string>
 	<string name="text_last_profit">Previous-Period Income</string>

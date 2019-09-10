@@ -47,51 +47,56 @@ class StakingDashboardController(lifecycleOwner: LifecycleOwner,
             }
         }
         future = doAsync {
-            val api = HttpManager.getServerApi()
-            val response = api.getStakingContracts(HttpManager.getHeaderMap()).execute()
-            if (response.code() != 200) {
-                dataCenter.error.value = context.getString(R.string.network_connect_exception)
-                dataCenter.isLoading.value = false
-                return@doAsync
-            }
-            val apiResponse = response.body()
-            if (apiResponse == null) {
-                dataCenter.error.value = context.getString(R.string.network_connect_exception)
-                dataCenter.isLoading.value = false
-                return@doAsync
-            }
-            val stakingContractsResponse = apiResponse.data
-            if (stakingContractsResponse?.stakingProxy == null
-                    || stakingContractsResponse.data == null) {
-                dataCenter.error.value = context.getString(R.string.network_connect_exception)
-                dataCenter.isLoading.value = false
-                return@doAsync
-            }
-            if (!stakingContractsResponse.verify()) {
-                dataCenter.error.value = context.getString(R.string.network_connect_exception)
-                dataCenter.isLoading.value = false
-                return@doAsync
-            }
-            StakingContractHolder.holdStakingContractInfo(stakingContractsResponse)
+            try {
+                val api = HttpManager.getServerApi()
+                val response = api.getStakingContracts(HttpManager.getHeaderMap()).execute()
+                if (response.code() != 200) {
+                    dataCenter.error.value = context.getString(R.string.network_connect_exception)
+                    dataCenter.isLoading.value = false
+                    return@doAsync
+                }
+                val apiResponse = response.body()
+                if (apiResponse == null) {
+                    dataCenter.error.value = context.getString(R.string.network_connect_exception)
+                    dataCenter.isLoading.value = false
+                    return@doAsync
+                }
+                val stakingContractsResponse = apiResponse.data
+                if (stakingContractsResponse?.stakingProxy == null
+                        || stakingContractsResponse.data == null) {
+                    dataCenter.error.value = context.getString(R.string.network_connect_exception)
+                    dataCenter.isLoading.value = false
+                    return@doAsync
+                }
+                if (!stakingContractsResponse.verify()) {
+                    dataCenter.error.value = context.getString(R.string.network_connect_exception)
+                    dataCenter.isLoading.value = false
+                    return@doAsync
+                }
+                StakingContractHolder.holdStakingContractInfo(stakingContractsResponse)
 
-            val pledgeDetailList = getPledgedWallet()
-            if (pledgeDetailList == null) {
+                val pledgeDetailList = getPledgedWallet()
+                if (pledgeDetailList == null) {
+                    dataCenter.error.value = context.getString(R.string.network_connect_exception)
+                    dataCenter.isLoading.value = false
+                    return@doAsync
+                }
+
+                val stakingSummary = getStakingSummaryInfo()
+                if (stakingSummary == null) {
+                    dataCenter.error.value = context.getString(R.string.network_connect_exception)
+                    dataCenter.isLoading.value = false
+                    return@doAsync
+                }
+
+                dataCenter.inOperationWallets = StakingConfiguration.getPledgingWallets(context)
+                dataCenter.pledgeDetailList = pledgeDetailList
+                dataCenter.stakingSummary.value = stakingSummary
+                dataCenter.isLoading.value = false
+            } catch (e: Exception) {
                 dataCenter.error.value = context.getString(R.string.network_connect_exception)
                 dataCenter.isLoading.value = false
-                return@doAsync
             }
-
-            val stakingSummary = getStakingSummaryInfo()
-            if (stakingSummary == null) {
-                dataCenter.error.value = context.getString(R.string.network_connect_exception)
-                dataCenter.isLoading.value = false
-                return@doAsync
-            }
-
-            dataCenter.inOperationWallets = StakingConfiguration.getPledgingWallets(context)
-            dataCenter.pledgeDetailList = pledgeDetailList
-            dataCenter.stakingSummary.value = stakingSummary
-            dataCenter.isLoading.value = false
         }
     }
 

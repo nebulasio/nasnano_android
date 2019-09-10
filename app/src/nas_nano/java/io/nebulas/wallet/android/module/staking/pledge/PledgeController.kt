@@ -95,7 +95,7 @@ class PledgeController(lifecycleOwner: LifecycleOwner,
                 val weiDecimal = nasDecimal.multiply(BigDecimal.TEN.pow(18))
                 val rawTransaction = generateRawTransaction(weiDecimal.toPlainString(), password)
                 if (rawTransaction==null){
-                    dataCenter.error.value = context.getString(R.string.tip_password_error_to_lock)
+                    dataCenter.error.value = context.getString(R.string.status_fail)
                     dataCenter.buttonStatus.value = buttonStatusBackup
                     return@doAsync
                 }
@@ -106,7 +106,7 @@ class PledgeController(lifecycleOwner: LifecycleOwner,
                 }
                 val hash = sendTransaction(rawTransaction.rawTransaction)
                 if (hash==null){
-                    dataCenter.error.value = context.getString(R.string.tip_password_error_to_lock)
+                    dataCenter.error.value = context.getString(R.string.status_fail)
                     dataCenter.buttonStatus.value = buttonStatusBackup
                     return@doAsync
                 }
@@ -119,7 +119,7 @@ class PledgeController(lifecycleOwner: LifecycleOwner,
                     if (transactionReceipt!=null){
                         val status = transactionReceipt.status
                         if (status==0) {    //交易失败
-                            dataCenter.error.value = context.getString(R.string.tip_password_error_to_lock)
+                            dataCenter.error.value = context.getString(R.string.status_fail)
                             dataCenter.buttonStatus.value = buttonStatusBackup
                             StakingConfiguration.pledgeComplete(context, hash)
                             break

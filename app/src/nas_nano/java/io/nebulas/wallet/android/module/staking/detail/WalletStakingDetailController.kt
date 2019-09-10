@@ -73,7 +73,8 @@ class WalletStakingDetailController(lifecycleOwner: LifecycleOwner,
                 dataCenter.currentPage++
                 dataCenter.isSwipeRefresh.value = false
             } catch (e: Exception) {
-
+                dataCenter.error.value = context.getString(R.string.network_connect_exception)
+                dataCenter.isSwipeRefresh.value = false
             } finally {
                 lock.unlock()
                 dataCenter.isSwipeLoadingMore = false
@@ -103,7 +104,7 @@ class WalletStakingDetailController(lifecycleOwner: LifecycleOwner,
             val address = getAddress(addressStr)?:return@doAsync
             val response = generateRawTransaction(password, address)
             if (response==null){
-                dataCenter.error.value = context.getString(R.string.tip_password_error_to_lock)
+                dataCenter.error.value = context.getString(R.string.status_fail)
                 return@doAsync
             }
             if (response.errorCode!=0L){
@@ -112,7 +113,7 @@ class WalletStakingDetailController(lifecycleOwner: LifecycleOwner,
             }
             val hash = sendTransaction(response.rawTransaction)
             if (hash==null){
-                dataCenter.error.value = context.getString(R.string.tip_password_error_to_lock)
+                dataCenter.error.value = context.getString(R.string.status_fail)
                 return@doAsync
             }
             StakingConfiguration.savePledgingWallet(context, address.walletId.toString(), hash, StakingConfiguration.OperationType.CancelPledge)
