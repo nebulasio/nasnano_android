@@ -655,4 +655,6 @@
 	<string name="text_decreased_pledge_tip">스테이킹 값을 줄이면 스테이킹 기간이 초기화되며 받을 수 있는 NAX 수가 줄어듭니다.</string>
 	<string name="text_no_profits_yet">아직 수입이 없습니다</string>
 	<string name="text_fail_to_pledge">서약 실패</string>
+	<string name="text_success_to_pledge">서약 성공</string>
+	<string name="text_total_pledged_nas">총 서약</string>
 </resources>

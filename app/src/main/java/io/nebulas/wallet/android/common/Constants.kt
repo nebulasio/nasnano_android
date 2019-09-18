@@ -10,6 +10,8 @@ object Constants {
     //    val PLATFORMS = listOf(Walletcore.NAS, Walletcore.ETH)
     val PLATFORMS: List<String> = BuildConfig.PLATFORMS.split(";")
 
+    val TOKEN_WHITE_LIST = listOf("nax", "nat", "nebulas", "nas", "atp")
+
     /**
      * cny
      * usd

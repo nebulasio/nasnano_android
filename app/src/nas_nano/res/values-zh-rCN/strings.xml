@@ -655,4 +655,6 @@
 	<string name="text_decreased_pledge_tip">质押数量减少，币龄将恢复到初始值，获得NAX数量将减少。</string>
 	<string name="text_no_profits_yet">还没有收益</string>
 	<string name="text_fail_to_pledge">质押失败</string>
+	<string name="text_success_to_pledge">质押成功</string>
+	<string name="text_total_pledged_nas">全网质押量</string>
 </resources>

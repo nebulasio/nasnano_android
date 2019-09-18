@@ -10,6 +10,7 @@ import io.nebulas.wallet.android.R
 import io.nebulas.wallet.android.base.BaseBindingAdapter
 import io.nebulas.wallet.android.base.BaseFragment
 import io.nebulas.wallet.android.common.Constants
+import io.nebulas.wallet.android.common.Constants.TOKEN_WHITE_LIST
 import io.nebulas.wallet.android.common.DataCenter
 import io.nebulas.wallet.android.module.detail.BalanceDetailActivity
 import io.nebulas.wallet.android.module.detail.HideAssetsActivity
@@ -18,6 +19,7 @@ import io.nebulas.wallet.android.module.me.adapter.TokenRecyclerViewAdapter
 import io.nebulas.wallet.android.module.me.model.MeTokenListModel
 import io.nebulas.wallet.android.util.Util
 import kotlinx.android.synthetic.nas_nano.fragment_token.*
+import java.math.BigDecimal
 
 /**
  * Created by Heinoc on 2018/5/10.
@@ -105,12 +107,24 @@ class TokenFragment : BaseFragment() {
             DataCenter.coinsGroupByCoinSymbol.filter {
                 it.isShow
             }.forEach {
-                adapter.items.add(MeTokenListModel(
-                        coin = it,
-                        showBalanceDetail = !balanceHidden,
-                        currencyName = Constants.CURRENCY_SYMBOL_NAME,
-                        currencySymbol = Constants.CURRENCY_SYMBOL)
-                )
+                var shown = false
+                for (token in TOKEN_WHITE_LIST) {
+                    if (token.equals(it.symbol, true)) {
+                        shown = true
+                        break
+                    }
+                }
+                if (!shown) {
+                    shown = BigDecimal(it.balance).toDouble() > 0
+                }
+                if (shown) {
+                    adapter.items.add(MeTokenListModel(
+                            coin = it,
+                            showBalanceDetail = !balanceHidden,
+                            currencyName = Constants.CURRENCY_SYMBOL_NAME,
+                            currencySymbol = Constants.CURRENCY_SYMBOL)
+                    )
+                }
             }
 
         } else {
@@ -126,7 +140,19 @@ class TokenFragment : BaseFragment() {
                 var isContainToken = false
                 DataCenter.coinsGroupByCoinSymbol.forEach { coin ->
                     isContainToken = false
-
+                    var shown = false
+                    for (token in TOKEN_WHITE_LIST) {
+                        if (token.equals(coin.symbol, true)) {
+                            shown = true
+                            break
+                        }
+                    }
+                    if (!shown) {
+                        shown = BigDecimal(coin.balance).toDouble() > 0
+                    }
+                    if (!shown){
+                        return@forEach
+                    }
                     var coinListCount = 0
 
                     run breakPoint@{

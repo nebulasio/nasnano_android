@@ -123,8 +123,24 @@ class WalletAdapter(val callback: WalletAdapterCallback?, private var _isBalance
                 }
                 val tokenIcons = mutableListOf<String>()
 
-                DataCenter.coins.filter {
+                DataCenter.coins.asSequence().filter {
                     it.walletId == wallet.id
+                }.filter {
+                    if (!it.isShow){
+                        false
+                    } else {
+                        var shown = false
+                        for (token in Constants.TOKEN_WHITE_LIST) {
+                            if (token.equals(it.symbol, true)) {
+                                shown = true
+                                break
+                            }
+                        }
+                        if (!shown){
+                            shown = BigDecimal(it.balance).toDouble() > 0
+                        }
+                        shown
+                    }
                 }.sortedBy {
                     it.displayed
                 }.map {
