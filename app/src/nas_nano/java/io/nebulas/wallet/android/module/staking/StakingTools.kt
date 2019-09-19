@@ -3,6 +3,7 @@ package io.nebulas.wallet.android.module.staking
 import android.text.TextUtils
 import java.math.BigDecimal
 import java.math.RoundingMode
+import java.text.DecimalFormat
 
 object StakingTools {
 
@@ -11,7 +12,9 @@ object StakingTools {
             return "0"
         }
         return try {
-            BigDecimal(str).divide(BigDecimal.TEN.pow(9), 2, RoundingMode.FLOOR).toPlainString()
+            val decimal = BigDecimal(str).divide(BigDecimal.TEN.pow(9), 2, RoundingMode.FLOOR)
+            val df = DecimalFormat("###,##0.00")
+            df.format(decimal)
         } catch (e: Exception) {
             "0"
         }
@@ -31,14 +34,14 @@ object StakingTools {
         }
     }
 
-    fun nasFormat(wei: String?, scale:Int=4):BigDecimal{
-        if (wei.isNullOrEmpty()){
+    fun nasFormat(wei: String?, scale: Int = 4): BigDecimal {
+        if (wei.isNullOrEmpty()) {
             return BigDecimal.ZERO
         }
         return try {
             val decimalWEI = BigDecimal(wei)
             decimalWEI.divide(BigDecimal.TEN.pow(18), scale, RoundingMode.FLOOR)
-        } catch (e:Exception){
+        } catch (e: Exception) {
             BigDecimal.ZERO
         }
     }
@@ -60,7 +63,7 @@ object StakingTools {
         }
         try {
             val decimalWEI = BigDecimal(wei)
-            if (decimalWEI.toDouble()<0){
+            if (decimalWEI.toDouble() < 0) {
                 return "0"
             }
             val decimalNAS = decimalWEI.divide(BigDecimal.TEN.pow(18), 4, RoundingMode.FLOOR)
@@ -68,11 +71,13 @@ object StakingTools {
                 decimalNAS.toDouble() < K -> decimalNAS.toPlainString()
                 decimalNAS.toDouble() < M -> {
                     val k = decimalNAS.divide(BigDecimal.TEN.pow(3), 3, RoundingMode.FLOOR)
-                    "${k}K"
+                    val df = DecimalFormat("###,##0")
+                    "${df.format(k)}K"
                 }
                 else -> {
                     val m = decimalNAS.divide(BigDecimal.TEN.pow(6), 3, RoundingMode.FLOOR)
-                    "${m}M"
+                    val df = DecimalFormat("###,##0")
+                    "${df.format(m)}M"
                 }
             }
         } catch (e: Exception) {

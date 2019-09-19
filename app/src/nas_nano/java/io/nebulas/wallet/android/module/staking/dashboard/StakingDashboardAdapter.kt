@@ -15,6 +15,7 @@ import io.nebulas.wallet.android.module.wallet.create.model.Wallet
 import io.nebulas.wallet.android.util.getWalletColorCircleDrawable
 import org.jetbrains.anko.find
 import walletcore.Walletcore
+import java.text.DecimalFormat
 
 class StakingDashboardAdapter(private val context: Context,
                               private val actionListener: ActionListener,
@@ -120,7 +121,7 @@ class StakingDashboardAdapter(private val context: Context,
         private val tvLastProfit = itemView.find<TextView>(R.id.tvLastProfit)
         private val tvPledgeRate = itemView.find<TextView>(R.id.tvPledgeRate)
         private val tvEstimateNax = itemView.find<TextView>(R.id.tvEstimateNax)
-        private val tvLastDestroyedNax = itemView.find<TextView>(R.id.tvLastDestroyedNax)
+        private val tvTotalPledgedNas = itemView.find<TextView>(R.id.tvTotalPledgedNas)
         private val tvLastDistributedNax = itemView.find<TextView>(R.id.tvLastDistributedNax)
 
         override fun updateData(obj: Any?) {
@@ -132,7 +133,8 @@ class StakingDashboardAdapter(private val context: Context,
             tvLastProfit.text = StakingTools.naxFormat(profitsInfo.last_total_profits)
             tvPledgeRate.text = StakingTools.calculatePledgeRate(stakingInfo.pledged_nas, stakingInfo.total_nas)
             tvEstimateNax.text = StakingTools.naxFormat(stakingInfo.estimate_nax)
-            tvLastDestroyedNax.text = StakingTools.naxFormat(stakingInfo.last_destroyed_nax)
+            val df = DecimalFormat("###,##0")
+            tvTotalPledgedNas.text = df.format(StakingTools.nasFormat(stakingInfo.pledged_nas, 4))
             tvLastDistributedNax.text = StakingTools.naxFormat(stakingInfo.last_distributed_nax)
         }
     }

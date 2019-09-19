@@ -15,6 +15,7 @@ import org.jetbrains.anko.dip
 import org.jetbrains.anko.find
 import java.math.BigDecimal
 import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class WalletStakingDetailAdapter(val context: Context,
                                  val actionListener: ActionListener,
@@ -137,7 +138,8 @@ class WalletStakingDetailAdapter(val context: Context,
 
     private fun formatPledgeAge(age: String): String {
         return try {
-            BigDecimal(age).divide(BigDecimal.ONE, 2, RoundingMode.FLOOR).toPlainString()
+            val df = DecimalFormat("###,##0.00")
+            df.format(BigDecimal(age).divide(BigDecimal.ONE, 2, RoundingMode.FLOOR))
         } catch (e: Exception) {
             "0.00"
         }

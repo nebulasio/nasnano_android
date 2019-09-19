@@ -135,6 +135,9 @@ class StakingDashboardController(lifecycleOwner: LifecycleOwner,
             if (status == 0) {
                 dataCenter.stakingFailed.value = true
             }
+            if (status == 1) {
+                dataCenter.stakingSuccess.value = true
+            }
         }
         return anyChanges
     }

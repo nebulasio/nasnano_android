@@ -27,6 +27,7 @@ import org.jetbrains.anko.doAsync
 import walletcore.Walletcore
 import java.math.BigDecimal
 import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class PledgeActivity : BaseActivity() {
 
@@ -189,7 +190,8 @@ class PledgeActivity : BaseActivity() {
                     View.GONE
                 } else {
                     tvTextToPledge.text = getString(R.string.text_adjust_to_pledge)
-                    tvPledgedNas.text = pledgedNas.toPlainString()
+                    val df = DecimalFormat("###,##0.0000")
+                    tvPledgedNas.text = df.format(pledgedNas)
                     View.VISIBLE
                 }
             }
@@ -252,8 +254,9 @@ class PledgeActivity : BaseActivity() {
         return BigDecimal(coin.balance)
     }
 
-    private fun formatBalance(balanceDecimal: BigDecimal): BigDecimal {
-        return balanceDecimal.divide(BigDecimal.TEN.pow(18), 2, RoundingMode.FLOOR)
+    private fun formatBalance(balanceDecimal: BigDecimal): String {
+        val df = DecimalFormat("###,##0.00")
+        return df.format(balanceDecimal.divide(BigDecimal.TEN.pow(18), 2, RoundingMode.FLOOR))
     }
 
     private fun getDefaultPaymentWallet(): Wallet? {

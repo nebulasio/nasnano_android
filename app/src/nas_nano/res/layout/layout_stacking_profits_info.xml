@@ -115,14 +115,14 @@
                                         <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:text="@string/text_estimate_distribute"
+                                                android:text="@string/text_total_pledged_nas"
                                                 android:textColor="@color/color_999999"
                                                 android:textSize="11sp" />
 
                                         <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:id="@+id/tvEstimateNax"
+                                                android:id="@+id/tvTotalPledgedNas"
                                                 tools:text="9,999,888"
                                                 android:textColor="@color/black"
                                                 android:textSize="14sp" />
@@ -148,14 +148,14 @@
                                         <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:text="@string/text_last_destroyed"
+                                                android:text="@string/text_estimate_distribute"
                                                 android:textColor="@color/color_999999"
                                                 android:textSize="11sp" />
 
                                         <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:id="@+id/tvLastDestroyedNax"
+                                                android:id="@+id/tvEstimateNax"
                                                 tools:text="6,000,000"
                                                 android:textColor="@color/black"
                                                 android:textSize="14sp" />

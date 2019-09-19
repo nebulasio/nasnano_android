@@ -26,6 +26,7 @@ class StakingDashboardDataCenter : DataCenterViewModel() {
     val stakingSummary: Data<StakingSummary> = Data(null)
 
     val stakingFailed: Data<Boolean> = Data(false)
+    val stakingSuccess: Data<Boolean> = Data(false)
 
     var inOperationWallets: List<StakingConfiguration.PledgingWalletWrapper> = emptyList()
         set(value) {
