@@ -667,5 +667,7 @@
         <string name="text_no_profits_yet">No NAX Earned Yet</string>
         <string name="text_fail_to_pledge">dStaking Failed</string>
         <string name="text_success_to_pledge">dStaking Successful</string>
+        <string name="text_fail_to_cancel_pledge">dStaking Cancellation Failed</string>
+        <string name="text_success_to_cancel_pledge">dStaking Cancelled</string>
         <string name="text_total_pledged_nas">dStaking NAS</string>
 </resources>

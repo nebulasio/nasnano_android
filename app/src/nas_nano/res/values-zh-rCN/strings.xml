@@ -656,5 +656,7 @@
 	<string name="text_no_profits_yet">还没有收益</string>
 	<string name="text_fail_to_pledge">质押失败</string>
 	<string name="text_success_to_pledge">质押成功</string>
+	<string name="text_fail_to_cancel_pledge">取消质押失败</string>
+	<string name="text_success_to_cancel_pledge">取消质押成功</string>
 	<string name="text_total_pledged_nas">全网质押量</string>
 </resources>

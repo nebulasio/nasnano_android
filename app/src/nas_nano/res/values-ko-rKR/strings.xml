@@ -656,5 +656,7 @@
 	<string name="text_no_profits_yet">아직 수입이 없습니다</string>
 	<string name="text_fail_to_pledge">서약 실패</string>
 	<string name="text_success_to_pledge">서약 성공</string>
+	<string name="text_fail_to_cancel_pledge">서약 실패 취소</string>
+	<string name="text_success_to_cancel_pledge">약속 성공 취소</string>
 	<string name="text_total_pledged_nas">총 서약</string>
 </resources>

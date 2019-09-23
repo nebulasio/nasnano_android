@@ -133,10 +133,18 @@ class StakingDashboardController(lifecycleOwner: LifecycleOwner,
                 StakingConfiguration.pledgeComplete(context, it.txHash)
             }
             if (status == 0) {
-                dataCenter.stakingFailed.value = true
+                if (it.type == StakingConfiguration.OperationType.Pledge) {
+                    dataCenter.stakingFailed.value = true
+                } else {
+                    dataCenter.stakingCancelFailed.value = true
+                }
             }
             if (status == 1) {
-                dataCenter.stakingSuccess.value = true
+                if (it.type == StakingConfiguration.OperationType.Pledge) {
+                    dataCenter.stakingSuccess.value = true
+                } else {
+                    dataCenter.stakingCancelSuccess.value = true
+                }
             }
         }
         return anyChanges

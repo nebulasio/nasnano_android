@@ -104,6 +104,16 @@ class StakingDashboardActivity : BaseActivity(), StakingDashboardAdapter.ActionL
                 toast(R.string.text_success_to_pledge)
             }
         }
+        dataCenter.stakingCancelFailed.observe(this) {
+            if (it == true) {
+                toast(R.string.text_fail_to_cancel_pledge)
+            }
+        }
+        dataCenter.stakingCancelSuccess.observe(this) {
+            if (it == true) {
+                toast(R.string.text_success_to_cancel_pledge)
+            }
+        }
         dataCenter.error.observe(this) {
             it ?: return@observe
             if (!it.isEmpty()) {

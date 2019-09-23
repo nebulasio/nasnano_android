@@ -28,10 +28,12 @@ class StakingDashboardDataCenter : DataCenterViewModel() {
     val stakingFailed: Data<Boolean> = Data(false)
     val stakingSuccess: Data<Boolean> = Data(false)
 
+    val stakingCancelFailed: Data<Boolean> = Data(false)
+    val stakingCancelSuccess: Data<Boolean> = Data(false)
+
     var inOperationWallets: List<StakingConfiguration.PledgingWalletWrapper> = emptyList()
         set(value) {
             field = value
-            logD("XXXXXXX: $value")
             notifyDataChanged(EVENT_DATA_SOURCE_CHANGED)
         }
 }
