@@ -19,6 +19,11 @@ class FeedFlowResp : BaseEntity() {
      * tx交易信息
      */
     var txList: MutableList<Transaction>? = null
+
+    /**
+     * 钱包配置项
+     */
+    var configurations: Map<String, String>? = null
 }
 
 class HomeFeedItem : BaseEntity() {

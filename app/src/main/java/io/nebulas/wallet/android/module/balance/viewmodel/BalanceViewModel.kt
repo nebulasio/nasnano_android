@@ -14,6 +14,7 @@ import io.nebulas.wallet.android.common.Constants
 import io.nebulas.wallet.android.common.DataCenter
 import io.nebulas.wallet.android.common.TransactionPollingTaskInfo
 import io.nebulas.wallet.android.common.URLConstants
+import io.nebulas.wallet.android.configuration.Configuration
 import io.nebulas.wallet.android.db.DBUtil
 import io.nebulas.wallet.android.module.balance.ScreeningItemHelper
 import io.nebulas.wallet.android.module.balance.model.BalanceListModel
@@ -345,6 +346,10 @@ class BalanceViewModel : ViewModel(), PollingFutureTask.PollingCompleteCallback<
         val curList = getFeedFlowDatas().value
         if (null != curList && curList.any { null != it.swapItem }) {
             items.add(0, curList.first { null != it.swapItem })
+        }
+
+        t.configurations?.apply {
+            Configuration.resetConfigurationsFromServer(this)
         }
 
         t.noticeList?.apply {
