@@ -389,6 +389,7 @@ class BalanceViewModel : ViewModel(), PollingFutureTask.PollingCompleteCallback<
                     }
 
                     if (Constants.voteContracts.contains(it.receiver)) {
+                        val tokenSymbol = Constants.voteContractsMap[it.receiver]?:""
                         val data = it.txData
                         if (!data.isNullOrEmpty()) {
                             try {
@@ -397,8 +398,8 @@ class BalanceViewModel : ViewModel(), PollingFutureTask.PollingCompleteCallback<
                                 val function = json.getString("Function")
                                 val args = json.getString("Args")
                                 if (function == "vote") {
-                                    it.coinSymbol = "NAT"
-                                    it.currencyId = "NAT"
+                                    it.coinSymbol = tokenSymbol
+                                    it.currencyId = tokenSymbol
                                     val jsonArray = JSON.parseArray(args)
                                     it.amount = jsonArray.last().toString()
                                 }

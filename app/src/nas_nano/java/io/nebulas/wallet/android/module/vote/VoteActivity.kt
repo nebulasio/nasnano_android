@@ -61,6 +61,7 @@ class VoteActivity : BaseActivity(), TransferConfirmDialog.OnConfirmListener {
         setContentView(R.layout.activity_vote)
         showBackBtn(true, toolbar)
         titleTV.text = "投票"
+        tvTokenSymbol.text = Constants.voteContractsMap[viewModel.contractAddress]
         controller.getGas()
     }
 
@@ -123,13 +124,14 @@ class VoteActivity : BaseActivity(), TransferConfirmDialog.OnConfirmListener {
     }
 
     private fun confirmTransaction() {
+        val token = Constants.voteContractsMap[viewModel.contractAddress]?:""
         val confirmDialog = TransferConfirmDialog(
                 context = this,
                 title = getString(R.string.title_vote),
                 targetAddress = viewModel.contractAddress,
                 amount = viewModel.amountNAT,
-                amountSymbol = "NAT",
-                amountTokenId = "NAT",
+                amountSymbol = token,
+                amountTokenId = token,
                 gasFee = controller.calculateGasFee().toPlainString(),
                 onConfirmListener = this
         )

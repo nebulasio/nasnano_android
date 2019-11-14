@@ -94,13 +94,16 @@ class ScannerDispatcher {
 
         fun boxVoteInfo(payInfo: JSONObject): VoteRequest{
             val to = payInfo.getString("to")
+            val tokenSymbol = Constants.voteContractsMap[to]
+            val token = DataCenter.coins.find { it.tokenId==tokenSymbol }
             val payloadInfo = payInfo.getJSONObject("payload")
             val function = payloadInfo.getString("function") ?: ""
             val args = payloadInfo.getString("args")
             val argArray = JSON.parseArray(args)
             val amountWEI = argArray.last().toString()
             val wei = BigDecimal(amountWEI)
-            val amountNAT = wei.divide(BigDecimal.TEN.pow(18)).toString()
+            val decimal = token?.tokenDecimals?.toInt()?:18
+            val amountNAT = wei.divide(BigDecimal.TEN.pow(decimal)).toString()
             return VoteRequest(to, amountNAT, function, args)
         }
     }

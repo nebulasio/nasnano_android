@@ -298,6 +298,12 @@ object Constants {
      */
     const val ATPAds_Password_Click = "ATPAds_Password_Click"
 
-    val voteContracts = listOf("n1pADU7jnrvpPzcWusGkaizZoWgUywMRGMY")
+    /**
+     * 投票合约list
+     * n1pADU7jnrvpPzcWusGkaizZoWgUywMRGMY : NAT投票合约
+     * n1ebonMvNqCm4m7hf5vG677jSyvZ1KkGtqF : NAX投票合约
+     */
+    val voteContracts = listOf("n1pADU7jnrvpPzcWusGkaizZoWgUywMRGMY", "n1ebonMvNqCm4m7hf5vG677jSyvZ1KkGtqF")
+    val voteContractsMap = mapOf("n1pADU7jnrvpPzcWusGkaizZoWgUywMRGMY" to "NAT", "n1ebonMvNqCm4m7hf5vG677jSyvZ1KkGtqF" to "NAX")
 
 }

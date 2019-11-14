@@ -49,8 +49,13 @@ class Transaction constructor() : BaseEntity(), Serializable {
             if (this.amount.isNullOrEmpty())
                 return ""
 
+            val tokenSymbol = if (isVoteTransaction()){
+                Constants.voteContractsMap[receiver]
+            } else {
+                this.currencyId
+            }
             DataCenter.coins.forEach {
-                if (it.tokenId == this.currencyId) {
+                if (it.tokenId == tokenSymbol) {
                     this.tokenDecimals = it.tokenDecimals
                 }
             }

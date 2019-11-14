@@ -199,7 +199,7 @@ class TxViewModel : ViewModel() {
                 if (isVoteTransaction) {
                     t.payload = tx.payload
                     t.amount = tx.amount
-                    t.currencyId = "NAT"
+                    t.currencyId = Constants.voteContractsMap[tx.receiver]
                 } else {
                     run breakPoint@{
                         DataCenter.coins.forEach {

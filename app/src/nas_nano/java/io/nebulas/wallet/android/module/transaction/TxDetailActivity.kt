@@ -260,7 +260,7 @@ class TxDetailActivity : BaseActivity(), PollingFutureTask.PollingResultCallback
     }
 
     private fun refreshCurrencyPriceView(){
-        val value: BigDecimal = if (null != coinPrice && null != tx.amount && tx.amount!!.isNotEmpty()) BigDecimal(tx.amount).divide(BigDecimal(10).pow(coin.tokenDecimals.toInt())).multiply(coinPrice) else BigDecimal.ZERO
+        val value: BigDecimal = if (null != coinPrice && null != tx.amount && tx.amount!!.isNotEmpty()) BigDecimal(tx.amount).divide(BigDecimal(10).pow(tx.tokenDecimals.toInt())).multiply(coinPrice) else BigDecimal.ZERO
         amountValueTV.text = if (coinPrice == null || coinPrice?.toDouble() ?: 0.00 <= 0.00) "-" else "≈${tx.currencySymbol}${Formatter.priceFormat(value)}"
     }
 

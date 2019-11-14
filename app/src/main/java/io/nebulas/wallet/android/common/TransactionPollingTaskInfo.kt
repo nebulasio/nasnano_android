@@ -74,7 +74,12 @@ class TransactionPollingTaskInfo(var transaction: Transaction,
                 val heightNow = model.height!!
                 transaction.confirmedCnt = heightNow.toInt() - transaction.blockHeight!!.toInt()
                 val isConfirmed = transaction.confirmedCnt >= transaction.maxConfirmCnt
-
+                val isVoteTransaction = isVoteTransaction()
+                if (isVoteTransaction){
+                    val token = Constants.voteContractsMap[transaction.receiver]
+                    val coin = DataCenter.coins.find { it.tokenId==token }
+                    transaction.tokenDecimals = coin?.tokenDecimals?:"18"
+                }
                 transaction.confirmed = isConfirmed
 
                 if (transaction.status != "fail") {
@@ -126,6 +131,29 @@ class TransactionPollingTaskInfo(var transaction: Transaction,
 
     override fun getTimeInterval(): Long {
         return 15000L
+    }
+
+    private fun isVoteTransaction(): Boolean {
+        if (!voteContracts.contains(transaction.receiver)) {
+            return false
+        }
+        if (transaction.payload != null) {
+            val payload = transaction.payload!!
+            return payload.nasFunction == "vote"
+        } else {
+            try {
+                val data = transaction.txData
+                if (!data.isNullOrEmpty()) {
+                    val txData = String(Base64.decode(data.toByteArray(), Base64.DEFAULT))
+                    val json = JSON.parseObject(txData)
+                    val function = json.getString("Function")
+                    return function == "vote"
+                }
+            } catch (e: Exception) {
+                return false
+            }
+        }
+        return false
     }
 
     inner class DetailTask {
@@ -191,10 +219,12 @@ class TransactionPollingTaskInfo(var transaction: Transaction,
                     }
 
                     if (isVoteTransaction) {
+                        val token = Constants.voteContractsMap[txFromServer.receiver]
+                        val coin = DataCenter.coins.find { it.tokenId==token }
                         txFromServer.payload = this@TransactionPollingTaskInfo.transaction.payload
                         txFromServer.amount = this@TransactionPollingTaskInfo.transaction.amount
                         txFromServer.coinSymbol = this@TransactionPollingTaskInfo.transaction.coinSymbol
-                        txFromServer.tokenDecimals = this@TransactionPollingTaskInfo.transaction.tokenDecimals
+                        txFromServer.tokenDecimals = coin?.tokenDecimals?:"18"
                     }
 
                     blockHeight = txFromServer.blockHeight

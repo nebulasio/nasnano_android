@@ -75,9 +75,10 @@ class VoteController(private val viewModel: VoteViewModel,
     }
 
     fun doTransfer(wallet: Wallet, passPhrase: String) {
+        val token = Constants.voteContractsMap[viewModel.contractAddress]
         future = doAsync {
             val coin = DataCenter.coins.find {
-                it.walletId == wallet.id && it.tokenId.equals("NAT", true)
+                it.walletId == wallet.id && it.tokenId.equals(token, true)
             } ?: return@doAsync
             val address = DataCenter.addresses.find {
                 it.id == coin.addressId
@@ -91,6 +92,7 @@ class VoteController(private val viewModel: VoteViewModel,
                         .stripTrailingZeros()
                         .toPlainString()
             }
+            val decimal = coin.tokenDecimals.toInt()
             val transaction = Transaction(
                     currencyId = coin.tokenId,
                     coinSymbol = coin.symbol,
@@ -98,7 +100,7 @@ class VoteController(private val viewModel: VoteViewModel,
                     account = coin.address,
                     targetAddress = viewModel.contractAddress,
                     contractAddress = viewModel.contractAddress,
-                    amount = BigDecimal(viewModel.amountNAT).multiply(BigDecimal.TEN.pow(18)).toPlainString(),
+                    amount = BigDecimal(viewModel.amountNAT).multiply(BigDecimal.TEN.pow(decimal)).toPlainString(),
                     txData = "",
                     gasPrice = viewModel.gasPrice.value ?: "0",
                     gasLimit = gasLimit,
