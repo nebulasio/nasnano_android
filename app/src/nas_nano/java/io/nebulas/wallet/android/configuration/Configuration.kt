@@ -1,6 +1,7 @@
 package io.nebulas.wallet.android.configuration
 
 import android.content.Context
+import io.nebulas.wallet.android.common.Constants
 
 object Configuration {
 
@@ -74,10 +75,13 @@ object Configuration {
     private const val KEY_STAKING_STATUS = "staking_status"
     private const val KEY_STAKING_BANNER_URL = "staking_banner_url"
 
-    fun resetConfigurationsFromServer(newConfigurations: Map<String, String>?) {
+    fun resetConfigurationsFromServer(context: Context?, newConfigurations: Map<String, String>?) {
         newConfigurations ?: return
         for ((k, v) in newConfigurations) {
             configurationsFromServer[k] = v
+        }
+        if (newConfigurations.containsKey(KEY_NAX_VOTE_CONTRACTS)) {
+            updateVoteContracts(context, newConfigurations[KEY_NAX_VOTE_CONTRACTS])
         }
     }
 
@@ -91,6 +95,47 @@ object Configuration {
      */
     fun getStakingBannerUrl(lang:String): String {
         return configurationsFromServer["${KEY_STAKING_BANNER_URL}_$lang"] ?: return ""
+    }
+
+
+    private const val KEY_NAX_VOTE_CONTRACTS = "nax_vote_contracts"
+
+    /**
+     * 更新投票合约信息
+     * @param contracts 格式-   Contract,Contract
+     */
+    fun updateVoteContracts(context: Context?, contracts:String?){
+        context?:return
+        contracts?:return
+        val preferences = context.getSharedPreferences(FILE_CONFIGURATION, Context.MODE_PRIVATE or Context.MODE_MULTI_PROCESS)
+        preferences.edit()
+                .putString(KEY_NAX_VOTE_CONTRACTS, contracts)
+                .apply()
+        Constants.voteContracts = getVoteContracts(context)
+        Constants.voteContractsMap = getVoteContractsMap(context)
+    }
+
+    fun getVoteContracts(context: Context): List<String>{
+        val map = getVoteContractsMap(context)
+        if (map.isEmpty()){
+            return Constants.defaultVoteContracts
+        }
+        return map.keys.toList()
+    }
+
+    fun getVoteContractsMap(context: Context): Map<String, String> {
+        val preferences = context.getSharedPreferences(FILE_CONFIGURATION, Context.MODE_PRIVATE or Context.MODE_MULTI_PROCESS)
+        val contracts = preferences.getString(KEY_NAX_VOTE_CONTRACTS, "")
+        val keyValue = contracts.split(",").toList()
+        val map = mutableMapOf<String, String>()
+        keyValue.forEach {
+            map[it] = "NAX"
+        }
+        if (map.isEmpty()){
+            return Constants.defaultVoteContractsMap
+        }
+        map[Constants.VOTE_CONTRACT_NAT] = "NAT"
+        return map
     }
 
 }

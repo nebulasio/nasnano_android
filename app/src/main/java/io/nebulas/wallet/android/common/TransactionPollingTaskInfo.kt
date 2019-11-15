@@ -5,7 +5,6 @@ import android.util.Base64
 import com.alibaba.fastjson.JSON
 import com.young.polling.PollingFutureTask
 import com.young.polling.SyncManager
-import io.nebulas.wallet.android.R
 import io.nebulas.wallet.android.common.Constants.voteContracts
 import io.nebulas.wallet.android.db.DBUtil
 import io.nebulas.wallet.android.module.transaction.model.Transaction

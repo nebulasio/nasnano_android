@@ -303,7 +303,11 @@ object Constants {
      * n1pADU7jnrvpPzcWusGkaizZoWgUywMRGMY : NAT投票合约
      * n1ebonMvNqCm4m7hf5vG677jSyvZ1KkGtqF : NAX投票合约
      */
-    val voteContracts = listOf("n1pADU7jnrvpPzcWusGkaizZoWgUywMRGMY", "n1ebonMvNqCm4m7hf5vG677jSyvZ1KkGtqF")
-    val voteContractsMap = mapOf("n1pADU7jnrvpPzcWusGkaizZoWgUywMRGMY" to "NAT", "n1ebonMvNqCm4m7hf5vG677jSyvZ1KkGtqF" to "NAX")
+    const val VOTE_CONTRACT_NAT = "n1pADU7jnrvpPzcWusGkaizZoWgUywMRGMY"
+    val defaultVoteContracts = listOf("n1pADU7jnrvpPzcWusGkaizZoWgUywMRGMY", "n1ebonMvNqCm4m7hf5vG677jSyvZ1KkGtqF")
+    val defaultVoteContractsMap = mapOf("n1pADU7jnrvpPzcWusGkaizZoWgUywMRGMY" to "NAT", "n1ebonMvNqCm4m7hf5vG677jSyvZ1KkGtqF" to "NAX")
+
+    var voteContracts = listOf<String>()
+    var voteContractsMap = mapOf<String, String>()
 
 }

@@ -349,7 +349,7 @@ class BalanceViewModel : ViewModel(), PollingFutureTask.PollingCompleteCallback<
         }
 
         t.configurations?.apply {
-            Configuration.resetConfigurationsFromServer(this)
+            Configuration.resetConfigurationsFromServer(context, this)
         }
 
         t.noticeList?.apply {

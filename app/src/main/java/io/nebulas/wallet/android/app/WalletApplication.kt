@@ -7,6 +7,7 @@ import com.atp.manager.AtpKit
 import com.leon.channel.helper.ChannelReaderUtil
 import io.nebulas.wallet.android.base.BaseActivity
 import io.nebulas.wallet.android.common.Constants
+import io.nebulas.wallet.android.configuration.Configuration
 import io.nebulas.wallet.android.db.DBUtil
 import io.nebulas.wallet.android.extensions.DelegatesExtension
 import io.nebulas.wallet.android.push.message.PushManager
@@ -93,6 +94,8 @@ class WalletApplication : Application() {
 
         Constants.CURRENCY_SYMBOL_NAME = Util.getAppCurrencySymbol(this)
         Constants.LANGUAGE = Util.getAppLanguage(this)
+        Constants.voteContractsMap = Configuration.getVoteContractsMap(this)
+        Constants.voteContracts = Configuration.getVoteContracts(this)
         //MobSDK.init(this)
         PushManager.init(this)
         AtpKit.init(this, "id")
