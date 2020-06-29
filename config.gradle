@@ -18,8 +18,8 @@ ext {
             versionCode          : 100,
             versionName          : "1.0.0",
 
-            nanoVersionCode      : 264,
-            nanoVersionName      : "2.6.4",
+            nanoVersionCode      : 265,
+            nanoVersionName      : "2.6.5",
 
             aaaVersionCode       : 1,
             aaaVersionName       : "1.0.0",

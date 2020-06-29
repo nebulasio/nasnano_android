@@ -15,6 +15,7 @@ import io.nebulas.wallet.android.common.URLConstants
 import io.nebulas.wallet.android.dialog.WebViewBottomDialog
 import io.nebulas.wallet.android.extensions.Preference
 import io.nebulas.wallet.android.module.main.MainActivity
+import io.nebulas.wallet.android.BuildConfig
 import walletcore.Walletcore
 import java.util.*
 import java.util.regex.Pattern
@@ -77,41 +78,43 @@ object Util {
      * @return The application's version
      */
     fun appVersion(context: Context): String {
-        val pm = context.packageManager
-
-        try {
-            /*
-                * If there is no versionName in the Android Manifest, the
-                * versionName will be null.
-                */
-            return pm.getPackageInfo(context.packageName, PackageManager.GET_ACTIVITIES).versionName
-                    ?: return "unknown"
-        } catch (e: PackageManager.NameNotFoundException) {
-            /*
-			 * This should never occur--our own package must exist for this code
-			 * to be running
-			 */
-            throw RuntimeException(e)
-        }
+//        val pm = context.packageManager
+//
+//        try {
+//            /*
+//                * If there is no versionName in the Android Manifest, the
+//                * versionName will be null.
+//                */
+//            return pm.getPackageInfo(context.packageName, PackageManager.GET_ACTIVITIES).versionName
+//                    ?: return "unknown"
+//        } catch (e: PackageManager.NameNotFoundException) {
+//            /*
+//			 * This should never occur--our own package must exist for this code
+//			 * to be running
+//			 */
+//            throw RuntimeException(e)
+//        }
+        return BuildConfig.VERSION_NAME
 
     }
 
     fun appVersionCode(context: Context): Int {
-        val pm = context.packageManager
-
-        try {
-            /*
-                * If there is no versionName in the Android Manifest, the
-                * versionName will be null.
-                */
-            return pm.getPackageInfo(context.packageName, PackageManager.GET_ACTIVITIES).versionCode
-        } catch (e: PackageManager.NameNotFoundException) {
-            /*
-			 * This should never occur--our own package must exist for this code
-			 * to be running
-			 */
-            throw RuntimeException(e)
-        }
+//        val pm = context.packageManager
+//
+//        try {
+//            /*
+//                * If there is no versionName in the Android Manifest, the
+//                * versionName will be null.
+//                */
+//            return pm.getPackageInfo(context.packageName, PackageManager.GET_ACTIVITIES).versionCode
+//        } catch (e: PackageManager.NameNotFoundException) {
+//            /*
+//			 * This should never occur--our own package must exist for this code
+//			 * to be running
+//			 */
+//            throw RuntimeException(e)
+//        }
+        return BuildConfig.VERSION_CODE
 
     }
 
