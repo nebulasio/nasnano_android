@@ -152,7 +152,9 @@ class TransferActivity : BaseActivity() {
                                             contractAddress = voteRequest.contractAddress,
                                             amountNAT = voteRequest.amountNAT,
                                             function = voteRequest.function,
-                                            args = voteRequest.args
+                                            args = voteRequest.args,
+                                            gasPrice = voteRequest.gasPrice,
+                                            gasLimit = voteRequest.gasLimit
                                     )
                                     finish()
                                     return

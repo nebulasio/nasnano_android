@@ -14,7 +14,7 @@ class VoteViewModel : DataCenterViewModel() {
     var currentWallet: Wallet? = null
 
     val gasPrice: Data<String> = Data("20000000000")
-    val estimateGas: Data<String> = Data("300000")
+    val estimateGas: Data<String> = Data("800000")
     val payError: Data<String> = Data()
 
     fun handleIntent(intent: Intent) {
@@ -22,5 +22,7 @@ class VoteViewModel : DataCenterViewModel() {
         amountNAT = intent.getStringExtra(VoteActivity.PARAM_AMOUNT_NAT)
         function = intent.getStringExtra(VoteActivity.PARAM_FUNCTION)
         args = intent.getStringExtra(VoteActivity.PARAM_ARGS)
+        gasPrice.value = intent.getStringExtra(VoteActivity.PARAM_GASPRICE)
+        estimateGas.value = intent.getStringExtra(VoteActivity.PARAM_GASLIMIT)
     }
 }
