@@ -42,18 +42,35 @@
                                 app:layout_constraintLeft_toLeftOf="parent"
                                 android:layout_marginStart="12dp"/>
 
+                        <LinearLayout
+                            android:id="@+id/coinNameTVLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintTop_toTopOf="@+id/walletIconTV"
+                            app:layout_constraintBottom_toBottomOf="@+id/walletIconTV"
+                            app:layout_constraintLeft_toRightOf="@+id/walletIconTV">
 
-                        <TextView
-                                android:id="@+id/coinNameTV"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text='@{item.coin.symbol}'
-                                android:textSize="17sp"
-                                android:textColor="@color/color_202020"
-                                app:layout_constraintTop_toTopOf="@+id/walletIconTV"
-                                app:layout_constraintBottom_toBottomOf="@+id/walletIconTV"
-                                app:layout_constraintLeft_toRightOf="@+id/walletIconTV"
-                                android:layout_marginStart="12dp"/>
+                                <TextView
+                                    android:id="@+id/coinNameTV"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text='@{item.coin.symbol}'
+                                    android:textSize="17sp"
+                                    android:textColor="@color/color_202020"
+                                    android:layout_marginStart="12dp"/>
+
+
+                                <TextView
+                                    android:id="@+id/text_vote"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text='Votes'
+                                    android:textSize="15sp"
+                                    android:textColor="@color/color_8F8F8F"
+                                    android:visibility="gone"
+                                    android:layout_marginStart="12dp"/>
+                        </LinearLayout>
 
                         <TextView
                                 android:id="@+id/balanceTV"
@@ -66,7 +83,7 @@
                                 android:ellipsize="end"
                                 android:lines="1"
                                 android:textStyle="bold"
-                                app:layout_constraintLeft_toRightOf="@+id/coinNameTV"
+                                app:layout_constraintLeft_toRightOf="@+id/coinNameTVLayout"
                                 app:layout_constraintRight_toRightOf="parent"
                                 app:layout_constraintTop_toTopOf="@+id/walletIconTV"
                                 app:layout_constraintBottom_toTopOf="@+id/balanceValueTV"
@@ -82,7 +99,7 @@
                                 android:ellipsize="end"
                                 android:textColor="@color/color_8F8F8F"
                                 android:gravity="end"
-                                app:layout_constraintLeft_toRightOf="@+id/coinNameTV"
+                                app:layout_constraintLeft_toRightOf="@+id/coinNameTVLayout"
                                 app:layout_constraintRight_toRightOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/balanceTV"
                                 app:layout_constraintBottom_toBottomOf="@+id/walletIconTV"

@@ -25,6 +25,7 @@ class TokenRecyclerViewAdapter(context: Context): BaseBindingAdapter<MeTokenList
 
         val manageAssetsBtn = itemView.find<TextView>(R.id.manageAssetsBtn)
         val emptyAddWalletBtn = itemView.find<TextView>(R.id.emptyAddWalletBtn)
+        val textVote = itemView.find<TextView>(R.id.text_vote)
 
     }
 
@@ -51,6 +52,9 @@ class TokenRecyclerViewAdapter(context: Context): BaseBindingAdapter<MeTokenList
             holder.emptyAddWalletBtn.setOnClickListener {
                 CreateWalletActivity.launch(context as BaseActivity, WalletFragment.REQUEST_CODE_CREATE_WALLET, true)
             }
+
+            val item = items[position]
+            holder.textVote.visibility = if(item.coin?.tokenId.equals("NAX", true)) View.VISIBLE else View.GONE
         }
 
     }
