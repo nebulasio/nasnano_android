@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.TypedValue
 import android.view.View
+import android.widget.TextView
 import com.young.binder.bind
 import com.young.binder.whenEvent
 import io.nebulas.wallet.android.R
@@ -19,7 +20,6 @@ import io.nebulas.wallet.android.util.Util
 import kotlinx.android.synthetic.nas_nano.activity_transfer.view.*
 import java.math.BigDecimal
 import java.math.RoundingMode
-import java.text.DecimalFormat
 
 class TransferBinder(val activity: TransferActivity, val controller: TransferController, private val dataCenter: TransferDataCenter) {
 
@@ -104,6 +104,21 @@ class TransferBinder(val activity: TransferActivity, val controller: TransferCon
             activity.adjustGas()
         }
 
+        view.tvMax.setOnClickListener {
+            val currentCoin = dataCenter.coin
+            currentCoin?:return@setOnClickListener
+            val gasInfo = dataCenter.gasPriceResp
+            gasInfo?:return@setOnClickListener
+            val gasPrice = BigDecimal(gasInfo.gasPriceMin?:"0")
+            val estimateGas = BigDecimal(gasInfo.estimateGas?:"0")
+            val estimateGasFee = gasPrice.multiply(estimateGas)
+            val maxBalance = BigDecimal(dataCenter.maxBalance.value?:"0")
+            val maxValueWei = maxBalance.subtract(estimateGasFee)
+            val maxValue = Formatter.amountFormat(maxValueWei.toPlainString(), currentCoin.tokenDecimals.toInt())
+            view.amountET.setText(maxValue, TextView.BufferType.EDITABLE)
+            view.amountET.setSelection(view.amountET.text.length)
+        }
+
         view.layout_coin_info.setOnClickListener {
             if (!dataCenter.addressEditable) {
                 return@setOnClickListener
@@ -184,7 +199,7 @@ class TransferBinder(val activity: TransferActivity, val controller: TransferCon
             val amount = BigDecimal(amountString).multiply(BigDecimal(10).pow(coin.tokenDecimals.toInt())).stripTrailingZeros().toPlainString()
             transaction.amount = amount
             transaction.remark = view.remarksET.text.toString()
-            activity.confirmTransaction(amount)
+            activity.interceptConfirmTransaction(amount)
             if (!TextUtils.isEmpty(view.remarksET.text.toString())) {
                 activity.firebaseAnalytics?.logEvent(Constants.kATransferMemoClick, Bundle())
             }

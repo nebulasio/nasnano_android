@@ -40,7 +40,8 @@ class ConfirmTransferDialog(var activity: Activity,
                             val gasSymbol:String,
                             var coinPrice:BigDecimal?,
                             var gasCoinPrice:BigDecimal?,
-                            var onSendTransfer: (wallet: Wallet) -> Unit) : Dialog(activity, R.style.AppDialog) {
+                            var onSendTransfer: (wallet: Wallet) -> Unit,
+                            var pledgedInfo:MutableMap<String, String> = mutableMapOf()) : Dialog(activity, R.style.AppDialog) {
 
     var transaction: Transaction? = null
     var gasFee: String? = null
@@ -193,6 +194,30 @@ class ConfirmTransferDialog(var activity: Activity,
             } else {
                 view.find<TextView>(R.id.transferGasSymbolTV).text = curCoin.symbol
                 view.find<TextView>(R.id.transferGasBalanceTV).text = transferTokenMap[it.id]?.balanceString
+
+                val pledgedWEI = pledgedInfo[transferTokenMap[it.id]?.address]?:"0"
+                val pledgedNAS = Formatter.amountFormat(pledgedWEI, curCoin.tokenDecimals.toInt())
+                val formattedPledgedNAS = Formatter.tokenFormat(BigDecimal(pledgedNAS))
+                view.find<TextView>(R.id.tvPledgedInfo).text = "dStaking:$formattedPledgedNAS"
+
+                val finalTx = transaction
+                if (finalTx!=null) {
+                    val balance = BigDecimal(transferTokenMap[it.id]?.balance ?: "0")
+                    val gasFee = BigDecimal(finalTx.gasPrice).multiply(BigDecimal(finalTx.gasLimit))
+                    val amount = BigDecimal(finalTx.amount?:"0")
+                    val pledgedAmount = BigDecimal(pledgedWEI)
+
+                    // transaction.amount + (transaction.gasPrice * transaction.gasLimit) 转账金额+手续费
+                    // transferTokenMap[it.id].balance 地址余额
+                    // 如果：余额 - 当前质押数 < (转账金额+手续费)  -》变红
+                    // 如果：余额 - 当前质押数 >= (转账金额+手续费)  -》变8F
+                    if (pledgedAmount > BigDecimal.ZERO && balance.subtract(pledgedAmount) < amount.plus(gasFee)) {
+                        view.find<TextView>(R.id.transferGasBalanceTV).setTextColor(context.resources.getColor(R.color.red))
+                    } else {
+                        view.find<TextView>(R.id.transferGasBalanceTV).setTextColor(context.resources.getColor(R.color.color_8F8F8F))
+                    }
+
+                }
 
             }
 

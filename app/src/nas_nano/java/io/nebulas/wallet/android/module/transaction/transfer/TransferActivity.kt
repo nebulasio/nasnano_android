@@ -17,23 +17,23 @@ import io.nebulas.wallet.android.module.detail.BalanceDetailActivity
 import io.nebulas.wallet.android.module.qrscan.NormalScannerResultActivity
 import io.nebulas.wallet.android.module.qrscan.QRScanActivity
 import io.nebulas.wallet.android.module.qrscan.ScannerDispatcher
+import io.nebulas.wallet.android.module.staking.StakingContractHolder
 import io.nebulas.wallet.android.module.transaction.TxDetailActivity
 import io.nebulas.wallet.android.module.transaction.view.ConfirmTransferDialog
 import io.nebulas.wallet.android.module.transaction.view.GasAdjustDialog
 import io.nebulas.wallet.android.module.vote.VoteActivity
 import io.nebulas.wallet.android.module.wallet.create.model.Address
+import io.nebulas.wallet.android.network.server.HttpManager
 import io.nebulas.wallet.android.util.Formatter
 import io.nebulas.wallet.android.util.SecurityHelper
 import io.nebulas.wallet.android.util.Util
 import io.nebulas.wallet.android.view.research.CurtainResearch
 import kotlinx.android.synthetic.nas_nano.app_bar_main_no_underline.*
-import org.jetbrains.anko.contentView
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.startActivityForResult
-import org.jetbrains.anko.uiThread
+import org.jetbrains.anko.*
 import org.jetbrains.annotations.NotNull
 import walletcore.Walletcore
 import java.math.BigDecimal
+import java.util.concurrent.Future
 
 class TransferActivity : BaseActivity() {
 
@@ -112,6 +112,8 @@ class TransferActivity : BaseActivity() {
     private var confirmTransferDialog: ConfirmTransferDialog? = null
     private var verifyPWDDialog: VerifyPasswordDialog? = null
 
+    private var future: Future<Unit>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_transfer)
@@ -121,6 +123,15 @@ class TransferActivity : BaseActivity() {
         initViews()
         controller.loadNecessaryData()
         isHasNetWork()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        future?.apply {
+            if (!isCancelled && !isDone) {
+                cancel(true)
+            }
+        }
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -295,7 +306,7 @@ class TransferActivity : BaseActivity() {
                         .setScale(0)
                         .stripTrailingZeros()
                         .toPlainString()
-                confirmTransaction(amountWei)
+                interceptConfirmTransaction(amountWei)
             }
         }
     }
@@ -383,7 +394,29 @@ class TransferActivity : BaseActivity() {
         firebaseAnalytics?.logEvent(Constants.kATransferGasClick, Bundle())
     }
 
-    fun confirmTransaction(amount: String) {
+    fun interceptConfirmTransaction(amount: String){
+        future?.apply {
+            if (!isCancelled && !isDone) {
+                cancel(true)
+            }
+        }
+        future = doAsync {
+            dataCenter.isLoading = true
+            val pledgedWalletInfo = controller.getPledgedWallet()
+            val pledgedMap = mutableMapOf<String, String>()
+            pledgedWalletInfo?.forEach {
+                val address = it.address
+                address?:return@forEach
+                pledgedMap[address] = it.info?.value?:"0"
+            }
+            dataCenter.isLoading = false
+            uiThread {
+                confirmTransaction(amount, pledgedMap)
+            }
+        }
+    }
+
+    fun confirmTransaction(amount: String, pledgedInfo:MutableMap<String, String> = mutableMapOf()) {
         confirmTransferDialog = ConfirmTransferDialog(activity = this,
                 curCoin = dataCenter.coin!!,
                 gasSymbol = dataCenter.gasSymbol,
@@ -435,7 +468,8 @@ class TransferActivity : BaseActivity() {
                     confirmTransferDialog?.dismiss()
                     verifyPWDDialog?.show()
                     firebaseAnalytics?.logEvent(Constants.kATransferConfirmViewConfirmClick, Bundle())
-                })
+                },
+                pledgedInfo = pledgedInfo)
         confirmTransferDialog?.setCanceledOnTouchOutside(false)
         val transaction = dataCenter.transaction ?: return
         transaction.amount = amount

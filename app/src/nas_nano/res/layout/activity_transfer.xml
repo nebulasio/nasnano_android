@@ -129,6 +129,16 @@
                                         android:textSize="11sp"
                                         android:textColor="@color/color_999999"
                                         tools:text="66666.998778"/>
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_alignBaseline="@id/tvAmountText"
+                                        android:id="@+id/tvMax"
+                                        android:layout_marginStart="3dp"
+                                        android:textSize="15sp"
+                                        android:textColor="@color/color_038AFB"
+                                        android:text="Max"/>
                         </RelativeLayout>
 
                         <LinearLayout

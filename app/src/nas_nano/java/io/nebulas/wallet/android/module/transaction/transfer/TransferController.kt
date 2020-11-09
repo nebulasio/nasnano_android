@@ -4,6 +4,7 @@ import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.support.annotation.WorkerThread
+import com.alibaba.fastjson.JSON
 import com.young.binder.lifecycle.LifecycleController
 import io.nebulas.wallet.android.R
 import io.nebulas.wallet.android.base.BaseActivity
@@ -15,10 +16,14 @@ import io.nebulas.wallet.android.extensions.logE
 import io.nebulas.wallet.android.module.balance.model.Coin
 import io.nebulas.wallet.android.module.balance.viewmodel.BalanceViewModel
 import io.nebulas.wallet.android.module.detail.fragment.transaction.ErrorHandler
+import io.nebulas.wallet.android.module.staking.PledgeDetail
+import io.nebulas.wallet.android.module.staking.StakingContractHolder
 import io.nebulas.wallet.android.module.transaction.model.Transaction
 import io.nebulas.wallet.android.module.wallet.create.model.Address
 import io.nebulas.wallet.android.network.callback.OnResultCallBack
 import io.nebulas.wallet.android.network.dapp.APIHolder
+import io.nebulas.wallet.android.network.nas.NASHttpManager
+import io.nebulas.wallet.android.network.nas.api.NASApi
 import io.nebulas.wallet.android.network.nas.model.NASTransactionModel
 import io.nebulas.wallet.android.network.server.HttpManager
 import io.nebulas.wallet.android.network.server.api.ServerApi
@@ -351,5 +356,55 @@ class TransferController(val context: Context,
         } catch (e: Exception) {
             false
         }
+    }
+
+    @WorkerThread
+    fun getPledgedWallet(): List<PledgeDetail>? {
+        var contract = StakingContractHolder.dataContract
+        if (contract==null){
+            val api = HttpManager.getServerApi()
+            val response = api.getStakingContracts(HttpManager.getHeaderMap()).execute()
+            if (response.code() != 200) {
+                return null
+            }
+            val apiResponse = response.body() ?: return null
+            val stakingContractsResponse = apiResponse.data
+            if (stakingContractsResponse?.stakingProxy == null
+                    || stakingContractsResponse.data == null) {
+                return null
+            }
+            if (!stakingContractsResponse.verify()) {
+                return null
+            }
+            StakingContractHolder.holdStakingContractInfo(stakingContractsResponse)
+            contract = StakingContractHolder.dataContract
+        }
+        contract?:return null
+        val allWallets = mutableListOf<String>()
+        DataCenter.addresses.forEach {
+            if (it.platform == Walletcore.NAS) {
+                allWallets.add(it.address)
+            }
+        }
+        val api = NASHttpManager.getApi()
+
+        var result: List<PledgeDetail>? = null
+        var retryCount = 0
+        while (result == null && retryCount < 3) {
+            val response = api.call(
+                    NASApi.CallParam(contract, contract, "0", "1", "20000000000", "2000000", mapOf(
+                            Pair("function", "getCurrentStakingsStatistic"),
+                            Pair("args", JSON.toJSONString(listOf(allWallets, null)))
+                    ))
+            ).execute()
+            val arrayString = response.body()?.result?.result ?: return null
+            result = try {
+                JSON.parseArray(arrayString, PledgeDetail::class.java)
+            } catch (e: Exception) {
+                null
+            }
+            retryCount++
+        }
+        return result
     }
 }

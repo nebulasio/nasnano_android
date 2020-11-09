@@ -67,6 +67,19 @@
                         app:layout_constraintLeft_toRightOf="@+id/transferTokenSymbolTV"
                         app:layout_constraintRight_toRightOf="parent"/>
 
+                <io.nebulas.wallet.android.view.AutoFitTextView
+                        android:id="@+id/tvPledgedInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"
+                        android:gravity="end"
+                        android:lines="1"
+                        app:layout_constraintTop_toTopOf="@+id/transferTokenSymbolTV"
+                        app:layout_constraintBottom_toBottomOf="@+id/transferTokenSymbolTV"
+                        app:layout_constraintLeft_toRightOf="@+id/transferTokenSymbolTV"
+                        app:layout_constraintRight_toRightOf="parent"/>
+
                 <TextView
                         android:id="@+id/transferGasSymbolTV"
                         android:layout_width="wrap_content"
