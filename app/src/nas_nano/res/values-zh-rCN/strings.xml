@@ -49,6 +49,7 @@
 	<string name="tx_detail_process">交易中</string>
 	<string name="tx_detail_finish">交易完成</string>
 	<string name="tx_detail_remark">备注</string>
+	<string name="tx_detail_remark_func">方法</string>
 	<string name="tx_detail_remark_nothing">暂无</string>
 	<string name="tx_detail_detail_text">详情</string>
 	<string name="tx_detail_hash">交易号</string>

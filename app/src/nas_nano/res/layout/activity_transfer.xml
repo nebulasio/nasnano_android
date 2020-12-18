@@ -170,6 +170,7 @@
                                 android:layout_height="56dp"
                                 android:gravity="center_vertical">
                                 <io.nebulas.wallet.android.view.AutoFitTextView
+                                        android:id="@+id/remarksTitle"
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="2"

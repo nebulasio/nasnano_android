@@ -49,6 +49,7 @@
         <string name="tx_detail_process">Pending</string>
         <string name="tx_detail_finish">Finish</string>
         <string name="tx_detail_remark">Memo</string>
+        <string name="tx_detail_remark_func">Func</string>
         <string name="tx_detail_remark_nothing">None</string>
         <string name="tx_detail_detail_text">Details</string>
         <string name="tx_detail_hash">Transaction No.</string>

@@ -49,6 +49,7 @@
 	<string name="tx_detail_process">처리중</string>
 	<string name="tx_detail_finish">완료</string>
 	<string name="tx_detail_remark">메모</string>
+	<string name="tx_detail_remark_func">메모</string>
 	<string name="tx_detail_remark_nothing">수량</string>
 	<string name="tx_detail_detail_text">자세히</string>
 	<string name="tx_detail_hash">거래 일련번호</string>

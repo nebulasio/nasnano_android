@@ -210,6 +210,19 @@ class TransferBinder(val activity: TransferActivity, val controller: TransferCon
                 activity.firebaseAnalytics?.logEvent(Constants.kATransferMemoClick, Bundle())
             }
         }
+
+        if (dataCenter.raiseUpPayload != null) {
+            val payload = dataCenter.raiseUpPayload!!
+            if (payload.nasFunction.length > 0) {
+                view.remarksTitle.setText(R.string.tx_detail_remark_func)
+                view.remarksET.setText(payload.nasFunction)
+
+                view.remarksET.clearFocus()
+                view.remarksET.isCursorVisible = false
+                view.remarksET.isFocusable = false
+                view.remarksET.isFocusableInTouchMode = false
+            }
+        }
     }
 
     @SuppressLint("SetTextI18n")
