@@ -127,7 +127,7 @@ object URLConstants {
     /**
      * Nebulas rpc host
      */
-    const val NAS_URL_HOST = "http://35.154.108.11:8685/v1/user/"
+    const val NAS_URL_HOST = "https://mainnet.nebulas.io/v1/user/"
     /**
      * eth get balance
      */

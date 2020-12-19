@@ -63,12 +63,15 @@ class VoteController(private val viewModel: VoteViewModel,
             if (gas != null) {
                 try {
                     if (BigDecimal(gas.gas) >= BigDecimal("300000")) {
-                        viewModel.estimateGas.value = gas.gas
+                        viewModel.estimateGas.value = BigDecimal(gas.gas)
+                                .add(BigDecimal("10000"))
+                                .stripTrailingZeros()
+                                .toPlainString()
                     } else {
                         viewModel.estimateGas.value = "300000"
                     }
                 }catch (e:Exception){
-                    viewModel.estimateGas.value = "300000"
+                    viewModel.estimateGas.value = "800000"
                 }
             }
         }
@@ -85,7 +88,7 @@ class VoteController(private val viewModel: VoteViewModel,
             } ?: return@doAsync
             val gasFeeMax = calculateMaxGasFee()
             val gasLimit = if (BigDecimal(coin.balance) < gasFeeMax) {
-                viewModel.estimateGas.value ?: "300000"
+                viewModel.estimateGas.value ?: "800000"
             } else {
                 BigDecimal(viewModel.estimateGas.value ?: "0")
                         .add(BigDecimal("10000"))

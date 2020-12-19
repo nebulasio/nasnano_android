@@ -32,17 +32,23 @@ class VoteActivity : BaseActivity(), TransferConfirmDialog.OnConfirmListener {
         const val PARAM_AMOUNT_NAT = "param_amount_nat"
         const val PARAM_FUNCTION = "param_function"
         const val PARAM_ARGS = "param_args"
+        const val PARAM_GASPRICE = "param_gas_price"
+        const val PARAM_GASLIMIT = "param_gas_limit"
 
         fun launch(context: Context,
                    contractAddress: String,
                    amountNAT: String,
                    function: String,
-                   args: String) {
+                   args: String,
+                   gasPrice: String,
+                   gasLimit: String) {
             context.startActivity(Intent(context, VoteActivity::class.java).apply {
                 putExtra(PARAM_CONTRACT_ADDRESS, contractAddress)
                 putExtra(PARAM_AMOUNT_NAT, amountNAT)
                 putExtra(PARAM_FUNCTION, function)
                 putExtra(PARAM_ARGS, args)
+                putExtra(PARAM_GASPRICE, gasPrice)
+                putExtra(PARAM_GASLIMIT, gasLimit)
             })
         }
     }
@@ -62,7 +68,7 @@ class VoteActivity : BaseActivity(), TransferConfirmDialog.OnConfirmListener {
         showBackBtn(true, toolbar)
         titleTV.text = "投票"
         tvTokenSymbol.text = Constants.voteContractsMap[viewModel.contractAddress]
-        controller.getGas()
+//        controller.getGas()
     }
 
     private fun handleIntent() {

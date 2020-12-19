@@ -17,7 +17,7 @@ import java.math.BigDecimal
 
 class ScannerDispatcher {
 
-    data class VoteRequest(val contractAddress:String, val amountNAT:String, val function:String, val args:String)
+    data class VoteRequest(val contractAddress:String, val amountNAT:String, val function:String, val args:String, val gasPrice:String, val gasLimit:String)
 
     companion object {
 
@@ -40,7 +40,9 @@ class ScannerDispatcher {
                                     contractAddress = voteRequest.contractAddress,
                                     amountNAT = voteRequest.amountNAT,
                                     function = voteRequest.function,
-                                    args = voteRequest.args
+                                    args = voteRequest.args,
+                                    gasPrice = voteRequest.gasPrice,
+                                    gasLimit = voteRequest.gasLimit
                             )
                         } else {
                             DataCenter.setData(Constants.KEY_DAPP_TRANSFER_JSON, JSON.toJSONString(pageParams))
@@ -104,7 +106,9 @@ class ScannerDispatcher {
             val wei = BigDecimal(amountWEI)
             val decimal = token?.tokenDecimals?.toInt()?:18
             val amountNAT = wei.divide(BigDecimal.TEN.pow(decimal)).toString()
-            return VoteRequest(to, amountNAT, function, args)
+            val gasPrice = payInfo.getString("gasPrice")?: "20000000000"
+            val gasLimit = payInfo.getString("gasLimit")?: "800000"
+            return VoteRequest(to, amountNAT, function, args, gasPrice, gasLimit)
         }
     }
 
