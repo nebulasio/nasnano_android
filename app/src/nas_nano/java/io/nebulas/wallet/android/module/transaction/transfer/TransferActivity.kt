@@ -192,6 +192,7 @@ class TransferActivity : BaseActivity() {
                         val currentCoin = dataCenter.coin ?: return
                         if (currentCoin.tokenId != null && currentCoin.tokenId != resultCoin.tokenId) {
                             dataCenter.maxBalance.value = "0"
+                            dataCenter.maxBalanceFormatted.value = Formatter.tokenFormat(BigDecimal.ZERO)
                             dataCenter.coin = resultCoin
                             val transaction = dataCenter.transaction ?: return
                             transaction.payload?.nasType = if (resultCoin.type == 1) {

@@ -9,9 +9,10 @@ buildscript {
         mavenCentral()
         maven { url 'https://maven.aliyun.com/repository/google' }
         maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
         jcenter()
         maven {
-            url 'https://maven.fabric.io/public'
+                url 'http://s3.amazonaws.com/fabric-artifacts/public'
         }
 //        google()
     }
@@ -37,9 +38,10 @@ buildscript {
 allprojects {
     repositories {
 
-        mavenCentral()
+//        mavenCentral()
         maven { url 'https://maven.aliyun.com/repository/google' }
         maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
         maven { url 'https://jitpack.io' }
         jcenter()
 //        google()

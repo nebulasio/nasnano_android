@@ -103,7 +103,7 @@ class WalletAdapter(val callback: WalletAdapterCallback?, private var _isBalance
                     var totalValue = BigDecimal(0)
                     DataCenter.coins.forEach {
                         if (it.walletId == wallet.id) {
-                            totalValue += BigDecimal(it.balanceValue)
+                            totalValue += BigDecimal(it.balanceValueString)
                         }
                     }
                     "≈" + Constants.CURRENCY_SYMBOL + Formatter.priceFormat(totalValue)

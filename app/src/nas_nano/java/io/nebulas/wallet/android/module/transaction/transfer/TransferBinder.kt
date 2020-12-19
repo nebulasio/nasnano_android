@@ -107,13 +107,19 @@ class TransferBinder(val activity: TransferActivity, val controller: TransferCon
         view.tvMax.setOnClickListener {
             val currentCoin = dataCenter.coin
             currentCoin?:return@setOnClickListener
-            val gasInfo = dataCenter.gasPriceResp
-            gasInfo?:return@setOnClickListener
-            val gasPrice = BigDecimal(gasInfo.gasPriceMin?:"0")
-            val estimateGas = BigDecimal(gasInfo.estimateGas?:"0")
-            val estimateGasFee = gasPrice.multiply(estimateGas)
+            // coin type==1(币种为NAS) 需要减去gas消耗  else 直接取最大值即可
             val maxBalance = BigDecimal(dataCenter.maxBalance.value?:"0")
-            val maxValueWei = maxBalance.subtract(estimateGasFee)
+            val maxValueWei = if (currentCoin.type==1) {
+                val gasInfo = dataCenter.gasPriceResp
+                gasInfo?:return@setOnClickListener
+                val gasPrice = BigDecimal(gasInfo.gasPriceMin?:"0")
+                val estimateGas = BigDecimal(gasInfo.estimateGas?:"0")
+                val estimateGasFee = gasPrice.multiply(estimateGas)
+                maxBalance.subtract(estimateGasFee)
+            } else {
+                BigDecimal(maxBalance.toPlainString())
+            }
+
             val maxValue = Formatter.amountFormat(maxValueWei.toPlainString(), currentCoin.tokenDecimals.toInt())
             view.amountET.setText(maxValue, TextView.BufferType.EDITABLE)
             view.amountET.setSelection(view.amountET.text.length)
